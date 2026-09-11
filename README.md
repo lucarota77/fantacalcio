@@ -15,14 +15,22 @@ e attaccanti** (dove la forza della squadra è già dentro le quote di gol e ass
 La pagina ha `noindex` per restare fuori dai motori di ricerca, ma il repo è pubblico: chi
 conosce il link vede la rosa.
 
-## Come funziona: due esecuzioni
+## Come funziona: due esecuzioni, ogni ora dalle 14 alle 20 del venerdì
 
 | | Quando | Dove | Cosa raccoglie |
 |---|---|---|---|
-| **Automatica** | venerdì 14:00, sempre | GitHub Actions | Probabili formazioni da **Gazzetta + fantacalcio.it** (entrambe con percentuali di ballottaggio), **MV e fantamedia** stagionali, **quote 1X2** da BetExplorer per le gare già quotate. Mancano solo i mercati per giocatore. |
-| **Completa** | venerdì 14:15, se il Mac è acceso | task locale di Claude Code | Aggiunge **marcatore, assist e ammonizione** da bwin e Snai — l'unica cosa che richiede una rete residenziale — e ripubblica il sito senza avviso. |
+| **Automatica** | ven, ogni ora :00 dalle 14 alle 20 | GitHub Actions | Probabili formazioni da **Gazzetta + fantacalcio.it** (entrambe con percentuali di ballottaggio), **MV e fantamedia** stagionali, **quote 1X2** da BetExplorer per le gare già quotate. Mancano solo i mercati per giocatore. |
+| **Completa** | ven, ogni ora :20 dalle 14 alle 20, se il Mac è acceso | task locale di Claude Code | Aggiunge **marcatore, assist e ammonizione** da bwin e Snai — l'unica cosa che richiede una rete residenziale — e ripubblica il sito senza avviso. |
 
-La seconda sovrascrive la prima: il risultato è lo stesso URL, aggiornato.
+La seconda sovrascrive la prima: il risultato è lo stesso URL, aggiornato. Il locale gira alle
+:20, venti minuti dopo l'automatica, così arriva sempre per ultimo.
+
+### Le quote del Mac sopravvivono al Mac spento
+
+Ogni passata locale salva i mercati per giocatore in **`quote_cache.json`** dentro il repo. Le
+esecuzioni cloud successive li riusano, se sono della stessa giornata, invece di lasciare i
+campi vuoti: la pagina dichiara in testata da quante ore vengono. Più spesso il Mac è acceso
+nella finestra, più fresche restano le quote per le ore successive.
 
 ### Cosa raggiunge il runner GitHub (diagnostica dell'11/09/2026)
 
@@ -50,29 +58,47 @@ libera, gira senza PC e può committare da solo.
 
 ## Lanciarlo a mano
 
-Dal terminale:
+### Da iPhone — Shortcut, un tap dalla schermata home
+
+Serve una volta sola un token: GitHub → *Settings* → *Developer settings* →
+*Personal access tokens* → **Fine-grained tokens** → *Generate new token*, con
+**Repository access: Only select repositories → fantacalcio** e
+**Permissions → Actions: Read and write**. Copialo subito, non è più visibile.
+
+Poi nell'app **Comandi** (Shortcuts): nuovo comando → azione **Ottieni contenuti di URL**:
+
+| Campo | Valore |
+|---|---|
+| URL | `https://api.github.com/repos/lucarota77/fantacalcio/actions/workflows/report.yml/dispatches` |
+| Metodo | `POST` |
+| Intestazioni | `Authorization` = `Bearer <IL_TUO_TOKEN>` · `Accept` = `application/vnd.github+json` |
+| Corpo richiesta | JSON, campo `ref` (testo) = `main` |
+
+Aggiungilo alla schermata home: un tap lancia il report, che compare sul sito in un paio di
+minuti. Funziona anche dal Mac e da qualunque cosa sappia fare una POST (IFTTT, automazioni).
+
+> Il token dà accesso in scrittura alle Actions di questo solo repo: se lo perdi, revocalo da
+> GitHub e rigenerane uno. Non metterlo mai nel repo.
+
+### Dall'app GitHub, senza token
+App GitHub ufficiale → repo *fantacalcio* → tab **Actions** → *Report fantacalcio* →
+**Run workflow**. Più clic, zero configurazione.
+
+### Dal Mac
 ```bash
 gh workflow run "Report fantacalcio" --repo lucarota77/fantacalcio
 ```
-Da web: la tab **Actions** del repo → *Report fantacalcio* → *Run workflow*.
-
-Da un servizio esterno (IFTTT, Shortcut iOS, automazione domestica) — serve un token
-fine-grained sul solo repo `fantacalcio` con permesso **Actions: write**:
-```
-POST https://api.github.com/repos/lucarota77/fantacalcio/actions/workflows/report.yml/dispatches
-Authorization: Bearer <TOKEN>
-Accept: application/vnd.github+json
-Body: {"ref":"main"}
-```
-
-Per la passata completa con le quote serve il Mac: pannello **Scheduled** → "Run now" sul task
-⚽ *Fantacalcio — passata completa*, oppure in chat «lancia la passata completa del fantacalcio».
+Questo lancia però solo la parte automatica. Per la **passata completa con le quote** serve il
+task locale: pannello **Scheduled** della sidebar → *Run now* su ⚽ *Fantacalcio — passata
+completa*, oppure in chat «lancia la passata completa del fantacalcio». È l'unica che può
+leggere bwin e Snai.
 
 ## Ora legale
 
-Il workflow fira alle **12:00 e 13:00 UTC** e tiene solo l'esecuzione in cui a Roma sono le 14.
-Così il venerdì alle 14:00 italiane vale tutto l'anno e non serve correggere il cron ai cambi
-d'ora — a differenza delle routine cloud, dove il cron è in UTC fisso.
+Il workflow fira **ogni ora fra le 11:00 e le 19:00 UTC** e uno step tiene solo le esecuzioni
+in cui a Roma l'ora è fra le 14 e le 20. La finestra copre sia l'ora legale (UTC+2) sia quella
+solare (UTC+1), quindi vale tutto l'anno senza correggere il cron ai cambi d'ora — a differenza
+delle routine cloud, dove il cron è in UTC fisso.
 
 ## File
 
