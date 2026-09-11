@@ -1,0 +1,159 @@
+{
+  "proprietario": "Luca Rota",
+  "stagione": "2026/27",
+  "aggiornata_al": "2026-09-11",
+  "note": "Ruoli classic Mantra-agnostici: P/D/C/A. 'nome_fonte' e' l'alias usato dai bookmaker/siti quando differisce dal nome sulla lista fantacalcio.",
+  "rosa": [
+    {
+      "nome": "Martinez Jo.",
+      "nome_fonte": "Josep Martinez",
+      "ruolo": "P",
+      "squadra": "Inter"
+    },
+    {
+      "nome": "Provedel",
+      "nome_fonte": "Ivan Provedel",
+      "ruolo": "P",
+      "squadra": "Inter",
+      "nota": "Ceduto dalla Lazio all'Inter l'08/07/2026 (3 M€, triennale): vice di Josep Martinez. Stesso club di Martinez Jo. in rosa."
+    },
+    {
+      "nome": "Skorupski",
+      "nome_fonte": "Lukasz Skorupski",
+      "ruolo": "P",
+      "squadra": "Bologna"
+    },
+    {
+      "nome": "Lulli",
+      "nome_fonte": "Lulli",
+      "ruolo": "D",
+      "squadra": "Roma"
+    },
+    {
+      "nome": "Comuzzo",
+      "nome_fonte": "Pietro Comuzzo",
+      "ruolo": "D",
+      "squadra": "Torino"
+    },
+    {
+      "nome": "Doekhi",
+      "nome_fonte": "Danilho Doekhi",
+      "ruolo": "D",
+      "squadra": "Lazio"
+    },
+    {
+      "nome": "Pavlovic",
+      "nome_fonte": "Strahinja Pavlovic",
+      "ruolo": "D",
+      "squadra": "Milan"
+    },
+    {
+      "nome": "Vojvoda",
+      "nome_fonte": "Mergim Vojvoda",
+      "ruolo": "D",
+      "squadra": "Udinese"
+    },
+    {
+      "nome": "Kalulu",
+      "nome_fonte": "Pierre Kalulu",
+      "ruolo": "D",
+      "squadra": "Juventus"
+    },
+    {
+      "nome": "Miranda J.",
+      "nome_fonte": "Juan Miranda",
+      "ruolo": "D",
+      "squadra": "Bologna"
+    },
+    {
+      "nome": "Gallo",
+      "nome_fonte": "Antonino Gallo",
+      "ruolo": "D",
+      "squadra": "Lecce"
+    },
+    {
+      "nome": "Alajbegovic",
+      "nome_fonte": "Benjamin Alajbegovic",
+      "ruolo": "C",
+      "squadra": "Juventus"
+    },
+    {
+      "nome": "Gudmundsson A.",
+      "nome_fonte": "Albert Gudmundsson",
+      "ruolo": "C",
+      "squadra": "Lazio"
+    },
+    {
+      "nome": "Kone M.",
+      "nome_fonte": "Manu Kone",
+      "ruolo": "C",
+      "squadra": "Roma"
+    },
+    {
+      "nome": "Jones C.",
+      "nome_fonte": "Curtis Jones",
+      "ruolo": "C",
+      "squadra": "Inter"
+    },
+    {
+      "nome": "Gonzalez N.",
+      "nome_fonte": "Nico Gonzalez",
+      "ruolo": "C",
+      "squadra": "Juventus"
+    },
+    {
+      "nome": "Pulisic",
+      "nome_fonte": "Christian Pulisic",
+      "ruolo": "C",
+      "squadra": "Milan"
+    },
+    {
+      "nome": "Politano",
+      "nome_fonte": "Matteo Politano",
+      "ruolo": "C",
+      "squadra": "Napoli"
+    },
+    {
+      "nome": "Bernardeschi",
+      "nome_fonte": "Federico Bernardeschi",
+      "ruolo": "C",
+      "squadra": "Bologna"
+    },
+    {
+      "nome": "Pellegrino M.",
+      "nome_fonte": "Pellegrino",
+      "ruolo": "A",
+      "squadra": "Fiorentina"
+    },
+    {
+      "nome": "Woltemade",
+      "nome_fonte": "Nick Woltemade",
+      "ruolo": "A",
+      "squadra": "Juventus"
+    },
+    {
+      "nome": "Ramos G.",
+      "nome_fonte": "Goncalo Ramos",
+      "ruolo": "A",
+      "squadra": "Milan"
+    },
+    {
+      "nome": "Kolo Muani",
+      "nome_fonte": "Randal Kolo Muani",
+      "ruolo": "A",
+      "squadra": "Juventus"
+    },
+    {
+      "nome": "Colombo",
+      "nome_fonte": "Lorenzo Colombo",
+      "ruolo": "A",
+      "squadra": "Genoa"
+    },
+    {
+      "nome": "Thuram",
+      "nome_fonte": "Marcus Thuram",
+      "ruolo": "A",
+      "squadra": "Inter"
+    }
+  ]
+}
