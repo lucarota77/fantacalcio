@@ -9,10 +9,52 @@ La probabilità di vittoria della partita pesa nell'indice di rilevanza, **molto
 e difensori** (dove gol e assist sono rari e conta il clean sheet) e **poco su centrocampisti
 e attaccanti** (dove la forza della squadra è già dentro le quote di gol e assist).
 
-## Come si lancia a mano
+## Dove si vede
 
-Dal pannello **Scheduled** della sidebar: "Run now" sul task ⚽ *Report Fantacalcio*.
-Oppure, in chat: «lancia il report fantacalcio».
+**https://lucarota77.github.io/fantacalcio/** — pubblica, senza login, URL stabile fra le giornate.
+La pagina ha `noindex` per restare fuori dai motori di ricerca, ma il repo è pubblico: chi
+conosce il link vede la rosa.
+
+## Come funziona: due esecuzioni
+
+| | Quando | Dove | Cosa raccoglie |
+|---|---|---|---|
+| **Automatica** | venerdì 14:00, sempre | GitHub Actions | Probabili formazioni complete (Gazzetta, parsing deterministico). **Niente quote**: i runner GitHub non hanno browser e BetExplorer blocca i loro IP. La pagina mostra un avviso di report parziale. |
+| **Completa** | venerdì 14:15, se il Mac è acceso | task locale di Claude Code | Aggiunge marcatore, assist e ammonizione da bwin e Snai, che richiedono il browser, e ripubblica il sito senza avviso. |
+
+La seconda sovrascrive la prima: il risultato è lo stesso URL, aggiornato.
+
+### Perché non una routine cloud di Claude
+Provata e scartata: l'ambiente cloud ha un **proxy di egress** che blocca gazzetta.it,
+betexplorer.com, fantacalcio.it, sosfanta.com e sport.sky.it (`EGRESS_BLOCKED`), non ha il
+browser, ed Exa restituisce contenuto in cache di settimane prima. GitHub Actions ha rete
+libera, gira senza PC e può committare da solo.
+
+## Lanciarlo a mano
+
+Dal terminale:
+```bash
+gh workflow run "Report fantacalcio" --repo lucarota77/fantacalcio
+```
+Da web: la tab **Actions** del repo → *Report fantacalcio* → *Run workflow*.
+
+Da un servizio esterno (IFTTT, Shortcut iOS, automazione domestica) — serve un token
+fine-grained sul solo repo `fantacalcio` con permesso **Actions: write**:
+```
+POST https://api.github.com/repos/lucarota77/fantacalcio/actions/workflows/report.yml/dispatches
+Authorization: Bearer <TOKEN>
+Accept: application/vnd.github+json
+Body: {"ref":"main"}
+```
+
+Per la passata completa con le quote serve il Mac: pannello **Scheduled** → "Run now" sul task
+⚽ *Fantacalcio — passata completa*, oppure in chat «lancia la passata completa del fantacalcio».
+
+## Ora legale
+
+Il workflow fira alle **12:00 e 13:00 UTC** e tiene solo l'esecuzione in cui a Roma sono le 14.
+Così il venerdì alle 14:00 italiane vale tutto l'anno e non serve correggere il cron ai cambi
+d'ora — a differenza delle routine cloud, dove il cron è in UTC fisso.
 
 ## File
 
@@ -64,5 +106,9 @@ pesa più del dato editoriale, e il peso di Gazzetta si dimezza se il suo timest
 ## Limiti noti
 
 - **Assist e ammonizioni sono single-source** (solo bwin): Snai non li espone per giocatore.
+- **L'esecuzione automatica non ha quote.** Con una chiave gratuita di
+  [the-odds-api.com](https://the-odds-api.com) (500 richieste al mese, ne serve una a settimana)
+  anche il report automatico avrebbe 1X2 e Over/Under di tutte e 10 le partite: il codice è già
+  pronto, basta aggiungere il secret `ODDS_API_KEY` nelle impostazioni del repo.
 - Il clean sheet è modellato (Poisson sui gol attesi), non letto da un mercato dedicato.
 - Le quote si muovono di ora in ora: ogni report vale per l'istante indicato in testata.

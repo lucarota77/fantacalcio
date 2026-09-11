@@ -27,6 +27,12 @@ Stato delle fonti al 11/09/2026:
 | bwin.it | ❌ | ✅ |
 | snai.it | ❌ | ✅ |
 | bet365.it | ❌ | ❌ "Contenuto non disponibile" |
+| betexplorer.com | ✅ da rete domestica, ❌ dai runner GitHub | — | 1X2 medie di mercato + calendario |
+
+**Esecuzione automatica (GitHub Actions).** Non ha browser e gli IP dei runner sono bloccati da
+BetExplorer: restano solo le probabili formazioni, via `parse_gazzetta.py`. È un limite accettato,
+dichiarato in pagina da un avviso. **L'ambiente cloud di Claude non è utilizzabile**: un proxy di
+egress rifiuta tutti questi domini e Exa restituisce cache di settimane prima.
 
 Gazzetta via browser è la fonte più ricca: undici con numeri di maglia, **panchina completa**,
 **ballottaggi con percentuali**, squalificati, **diffidati**, indisponibili con giornata di
