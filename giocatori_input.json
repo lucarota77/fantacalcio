@@ -61,8 +61,8 @@
    null,
    null,
    null,
-   1,
-   "ballottaggio 45% (fantacalcio.it) / titolare (Gazzetta) — dato piu vecchio di 48h, peso dimezzato"
+   0,
+   "ballottaggio 45% (fantacalcio.it) / titolare (Gazzetta)"
   ],
   [
    "Comuzzo",
@@ -77,8 +77,8 @@
    null,
    null,
    null,
-   1,
-   "titolare (fantacalcio.it) / titolare (Gazzetta) — dato piu vecchio di 48h, peso dimezzato"
+   0,
+   "titolare (fantacalcio.it) / titolare (Gazzetta)"
   ],
   [
    "Doekhi",
@@ -215,14 +215,14 @@
    "Torino-Roma",
    0.5,
    null,
-   0.9,
+   0.0,
    null,
    null,
    null,
    null,
    null,
-   1,
-   "in dubbio (fantacalcio.it) / titolare (Gazzetta) — dato piu vecchio di 48h, peso dimezzato"
+   0,
+   "in dubbio (fantacalcio.it) / indisponibile o squalificato (Gazzetta)"
   ],
   [
    "Jones C.",
