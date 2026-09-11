@@ -7,14 +7,11 @@ S = json.load(open('/tmp/mstate.json'))
 GIORNATA = sys.argv[1] if len(sys.argv) > 1 else '4'
 TS = sys.argv[2] if len(sys.argv) > 2 else datetime.now().strftime('%d/%m/%Y %H:%M')
 RUOLO = {'P':'Portieri','D':'Difensori','C':'Centrocampisti','A':'Attaccanti'}
-med = {}
-for r in 'PDCA':
-    v = sorted([x['ir'] for x in rows if x['r']==r], reverse=True)
-    med[r] = v[max(0,len(v)//3-1)] if v else 0
-def lab(x):
-    if x['pgio'] < .40: return '🔴 PANCHINA'
-    if x['pgio'] < .75: return '🟠 BALLOTTAGGIO'
-    return '🟢 SCHIERA' if x['ir'] >= med[x['r']] else '🟡 OK'
+SLOT = {'titolare': '🟢 TITOLARE', 'riserva': '🔵 1ª RISERVA',
+        'alternativa': '⚪ ALTERNATIVA', 'fuori': '🔴 FUORI'}
+RISCHIO = {'sicuro': '—', 'ballottaggio': '🟠 ballottaggio', 'panchina': '🔴 non gioca'}
+def lab(x): return SLOT[x['slot']]
+def risk(x): return RISCHIO[x['rischio']]
 pc = lambda v: 'n.d.' if v is None else f'{round(v*100)}%'
 L = []
 L.append(f"# Report Fantacalcio — Serie A, giornata {GIORNATA}\n")
@@ -29,8 +26,8 @@ L.append("\n## 0. Formazione consigliata — 3-4-3\n")
 for _r in 'PDCA':
     _t = [x for x in rows if x['titolare'] and x['r'] == _r]
     _p = [x for x in rows if not x['titolare'] and x['r'] == _r and x['pgio'] >= .40][:2]
-    L.append(f"- **{RUOLO[_r]}:** " + ', '.join(f"{x['n']}{x['flag']} ({x['ir']:.2f})" for x in _t)
-             + ("  \n  _prime riserve:_ " + ', '.join(f"{x['n']} ({x['ir']:.2f})" for x in _p) if _p else ""))
+    L.append(f"- **{RUOLO[_r]}:** " + ', '.join(f"{x['n']}{x['flag']} ({x['fanta']:.2f})" for x in _t)
+             + ("  \n  _prime riserve:_ " + ', '.join(f"{x['n']} ({x['fanta']:.2f})" for x in _p) if _p else ""))
 L.append("> Le quote sono usate come **stima di probabilità**, non come invito al gioco. "
          "Tutte le probabilità sono al netto del margine del bookmaker (de-vig).\n")
 # squadre
@@ -63,24 +60,24 @@ L.append("`IR` = punti fanta attesi dai bonus/malus (gol +3, assist +1, ammonizi
          "e attaccanti (0,7), perché per questi ultimi la forza della squadra è già dentro le quote di "
          "gol e assist. ★ = titolare nel 3-4-3 consigliato.\n")
 nv = lambda v: '—' if not v else f"{v:.2f}"
-L.append("| # | Giocatore | R | Squadra | Partita | Gioca | MV | FM | Gol | Assist | Amm. | IR | Fanta atteso | Consiglio |")
-L.append("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|")
+L.append("| # | Giocatore | R | Squadra | Partita | Gioca | Rischio | MV | FM | Gol | Assist | Amm. | IR | Fanta atteso | Consiglio |")
+L.append("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|")
 for i,x in enumerate(rows,1):
     st = " ★" if x['titolare'] else ""
     L.append(f"| {i} | **{x['n']}**{x['flag']}{st} | {x['r']} | {x['sq']} | {x['mt']} | {pc(x['pgio'])} | "
-             f"{nv(x['mv'])} | {nv(x['fm'])} | {pc(x['pg'])} | {pc(x['pa'])} | {pc(x['pc'])} | "
+             f"{risk(x)} | {nv(x['mv'])} | {nv(x['fm'])} | {pc(x['pg'])} | {pc(x['pa'])} | {pc(x['pc'])} | "
              f"{x['ir']:.2f} | **{x['fanta']:.2f}** | {lab(x)} |")
 # per ruolo
 L.append("\n## 3. Per ruolo — come schierare\n")
 for r in 'PDCA':
     rr = [x for x in rows if x['r']==r]
     L.append(f"\n### {RUOLO[r]}\n")
-    L.append("| # | Giocatore | Squadra | Partita | Gioca | MV | FM | Gol | Assist | Amm. | IR | Fanta atteso | Consiglio |")
-    L.append("|---|---|---|---|---|---|---|---|---|---|---|---|---|")
+    L.append("| # | Giocatore | Squadra | Partita | Gioca | Rischio | MV | FM | Gol | Assist | Amm. | IR | Fanta atteso | Consiglio |")
+    L.append("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|")
     for i,x in enumerate(rr,1):
         st = " ★" if x['titolare'] else ""
         L.append(f"| {i} | **{x['n']}**{x['flag']}{st} | {x['sq']} | {x['mt']} | {pc(x['pgio'])} | "
-                 f"{nv(x['mv'])} | {nv(x['fm'])} | {pc(x['pg'])} | {pc(x['pa'])} | {pc(x['pc'])} | "
+                 f"{risk(x)} | {nv(x['mv'])} | {nv(x['fm'])} | {pc(x['pg'])} | {pc(x['pa'])} | {pc(x['pc'])} | "
                  f"{x['ir']:.2f} | **{x['fanta']:.2f}** | {lab(x)} |")
 # note
 L.append("\n## 4. Note e alert\n")

@@ -117,15 +117,23 @@ for (n, r, sq, mt, fc, sf, gz, sky, qgb, qgs, qab, qcb, stale, nota) in P:
                      mv_att=mv_att, fanta=fanta))
 rows.sort(key=lambda x: -x['fanta'])
 # formazione 3-4-3: i migliori per IR in ogni ruolo, con P(gioca) >= 0.40
+# Un solo ordinamento (fanta atteso) decide tutto: la selezione e le etichette.
+# Il rischio di presenza e una dimensione SEPARATA, non va mescolata col consiglio.
 titolari, panchina = [], []
 for r, k in MODULO.items():
     cand = [x for x in rows if x['r'] == r]   # gia ordinati per fanta atteso
     ok = [x for x in cand if x['pgio'] >= .40]
     sel = (ok + [x for x in cand if x not in ok])[:k]
-    for x in sel: x['titolare'] = True
-    titolari += sel
-    panchina += [x for x in cand if x not in sel]
-for x in rows: x.setdefault('titolare', False)
+    resto = [x for x in cand if x not in sel]
+    for x in sel: x['titolare'], x['slot'] = True, 'titolare'
+    for i, x in enumerate(resto):
+        x['slot'] = 'riserva' if (i == 0 and x['pgio'] >= .40) else (
+                    'alternativa' if x['pgio'] >= .40 else 'fuori')
+    titolari += sel; panchina += resto
+for x in rows:
+    x.setdefault('titolare', False); x.setdefault('slot', 'fuori')
+    x['rischio'] = ('sicuro' if x['pgio'] >= .75 else
+                    'ballottaggio' if x['pgio'] >= .40 else 'panchina')
 json.dump({'rows': rows, 'titolari': [x['n'] for x in titolari]}, open('/tmp/rows.json','w'))
 f = lambda v: '  n.d.' if v is None else f'{v*100:5.1f}%'
 print(f"{'#':<3}{'GIOCATORE':<17}{'R':<2}{'SQUADRA':<11}{'GIOCA':>7}{'MV':>6}{'FM':>6}"

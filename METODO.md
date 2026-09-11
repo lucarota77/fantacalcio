@@ -226,14 +226,30 @@ perciò pesa molto di più (1,8 per i difensori, 2,2 per i portieri).
 Conseguenza pratica: un difensore titolare fisso di una squadra sfavorita vale meno di un
 difensore della capolista, anche a parità di probabilità di scendere in campo.
 
-**Etichetta operativa:**
+**Etichette — due dimensioni separate, mai mescolate.**
 
-| Condizione | Consiglio |
+Il *consiglio* deriva esclusivamente dall'ordinamento per fanta atteso, così non può
+contraddire la formazione. Il *rischio* dipende solo dalla probabilità di scendere in campo
+ed è un'informazione a parte: **un titolare può essere in ballottaggio e restare comunque il
+miglior nome del suo reparto**.
+
+| Consiglio | Significato |
 |---|---|
-| `P_gioca >= 0.75` e IR nel terzo superiore del ruolo | 🟢 **SCHIERA** |
-| `P_gioca >= 0.75` e IR medio | 🟡 **OK** |
-| `0.40 <= P_gioca < 0.75` | 🟠 **BALLOTTAGGIO** |
-| `P_gioca < 0.40` | 🔴 **PANCHINA** |
+| 🟢 **TITOLARE** | selezionato nel 3-4-3 |
+| 🔵 **1ª RISERVA** | primo escluso del ruolo, con `P_gioca >= 0.40` |
+| ⚪ **ALTERNATIVA** | disponibile ma più indietro |
+| 🔴 **FUORI** | `P_gioca < 0.40` |
+
+| Rischio | Condizione |
+|---|---|
+| — | `P_gioca >= 0.75` |
+| 🟠 ballottaggio | `0.40 <= P_gioca < 0.75` |
+| 🔴 non gioca | `P_gioca < 0.40` |
+
+> Un errore da non ripetere: nella prima versione il consiglio era calcolato sull'IR mentre la
+> formazione veniva scelta sul fanta atteso. Sei titolari su undici finivano etichettati in modo
+> contraddittorio. Qualunque etichetta va derivata dallo **stesso** ordinamento che sceglie la
+> formazione.
 
 ---
 

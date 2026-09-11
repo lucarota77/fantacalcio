@@ -6,14 +6,16 @@ G = sys.argv[1] if len(sys.argv) > 1 else '4'
 TS = sys.argv[2] if len(sys.argv) > 2 else '11/09/2026 09:40'
 OUT = sys.argv[3]
 RN = {'P':'Portieri','D':'Difensori','C':'Centrocampisti','A':'Attaccanti'}
-med = {}
-for r in 'PDCA':
-    v = sorted([x['ir'] for x in rows if x['r']==r], reverse=True)
-    med[r] = v[max(0,len(v)//3-1)] if v else 0
-def lab(x):
-    if x['pgio'] < .40: return ('panchina','Panchina')
-    if x['pgio'] < .75: return ('ballo','Ballottaggio')
-    return ('schiera','Schiera') if x['ir'] >= med[x['r']] else ('ok','OK')
+# Consiglio e rischio sono due dimensioni distinte: il consiglio deriva dall'unico
+# ordinamento (fanta atteso), il rischio dalla sola probabilita di scendere in campo.
+SLOT = {'titolare': ('titolare','Titolare'), 'riserva': ('riserva','1ª riserva'),
+        'alternativa': ('alt','Alternativa'), 'fuori': ('fuori','Fuori')}
+RISK = {'sicuro': ('','—'), 'ballottaggio': ('rk-b','Ballottaggio'), 'panchina': ('rk-p','Non gioca')}
+def lab(x): return SLOT[x['slot']]
+def risk(x):
+    c, t = RISK[x['rischio']]
+    return f'<td class="rk-c"><span class="risk {c}">{t}</span></td>' if c else \
+           '<td class="rk-c"><span class="risk">—</span></td>'
 e = html.escape
 def cell(p, q):
     if p is None: return '<td class="num"><span class="nd">n.d.</span></td>'
@@ -57,12 +59,12 @@ def trow(i, x, show_role=True):
     return (f'<tr><td class="rk">{i}</td>'
             f'<td class="nm"><b>{e(x["n"])}</b>{wr}{st}<span class="sq">{e(x["sq"])}</span></td>'
             f'{role}<td class="mt">{e(x["mt"])}<span class="wh">{e(x["when"])}</span></td>'
-            f'{cell(x["pgio"],None)}{plain(x["mv"])}{plain(x["fm"])}{cellq(x["pg"],qg2)}'
+            f'{cell(x["pgio"],None)}{risk(x)}{plain(x["mv"])}{plain(x["fm"])}{cellq(x["pg"],qg2)}'
             f'{cell(x["pa"],x["qa"])}{cell(x["pc"],x["qc"])}'
             f'{irc(x["ir"], x["ir"])}{fantac(x["fanta"])}'
             f'<td><span class="pill {cls}">{txt}</span></td></tr>')
 HEAD = ('<tr><th>#</th><th>Giocatore</th>{R}<th>Partita</th>'
-        '<th class="num">Gioca</th><th class="num">MV</th><th class="num">FM</th>'
+        '<th class="num">Gioca</th><th>Rischio</th><th class="num">MV</th><th class="num">FM</th>'
         '<th class="num">Gol</th><th class="num">Assist</th><th class="num">Ammonito</th>'
         '<th class="num">IR</th><th class="num">Fanta atteso</th><th>Consiglio</th></tr>')
 # squadre
@@ -225,8 +227,11 @@ td.num.s{min-width:60px}
 .pill{display:inline-block;padding:3px 9px;border-radius:2px;white-space:nowrap;
   font:600 11px/1.35 "IBM Plex Sans",sans-serif;letter-spacing:.05em;text-transform:uppercase;
   border:1px solid currentColor}
-.pill.schiera{color:var(--ok)}.pill.ok{color:var(--neu)}
-.pill.ballo{color:var(--warn)}.pill.panchina{color:var(--bad)}
+.pill.titolare{color:var(--ok)}.pill.riserva{color:var(--rc)}
+.pill.alt{color:var(--neu)}.pill.fuori{color:var(--bad)}
+.rk-c{white-space:nowrap}
+.risk{font:500 12px/1 "IBM Plex Mono",monospace;color:var(--muted)}
+.risk.rk-b{color:var(--warn)}.risk.rk-p{color:var(--bad)}
 .warn-i{color:var(--warn);font-size:12px;margin-left:3px}
 /* filtri */
 .filters{display:flex;flex-wrap:wrap;gap:7px;margin:16px 0}
@@ -254,6 +259,8 @@ td.num.s{min-width:60px}
 .callout p{margin:0 0 8px}.callout p:last-child{margin:0}
 .legend{display:flex;flex-wrap:wrap;gap:9px 18px;margin-top:14px;font-size:12.5px;color:var(--muted)}
 .legend span{display:inline-flex;align-items:center;gap:6px}
+.legend .sep{width:100%;margin-top:4px;padding-top:9px;border-top:1px solid var(--line2)}
+.legend .sep b{color:var(--ink)}
 footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);
   font:400 12px/1.6 "IBM Plex Mono",monospace;color:var(--muted)}
 @media (max-width:640px){.wrap{padding:0 15px}h1{font-size:36px}}
@@ -285,7 +292,11 @@ footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);
 
 <section>
   <h2>I 25 in ordine di rilevanza <span>IR = punti bonus/malus attesi</span></h2>
-  <p class="lede">L&rsquo;indice di rilevanza somma il valore atteso dei bonus e dei malus &mdash;
+  <p class="lede"><b>Un solo numero ordina tutto: il fanta atteso.</b> Da li discende anche la
+  colonna <i>Consiglio</i>, quindi non puo contraddire la formazione. Il <i>Rischio</i> e
+  un'informazione separata e non entra nell'ordinamento: un titolare puo essere in ballottaggio
+  e restare comunque il miglior nome del suo reparto.
+  L&rsquo;indice di rilevanza somma il valore atteso dei bonus e dei malus &mdash;
   gol &times;3, assist &times;1, ammonizione &minus;0,5, clean sheet &times;1 per i difensori &mdash;
   pesati per la probabilita di giocare e per il contesto della partita.
   <b>Il contesto pesa molto su portiere (2,2) e difensori (1,8) e poco su centrocampisti (0,9) e
@@ -303,10 +314,12 @@ footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);
   <div class="scroll"><table class="t" id="main">
     <thead>@@HEAD@@</thead><tbody>@@ALLROWS@@</tbody></table></div>
   <div class="legend">
-    <span><span class="pill schiera">Schiera</span> titolare e nel terzo alto del ruolo</span>
-    <span><span class="pill ok">OK</span> titolare, rendimento atteso medio</span>
-    <span><span class="pill ballo">Ballottaggio</span> fra 40% e 75% di presenza</span>
-    <span><span class="pill panchina">Panchina</span> sotto il 40%</span>
+    <span><span class="pill titolare">Titolare</span> schierato nel 3-4-3</span>
+    <span><span class="pill riserva">1ª riserva</span> primo cambio del ruolo</span>
+    <span><span class="pill alt">Alternativa</span> disponibile ma piu indietro</span>
+    <span><span class="pill fuori">Fuori</span> sotto il 40% di presenza</span>
+    <span class="sep">Il <b>rischio</b> e una colonna a parte: un titolare puo essere in
+    ballottaggio, e resta il miglior nome del reparto.</span>
     <span>&#9888; fonti in conflitto</span>
   </div>
 </section>
