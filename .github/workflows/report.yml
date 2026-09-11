@@ -78,11 +78,16 @@ jobs:
           GIORNATA="${{ inputs.giornata }}" python3 componi.py
           python3 calcola.py dati.json
           python3 giocatori.py
+          # La giornata si legge dai dati (Gazzetta la scrive in testa), non contando i
+          # file di report: contarli sbaglia a ogni rilancio nella stessa giornata.
           N="${{ inputs.giornata }}"
+          if [ -z "$N" ]; then N=$(python3 raccolta_cloud.py giornata < /dev/null || true); fi
           if [ -z "$N" ]; then
             N=$(ls report/*.md 2>/dev/null | sed -n 's/.*giornata\([0-9]*\)\.md/\1/p' | sort -n | tail -1)
-            N=$(( ${N:-0} + 1 ))
+            N=${N:-1}
+            echo "giornata non leggibile dai dati: riuso l'ultima presente ($N)"
           fi
+          echo "giornata: $N"
           echo "GIORNATA=$N" >> $GITHUB_ENV
           TS=$(TZ=Europe/Rome date '+%d/%m/%Y %H:%M')
           D=$(TZ=Europe/Rome date '+%Y-%m-%d')

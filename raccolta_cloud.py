@@ -85,6 +85,13 @@ def quote_odds_api(key):
                     'fonte': f'the-odds-api, media di {len(h2h)} bookmaker'})
     return out
 
+def giornata(testo=None):
+    """Numero di giornata letto dai dati, non dedotto contando i file di report:
+    Gazzetta lo scrive come "4° Giornata" in testa alla pagina."""
+    t = testo or gazzetta_testo()
+    m = re.search(r'(\d{1,2})\s*[°ºo]\s*Giornata', t)
+    return m.group(1) if m else None
+
 def gazzetta_testo():
     h = fetch(GAZZETTA, 60)
     h = re.sub(r'(?is)<(script|style|noscript)[^>]*>.*?</\1>', ' ', h)
@@ -101,6 +108,10 @@ if __name__ == '__main__':
     key = os.environ.get('ODDS_API_KEY', '').strip()
     if cmd == 'calendario':
         for e in calendario(): print(f"  {e['name']:<26} {e['start'][:16]}")
+    elif cmd == 'giornata':
+        g = giornata()
+        print(g or '', end='')
+        if not g: print("giornata non trovata nel testo di Gazzetta", file=sys.stderr)
     elif cmd == 'gazzetta':
         t = gazzetta_testo(); print(t)
         print(f"\n# {len(t)} caratteri, 'Ballottaggio' x{t.count('Ballottaggio')}", file=sys.stderr)
