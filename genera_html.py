@@ -107,7 +107,7 @@ for r in 'PDCA':
     items = ''.join(
         f'<li><span class="bn">{e(x["n"])}'
         + (' <span class="warn-i">&#9888;</span>' if x['flag'] else '')
-        + f'</span><span class="bi">{x["ir"]:.2f}</span>'
+        + f'</span><span class="bi">{x["fanta"]:.2f}</span>'
         f'<span class="bp">{round(x["pgio"]*100)}% in campo &middot; MV {x["mv"]:.2f}</span></li>'
         if x['mv'] else
         f'<span class="bp">{round(x["pgio"]*100)}% in campo &middot; {e(x["sq"])}</span></li>' for x in tt)
@@ -296,7 +296,7 @@ footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);
 <div class="wrap">
 @@BANNER@@
 <section>
-  <h2>Formazione consigliata <span>3-4-3 &middot; 1 portiere, 3 difensori, 4 centrocampisti, 3 attaccanti</span></h2>
+  <h2>Formazione consigliata <span>3-4-3 &middot; il numero accanto a ogni nome e il <b>fanta atteso</b>, lo stesso che ordina le tabelle</span></h2>
   <div class="best">@@BEST@@</div>
 </section>
 

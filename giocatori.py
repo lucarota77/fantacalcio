@@ -7,6 +7,23 @@ S = json.load(open('/tmp/mstate.json'))
 ST = {}
 if os.path.exists('statistiche.json'):
     ST = json.load(open('statistiche.json'))
+# --- Tabella bonus/malus della lega di Luca ------------------------------------------
+# Presa dal regolamento della sua lega, non dai valori standard: qui gol subito vale -1
+# (non -0.5) e la porta inviolata +1 (non 3, che era un peso arbitrario).
+B_GOL        =  3.0    # gol segnato, rigore segnato incluso (le quote "marcatore" li contano gia)
+B_ASSIST     =  1.0    # assist, gold e soft valgono tutti 1
+B_CLEANSHEET =  1.0    # porta inviolata
+B_GOLSUBITO  = -1.0    # per ogni gol subito (portiere)
+B_RIGPARATO  =  3.0    # rigore parato
+B_AMMONIZ    = -0.5
+B_ESPULS     = -1.0
+B_GOLVITT    =  0.5    # gol della vittoria (quello del pareggio vale 0)
+P_RIG_PARATO = 0.035   # probabilita che un portiere pari un rigore in una partita
+R_ROSSO      = 0.06    # espulsioni per ogni ammonizione attesa (rapporto storico)
+Q_DECISIVO   = 0.30    # quota dei gol che risultano "della vittoria"
+# Non modellati, perche non prevedibili dalle quote: player of the match (+1),
+# autogol (-2), rigore sbagliato (-3). Sono eventi rari o non quotati.
+
 # --- Pesi del punteggio finale (vedi METODO.md par. 5-ter) --------------------------
 # Fanta atteso = P_gioca * (6.0 + W_MV * (MV_attesa - 6.0)) + W_Q * IR
 # Il 6.0 e comune a tutti e non ordina nulla: a ordinare sono P_gioca, lo scarto di MV
@@ -94,13 +111,17 @@ for (n, r, sq, mt, fc, sf, gz, sky, qgb, qgs, qab, qcb, stale, nota) in P:
     pvit = m['p1'] if casa else m['p2']
     sub = m['lam_away'] if casa else m['lam_home']
     ctx = pvit - .33                                       # contesto: quanto e favorita la squadra
+    amm = pc or 0
+    malus = B_AMMONIZ*amm + B_ESPULS*(amm*R_ROSSO)
+    bonus_gol = B_GOL*(pg or 0) + B_GOLVITT*(pg or 0)*pvit*Q_DECISIVO
     if r == 'P':
-        ir = pgio*(3.0*cs - sub*.5 + .5 + 2.2*ctx)
+        ir = pgio*(B_CLEANSHEET*cs + B_GOLSUBITO*sub + B_RIGPARATO*P_RIG_PARATO
+                   + B_AMMONIZ*amm + 2.2*ctx)
     elif r == 'D':
-        ir = 3*(pg or 0) + (pa or 0) - .5*(pc or 0) + pgio*(1.5*cs + 1.8*ctx)
+        ir = bonus_gol + B_ASSIST*(pa or 0) + malus + pgio*(B_CLEANSHEET*cs + 1.8*ctx)
     else:
         k = .9 if r == 'C' else .7
-        ir = 3*(pg or 0) + (pa or 0) - .5*(pc or 0) + pgio*k*ctx
+        ir = bonus_gol + B_ASSIST*(pa or 0) + malus + pgio*k*ctx
     # Voto base atteso: la media voto stagionale, ritirata verso 6.0 quando le presenze
     # sono poche. La fantamedia NON si somma: contiene gia i bonus, che l'IR stima in
     # prospettiva su questa partita; sommarle sarebbe un doppio conteggio. Resta come

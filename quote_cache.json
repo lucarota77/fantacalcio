@@ -1,6 +1,6 @@
 {
  "giornata": "4",
- "rilevate": "2026-09-11T13:09+02:00",
+ "rilevate": "2026-09-11T14:18+02:00",
  "fonte": "bwin + Snai (browser, passata locale)",
  "partite": {
   "Inter-Udinese": "lun 14/09 20:45",
@@ -13,17 +13,23 @@
   "Lecce-Monza": "dom 13/09 15:00"
  },
  "quote": {
-  "Martinez Jo.": {
-   "qg": null,
-   "qgs": null,
-   "qa": null,
-   "qc": 13.0
-  },
   "Thuram": {
    "qg": 1.93,
    "qgs": 2.0,
    "qa": 4.4,
    "qc": 6.75
+  },
+  "Gonzalez N.": {
+   "qg": 2.95,
+   "qgs": 3.5,
+   "qa": 4.8,
+   "qc": 4.75
+  },
+  "Woltemade": {
+   "qg": 3.0,
+   "qgs": 2.5,
+   "qa": 5.0,
+   "qc": 6.25
   },
   "Kalulu": {
    "qg": 13.5,
@@ -37,17 +43,11 @@
    "qa": 6.0,
    "qc": 5.75
   },
-  "Woltemade": {
-   "qg": 3.0,
-   "qgs": 2.5,
-   "qa": 5.0,
-   "qc": 6.25
-  },
-  "Gonzalez N.": {
-   "qg": 2.95,
-   "qgs": 3.5,
-   "qa": 4.8,
-   "qc": 4.75
+  "Colombo": {
+   "qg": 2.7,
+   "qgs": 3.0,
+   "qa": 7.0,
+   "qc": 6.5
   },
   "Alajbegovic": {
    "qg": 3.6,
@@ -55,16 +55,16 @@
    "qa": 4.6,
    "qc": 5.75
   },
-  "Colombo": {
-   "qg": 2.7,
-   "qgs": 3.0,
-   "qa": 7.0,
-   "qc": 6.5
-  },
   "Ramos G.": {
    "qg": 2.95,
    "qgs": 3.0,
    "qa": 7.75,
+   "qc": 5.75
+  },
+  "Jones C.": {
+   "qg": 5.25,
+   "qgs": 4.0,
+   "qa": 5.0,
    "qc": 5.75
   },
   "Pellegrino M.": {
@@ -73,23 +73,11 @@
    "qa": 7.0,
    "qc": 4.4
   },
-  "Jones C.": {
-   "qg": 5.25,
-   "qgs": 4.0,
-   "qa": 5.0,
-   "qc": 5.75
-  },
   "Politano": {
    "qg": 4.75,
    "qgs": 4.0,
    "qa": 4.8,
    "qc": 4.8
-  },
-  "Lulli": {
-   "qg": 14.5,
-   "qgs": 16.0,
-   "qa": 5.5,
-   "qc": 6.25
   },
   "Pulisic": {
    "qg": null,
@@ -97,29 +85,23 @@
    "qa": null,
    "qc": null
   },
+  "Lulli": {
+   "qg": 14.5,
+   "qgs": 16.0,
+   "qa": 5.5,
+   "qc": 6.25
+  },
+  "Martinez Jo.": {
+   "qg": null,
+   "qgs": null,
+   "qa": null,
+   "qc": 13.0
+  },
   "Pavlovic": {
    "qg": 12.0,
    "qgs": 12.0,
    "qa": 13.0,
    "qc": 4.33
-  },
-  "Gallo": {
-   "qg": 16.5,
-   "qgs": 25.0,
-   "qa": 7.5,
-   "qc": 5.25
-  },
-  "Gudmundsson A.": {
-   "qg": 5.25,
-   "qgs": 4.5,
-   "qa": 9.25,
-   "qc": 5.0
-  },
-  "Doekhi": {
-   "qg": 14.0,
-   "qgs": 16.0,
-   "qa": 13.0,
-   "qc": 4.4
   },
   "Kone M.": {
    "qg": 8.25,
@@ -133,17 +115,29 @@
    "qa": 6.5,
    "qc": 4.8
   },
+  "Gudmundsson A.": {
+   "qg": 5.25,
+   "qgs": 4.5,
+   "qa": 9.25,
+   "qc": 5.0
+  },
+  "Gallo": {
+   "qg": 16.5,
+   "qgs": 25.0,
+   "qa": 7.5,
+   "qc": 5.25
+  },
+  "Doekhi": {
+   "qg": 14.0,
+   "qgs": 16.0,
+   "qa": 13.0,
+   "qc": 4.4
+  },
   "Miranda J.": {
    "qg": 18.0,
    "qgs": 25.0,
    "qa": 8.0,
    "qc": 4.0
-  },
-  "Skorupski": {
-   "qg": null,
-   "qgs": null,
-   "qa": null,
-   "qc": 8.5
   },
   "Comuzzo": {
    "qg": 19.5,
@@ -162,6 +156,12 @@
    "qgs": 16.0,
    "qa": 11.0,
    "qc": 4.2
+  },
+  "Skorupski": {
+   "qg": null,
+   "qgs": null,
+   "qa": null,
+   "qc": 8.5
   }
  },
  "match": {

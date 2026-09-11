@@ -203,18 +203,45 @@ offensiva della squadra (`F = P(vittoria squadra) / 0.33`, limitata a [0.5, 1.8]
 
 ## 5. Indice di Rilevanza (IR) — ordinamento dei 25
 
-Valore atteso in punti fantacalcio dai bonus/malus (gol +3, assist +1, ammonizione −0,5,
-clean sheet +1 per i difensori, portiere imbattuto +1).
+Valore atteso in punti dai bonus/malus, **presi dal regolamento della lega di Luca**, non da
+valori standard:
+
+| Evento | Valore | Modellato |
+|---|---|---|
+| Gol segnato (rigore incluso) | +3 | ✅ quote "marcatore anytime" |
+| Assist (anche gold e soft) | +1 | ✅ quote "assist 1+" |
+| Porta inviolata | **+1** | ✅ Poisson sui gol attesi |
+| Gol subito | **−1** *per ciascuno* | ✅ gol attesi dell'avversario |
+| Rigore parato | +3 | ✅ stima fissa 3,5% a partita |
+| Ammonizione | −0,5 | ✅ quote "riceve un cartellino" |
+| Espulsione | −1 | ✅ stimata al 6% delle ammonizioni attese |
+| Gol della vittoria | +0,5 | ✅ 30% dei gol, pesato per P(vittoria) |
+| Gol del pareggio | 0 | — irrilevante |
+| Player of the match | +1 | ❌ non prevedibile dalle quote |
+| Autogol | −2 | ❌ evento raro, non quotato |
+| Rigore sbagliato | −3 | ❌ evento raro, non quotato |
+
+> **Due correzioni importanti rispetto ai valori standard che usavo prima**: nella lega di Luca
+> la porta inviolata vale **+1**, non 3, e ogni gol subito vale **−1**, non −0,5. Il secondo
+> pesa molto: un portiere che affronta una squadra da 1,6 gol attesi parte da −1,6, e nessun
+> clean sheet lo compensa. Con i valori corretti i portieri scendono nettamente in classifica
+> e gli attaccanti salgono, che è il comportamento giusto quando il gol vale 3.
 
 Sia `ctx = P(vittoria della squadra) − 0,33` il **contesto partita**: quanto la squadra è
 favorita rispetto a un esito neutro.
 
 ```
-Portiere       IR = P_gioca * ( 3,0*CS − gol_subiti_attesi*0,5 + 0,5 + 2,2*ctx )
-Difensore      IR = 3*P_gol + P_assist − 0,5*P_amm + P_gioca*( 1,5*CS + 1,8*ctx )
-Centrocampista IR = 3*P_gol + P_assist − 0,5*P_amm + P_gioca*0,9*ctx
-Attaccante     IR = 3*P_gol + P_assist − 0,5*P_amm + P_gioca*0,7*ctx
+malus     = −0,5*P_amm − 1,0*(P_amm * 0,06)              ammonizione + espulsione stimata
+bonus_gol = 3*P_gol + 0,5*P_gol*P_vittoria*0,30          gol + quota di gol decisivi
+
+Portiere       IR = P_gioca * ( 1,0*CS − 1,0*gol_subiti + 3,0*0,035 − 0,5*P_amm + 2,2*ctx )
+Difensore      IR = bonus_gol + P_assist + malus + P_gioca*( 1,0*CS + 1,8*ctx )
+Centrocampista IR = bonus_gol + P_assist + malus + P_gioca*0,9*ctx
+Attaccante     IR = bonus_gol + P_assist + malus + P_gioca*0,7*ctx
 ```
+
+I valori stanno in testa a `giocatori.py` come costanti `B_*`: se la lega cambia regolamento
+si toccano lì e basta.
 
 **Perché il peso del contesto cresce scendendo di reparto.** Per attaccanti e centrocampisti
 la forza della squadra è **già dentro** le quote di gol e assist: un attaccante del Como contro
