@@ -1,28 +1,28 @@
 {
  "giornata": "4",
- "rilevate": "2026-09-11T16:56+02:00",
+ "rilevate": "2026-09-11T19:01+02:00",
  "fonte": "bwin + Snai (browser, passata locale)",
  "partite": {
   "Inter-Udinese": "lun 14/09 20:45",
   "Sassuolo-Juventus": "dom 13/09 20:45",
   "Genoa-Frosinone": "sab 12/09 15:00",
   "Lazio-Milan": "sab 12/09 18:00",
-  "Venezia-Fiorentina": "ven 11/09 20:45",
   "Napoli-Bologna": "dom 13/09 18:00",
+  "Venezia-Fiorentina": "ven 11/09 20:45",
   "Torino-Roma": "lun 14/09 18:30",
   "Lecce-Monza": "dom 13/09 15:00"
  },
  "quote": {
   "Thuram": {
-   "qg": 1.88,
+   "qg": 1.85,
    "qgs": 2.0,
-   "qa": 4.4,
-   "qc": 6.25
+   "qa": 4.33,
+   "qc": 5.5
   },
   "Gonzalez N.": {
    "qg": 2.95,
    "qgs": 3.25,
-   "qa": 4.8,
+   "qa": 4.75,
    "qc": 4.6
   },
   "Kalulu": {
@@ -41,19 +41,19 @@
    "qg": 2.75,
    "qgs": 2.5,
    "qa": 6.0,
-   "qc": 5.5
+   "qc": 5.25
   },
   "Woltemade": {
    "qg": 3.1,
    "qgs": 2.75,
    "qa": 5.0,
-   "qc": 5.75
+   "qc": 5.5
   },
   "Alajbegovic": {
    "qg": 3.6,
    "qgs": 3.25,
    "qa": 4.6,
-   "qc": 4.8
+   "qc": 5.0
   },
   "Ramos G.": {
    "qg": 2.95,
@@ -64,26 +64,20 @@
   "Jones C.": {
    "qg": 5.0,
    "qgs": 4.0,
-   "qa": 5.0,
-   "qc": 5.5
+   "qa": 4.6,
+   "qc": 5.75
+  },
+  "Politano": {
+   "qg": 4.4,
+   "qgs": 4.0,
+   "qa": 4.75,
+   "qc": 4.8
   },
   "Pellegrino M.": {
    "qg": 2.87,
    "qgs": 2.4,
    "qa": 7.0,
-   "qc": 4.75
-  },
-  "Politano": {
-   "qg": 4.75,
-   "qgs": 4.0,
-   "qa": 4.8,
-   "qc": 4.75
-  },
-  "Martinez Jo.": {
-   "qg": null,
-   "qgs": null,
-   "qa": null,
-   "qc": 11.5
+   "qc": 4.6
   },
   "Pulisic": {
    "qg": null,
@@ -91,77 +85,83 @@
    "qa": null,
    "qc": null
   },
+  "Martinez Jo.": {
+   "qg": null,
+   "qgs": null,
+   "qa": null,
+   "qc": 11.5
+  },
   "Pavlovic": {
    "qg": 12.0,
    "qgs": 12.0,
    "qa": 13.0,
-   "qc": 4.2
+   "qc": 4.0
   },
   "Lulli": {
    "qg": 15.0,
    "qgs": 16.0,
    "qa": 5.5,
-   "qc": 5.25
+   "qc": 4.4
   },
   "Bernardeschi": {
-   "qg": 5.75,
+   "qg": 5.25,
    "qgs": 5.0,
    "qa": 6.5,
-   "qc": 4.8
+   "qc": 4.2
   },
   "Gallo": {
    "qg": 16.5,
    "qgs": 25.0,
    "qa": 7.5,
-   "qc": 5.75
+   "qc": 6.25
   },
   "Doekhi": {
    "qg": 14.0,
    "qgs": 16.0,
    "qa": 13.5,
-   "qc": 4.5
+   "qc": 4.75
   },
   "Gudmundsson A.": {
    "qg": 5.25,
    "qgs": 4.5,
    "qa": 9.5,
-   "qc": 4.5
+   "qc": 4.33
   },
   "Kone M.": {
    "qg": 8.0,
    "qgs": 9.0,
    "qa": 7.0,
-   "qc": 4.1
+   "qc": 4.0
   },
   "Miranda J.": {
    "qg": 17.5,
    "qgs": 25.0,
-   "qa": 8.0,
-   "qc": 4.0
+   "qa": 7.5,
+   "qc": 4.1
   },
   "Comuzzo": {
-   "qg": 19.0,
+   "qg": 18.5,
    "qgs": 33.0,
    "qa": 21.0,
-   "qc": 3.5
+   "qc": 3.8
   },
   "Vojvoda": {
    "qg": 14.5,
    "qgs": 16.0,
-   "qa": 11.0,
-   "qc": 3.8
+   "qa": 10.0,
+   "qc": 3.3
   },
   "Provedel": {
    "qg": null,
    "qgs": null,
    "qa": null,
-   "qc": 12.0
+   "qc": 11.5
   },
   "Skorupski": {
    "qg": null,
    "qgs": null,
    "qa": null,
-   "qc": 8.5
+   "qc": 7.75
   }
  },
  "match": {
@@ -270,9 +270,9 @@
    },
    "snai": {
     "odds": [
-     1.6,
-     4.0,
-     5.75
+     1.62,
+     3.75,
+     5.5
     ],
     "ou": [
      1.8,
@@ -304,8 +304,8 @@
      2.8
     ],
     "ou": [
-     2.0,
-     1.72,
+     2.2,
+     1.6,
      2.5
     ]
    }
@@ -421,7 +421,7 @@
     ],
     "ou": [
      1.65,
-     2.0,
+     2.1,
      2.5
     ]
    }
@@ -444,13 +444,13 @@
    },
    "snai": {
     "odds": [
-     1.22,
-     6.5,
-     12.0
+     1.25,
+     6.0,
+     11.0
     ],
     "ou": [
-     1.52,
-     2.4,
+     1.48,
+     2.5,
      2.5
     ]
    }
