@@ -237,6 +237,34 @@ difensore della capolista, anche a parità di probabilità di scendere in campo.
 
 ---
 
+## 5-ter. Media voto e fantamedia — il punteggio atteso
+
+`parse_statistiche.py` legge MV e FM stagionali da fantacalcio.it/statistiche-serie-a.
+
+**Voto base atteso.** La MV con poche presenze è rumorosa, quindi si tira verso 6,0:
+
+```
+MV_attesa = (MV * presenze + 6,0 * 3) / (presenze + 3)
+```
+
+**Punteggio finale su cui si ordina:**
+
+```
+Fanta atteso = P_gioca * MV_attesa + IR
+```
+
+> **La fantamedia NON va sommata.** FM contiene già i bonus e i malus realizzati: sommarla
+> all'IR, che stima gli stessi bonus in prospettiva su *questa* partita, li conterebbe due
+> volte. La FM resta in tabella come riferimento storico, ed è utile come segnale: se diverge
+> molto dal fanta atteso, o il giocatore sta attraversando un periodo anomalo, o la partita
+> di questa giornata è molto diversa dalla sua media.
+
+Attenzione agli **omonimi**: la tabella va sempre filtrata per sigla di squadra (`sq`), e i
+nomi sono HTML-encoded (`Kon&#xE8; M.`). Senza il filtro, "Kone" della Roma aggancia il Kone
+del Frosinone.
+
+---
+
 ## 5-bis. Formazione consigliata — modulo 3-4-3
 
 Luca gioca **3-4-3**: si consigliano **1 portiere, 3 difensori, 4 centrocampisti, 3 attaccanti**.

@@ -19,10 +19,28 @@ conosce il link vede la rosa.
 
 | | Quando | Dove | Cosa raccoglie |
 |---|---|---|---|
-| **Automatica** | venerdì 14:00, sempre | GitHub Actions | Probabili formazioni complete (Gazzetta, parsing deterministico). **Niente quote**: i runner GitHub non hanno browser e BetExplorer blocca i loro IP. La pagina mostra un avviso di report parziale. |
-| **Completa** | venerdì 14:15, se il Mac è acceso | task locale di Claude Code | Aggiunge marcatore, assist e ammonizione da bwin e Snai, che richiedono il browser, e ripubblica il sito senza avviso. |
+| **Automatica** | venerdì 14:00, sempre | GitHub Actions | Probabili formazioni da **Gazzetta + fantacalcio.it** (entrambe con percentuali di ballottaggio), **MV e fantamedia** stagionali, **quote 1X2** da BetExplorer per le gare già quotate. Mancano solo i mercati per giocatore. |
+| **Completa** | venerdì 14:15, se il Mac è acceso | task locale di Claude Code | Aggiunge **marcatore, assist e ammonizione** da bwin e Snai — l'unica cosa che richiede una rete residenziale — e ripubblica il sito senza avviso. |
 
 La seconda sovrascrive la prima: il risultato è lo stesso URL, aggiornato.
+
+### Cosa raggiunge il runner GitHub (diagnostica dell'11/09/2026)
+
+Il workflow `diagnostica.yml` misura empiricamente cosa è raggiungibile. Esito:
+
+| Fonte | curl dal runner | Browser (Playwright) sul runner |
+|---|---|---|
+| gazzetta.it | ✅ 200, completa | — |
+| fantacalcio.it probabili formazioni | ✅ 200 | — |
+| fantacalcio.it statistiche (MV/FM) | ✅ 200 | — |
+| sosfanta.com, sport.sky.it | ✅ 200 | — |
+| betexplorer.com | ✅ 200 | — |
+| **bwin** | ❌ SPA vuota | ❌ pagina da 7 KB (challenge) |
+| **snai** | ❌ timeout | ❌ `ERR_HTTP2_PROTOCOL_ERROR` |
+
+I bookmaker bloccano gli IP dei datacenter **anche con un browser vero**: è l'unica cosa che
+resta legata al Mac. Rilancia la diagnostica quando una fonte smette di funzionare:
+`gh workflow run "Diagnostica fonti" --repo lucarota77/fantacalcio`
 
 ### Perché non una routine cloud di Claude
 Provata e scartata: l'ambiente cloud ha un **proxy di egress** che blocca gazzetta.it,
@@ -106,7 +124,9 @@ pesa più del dato editoriale, e il peso di Gazzetta si dimezza se il suo timest
 ## Limiti noti
 
 - **Assist e ammonizioni sono single-source** (solo bwin): Snai non li espone per giocatore.
-- **L'esecuzione automatica non ha quote.** Con una chiave gratuita di
+- **L'esecuzione automatica ha le quote 1X2 solo per le gare già quotate** da BetExplorer
+  (tipicamente quelle entro 48 ore): per le altre il contesto partita resta neutro e viene
+  dichiarato. Con una chiave gratuita di
   [the-odds-api.com](https://the-odds-api.com) (500 richieste al mese, ne serve una a settimana)
   anche il report automatico avrebbe 1X2 e Over/Under di tutte e 10 le partite: il codice è già
   pronto, basta aggiungere il secret `ODDS_API_KEY` nelle impostazioni del repo.
