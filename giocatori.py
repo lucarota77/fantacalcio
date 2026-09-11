@@ -29,8 +29,13 @@ Q_DECISIVO   = 0.30    # quota dei gol che risultano "della vittoria"
 # Il 6.0 e comune a tutti e non ordina nulla: a ordinare sono P_gioca, lo scarto di MV
 # rispetto a 6 e l'IR. Misurato sulla 4a giornata: lo scarto medio della MV da 6.00 e 0.13,
 # quello dell'IR da 0 e 0.82 — le quote sono ~6 volte piu informative dello storico.
-W_MV = 1.0          # peso dello scarto di media voto rispetto a 6.0
-W_Q  = 2.5          # peso delle quote (IR). Alzarlo per dare piu peso alla prospettiva
+# W_Q deve restare 1.0: l'IR e gia espresso in punti fanta secondo la tabella della lega,
+# quindi moltiplicarlo gonfia la scala e il numero smette di significare "punti attesi".
+# Con W_Q=2.5 la media dei 25 saliva a 7.50 contro una fantamedia reale di 6.30, e difensori
+# e centrocampisti arrivavano a 9, valori che nessuno di loro fa.
+# Per dare piu peso alla prospettiva si abbassa W_MV, non si alza W_Q.
+W_MV = 0.5          # peso dello scarto di media voto: dimezzato perche su 2-3 presenze e rumoroso
+W_Q  = 1.0          # peso delle quote: 1.0 mantiene la scala in punti fanta reali
 R_PANCHINA = 5.5    # rendimento atteso di chi subentra col cambio automatico
 K_SHRINK = 3.0      # con poche presenze la MV e rumorosa: si tira verso 6.0 (k = presenze equivalenti)
 MV_BASE = 6.0

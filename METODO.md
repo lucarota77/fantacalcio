@@ -298,8 +298,8 @@ Fanta atteso = R_panchina
              + W_Q * IR
 
    R_panchina = 5,5    rendimento di chi subentra col cambio automatico
-   W_MV       = 1,0    peso dello storico (scarto della media voto da 6,0)
-   W_Q        = 2,5    peso della prospettiva (quote)
+   W_MV       = 0,5    peso dello storico (scarto della media voto da 6,0)
+   W_Q        = 1,0    peso delle quote — da non alzare, vedi sotto
 ```
 
 **Perché `R_panchina` e non zero.** Se il giocatore non scende in campo non prendi zero:
@@ -318,7 +318,27 @@ termine di presenza vale 0,5 invece di 6,0 e l'ordine si raddrizza.
 > schieri più giocatori a rischio nello stesso reparto, le riserve potrebbero non coprirli
 > tutti: in quel caso l'etichetta 🟠 BALLOTTAGGIO vale più del numero.
 
-**Perché W_Q = 2,5.** Misurato sulla 4ª giornata 2026/27 sui 25 della rosa:
+**Perché W_Q deve restare 1,0.** L'IR è **già espresso in punti fanta** secondo la tabella
+della lega: moltiplicarlo gonfia la scala e il numero smette di significare qualcosa.
+Verificato sulla 4ª giornata contro la fantamedia reale dei 25 (media **6,30**):
+
+| W_Q | Media del fanta atteso | Massimo | Scarto medio dalla FM | Difensori e centrocampisti |
+|---|---|---|---|---|
+| **1,0** | **6,54** | 7,71 | **0,65** | media 6,57, max 7,45 |
+| 1,5 | 6,86 | 8,60 | 0,96 | media 6,85, max 8,01 |
+| 2,0 | 7,18 | 9,49 | 1,29 | media 7,14, max 8,58 |
+| 2,5 | 7,50 | 10,38 | 1,67 | media 7,42, max 9,15 |
+
+A 2,5 i difensori e i centrocampisti titolari arrivavano a **9 punti attesi**, valori che
+nessuno di loro fa davvero. A 1,0 il numero torna leggibile come "punti che mi aspetto da
+questo giocatore in questa giornata", confrontabile con la sua fantamedia.
+
+**Per dare più peso alla prospettiva si abbassa `W_MV`, non si alza `W_Q`.** Con `W_MV = 0,5`
+lo storico pesa la metà — giustificato, perché su due o tre presenze la media voto è rumorosa —
+e le quote guidano senza che la scala si deformi: Kolo Muani (quote migliori, media voto più
+bassa) torna davanti a Gonçalo Ramos, 6,98 contro 6,95.
+
+**Misura vecchia, tenuta come riferimento** sui contributi all'ordinamento:
 
 | Termine | Scarto medio dal proprio centro | Dev. standard | Correlazione di rango con la classifica |
 |---|---|---|---|
