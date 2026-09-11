@@ -1,0 +1,51 @@
+name: Diagnostica fonti
+on: { workflow_dispatch: {} }
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+
+      - name: curl — quali fonti rispondono dal runner
+        run: |
+          UA='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36'
+          probe() { printf '%-46s ' "$1"; code=$(curl -sL -A "$UA" -m 30 -o /tmp/p.html -w '%{http_code}' "$2" || echo 000);
+                    n=$(grep -c "$3" /tmp/p.html 2>/dev/null || echo 0);
+                    echo "http=$code  bytes=$(wc -c </tmp/p.html)  '$3'x$n"; }
+          probe "gazzetta prob.formazioni" "https://www.gazzetta.it/Calcio/prob_form/" "Ballottaggio"
+          probe "fantacalcio statistiche"  "https://www.fantacalcio.it/statistiche-serie-a" "data-col-key"
+          probe "fantacalcio prob.form"    "https://www.fantacalcio.it/probabili-formazioni-serie-a" "Probabili"
+          probe "betexplorer serie a"      "https://www.betexplorer.com/football/italy/serie-a/" "data-odd"
+          probe "sosfanta"                 "https://www.sosfanta.com/lista-formazioni/probabili-formazioni-serie-a/" "formazioni"
+          probe "sky prob.formazioni"      "https://sport.sky.it/calcio/serie-a/probabili-formazioni" "formazioni"
+
+      - name: Installa Playwright
+        run: pip -q install playwright && python -m playwright install --with-deps chromium 2>&1 | tail -2
+
+      - name: Browser vero — bwin, snai, betexplorer
+        run: |
+          cat > /tmp/probe.py <<'PY'
+          from playwright.sync_api import sync_playwright
+          T = [("bwin lobby Serie A", "https://sports.bwin.it/it/sports/calcio-4/scommesse/italia-20/serie-a-102846", ["Venezia","Risultato","Lazio"]),
+               ("snai lista Serie A",  "https://www.snai.it/scommesse/quote/calcio/serie-a", ["Esito Finale","Venezia"]),
+               ("betexplorer Serie A", "https://www.betexplorer.com/football/italy/serie-a/", ["data-odd","Venezia"])]
+          with sync_playwright() as p:
+              b = p.chromium.launch(args=["--disable-blink-features=AutomationControlled"])
+              ctx = b.new_context(locale="it-IT", timezone_id="Europe/Rome",
+                  user_agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36")
+              for nome, url, chiavi in T:
+                  pg = ctx.new_page()
+                  try:
+                      pg.goto(url, timeout=45000, wait_until="domcontentloaded")
+                      pg.wait_for_timeout(9000)
+                      html = pg.content(); txt = pg.inner_text("body")[:400000]
+                      hit = [k for k in chiavi if k in html or k in txt]
+                      print(f"  {nome:<24} OK  len={len(html):>7}  trovati={hit}")
+                  except Exception as e:
+                      print(f"  {nome:<24} FALLITO  {str(e)[:110]}")
+                  finally: pg.close()
+              b.close()
+          PY
+          python /tmp/probe.py
