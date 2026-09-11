@@ -70,10 +70,14 @@ rows = []
 for (n, r, sq, mt, fc, sf, gz, sky, qgb, qgs, qab, qcb, stale, nota) in P:
     m = S[mt]; casa = (m['home'] == sq)
     # P(gol): media delle stime devig dei due bookmaker
-    est = [devig(q, m['Mp'][b]) for q, b in ((qgb,'bwin'), (qgs,'snai')) if q]
+    # Il margine da usare per il de-vig e quello del book di provenienza; se quel book non
+    # e fra le quote 1X2 di questa esecuzione (tipico quando le quote giocatore arrivano dalla
+    # cache locale e le 1X2 da un'altra fonte) si ripiega sul primo margine disponibile.
+    Mp_ = m['Mp']; Mp_def = next(iter(Mp_.values()))
+    est = [devig(q, Mp_.get(b, Mp_def)) for q, b in ((qgb, 'bwin'), (qgs, 'snai')) if q]
     pg = mean(est) if est else None
     spread_g = (max(est)-min(est)) if len(est) > 1 else 0.
-    pa = devig(qab, m['Mp']['bwin']); pc = devig(qcb, m['Mp']['bwin'])
+    pa = devig(qab, Mp_.get('bwin', Mp_def)); pc = devig(qcb, Mp_.get('bwin', Mp_def))
     # media pesata delle fonti editoriali
     src = {'fc': fc, 'sf': sf, 'gz': gz, 'sky': sky}
     wts = {k: (W[k]*STALE if (k == 'gz' and stale) else W[k]) for k in src if src[k] is not None}

@@ -12,9 +12,9 @@
    null,
    null,
    null,
-   null,
+   13.0,
    0,
-   "titolare (fantacalcio.it) / titolare (Gazzetta)"
+   "titolare (fantacalcio.it) / titolare (Gazzetta) / quote da rilevazione locale di 0h fa"
   ],
   [
    "Provedel",
@@ -28,9 +28,9 @@
    null,
    null,
    null,
-   null,
+   13.0,
    0,
-   "in panchina (fantacalcio.it) / in panchina (Gazzetta)"
+   "in panchina (fantacalcio.it) / in panchina (Gazzetta) / quote da rilevazione locale di 0h fa"
   ],
   [
    "Skorupski",
@@ -44,9 +44,9 @@
    null,
    null,
    null,
-   null,
+   8.5,
    0,
-   "titolare (fantacalcio.it) / titolare (Gazzetta)"
+   "titolare (fantacalcio.it) / titolare (Gazzetta) / quote da rilevazione locale di 0h fa"
   ],
   [
    "Lulli",
@@ -57,12 +57,12 @@
    null,
    0.9,
    null,
-   null,
-   null,
-   null,
-   null,
-   0,
-   "ballottaggio 45% (fantacalcio.it) / titolare (Gazzetta)"
+   14.5,
+   16.0,
+   5.5,
+   6.25,
+   1,
+   "ballottaggio 45% (fantacalcio.it) / titolare (Gazzetta) — dato piu vecchio di 48h, peso dimezzato / quote da rilevazione locale di 0h fa"
   ],
   [
    "Comuzzo",
@@ -73,12 +73,12 @@
    null,
    0.9,
    null,
-   null,
-   null,
-   null,
-   null,
-   0,
-   "titolare (fantacalcio.it) / titolare (Gazzetta)"
+   19.5,
+   33.0,
+   21.0,
+   3.9,
+   1,
+   "titolare (fantacalcio.it) / titolare (Gazzetta) — dato piu vecchio di 48h, peso dimezzato / quote da rilevazione locale di 0h fa"
   ],
   [
    "Doekhi",
@@ -89,12 +89,12 @@
    null,
    0.9,
    null,
-   null,
-   null,
-   null,
-   null,
+   14.0,
+   16.0,
+   13.0,
+   4.4,
    0,
-   "titolare (fantacalcio.it) / titolare (Gazzetta)"
+   "titolare (fantacalcio.it) / titolare (Gazzetta) / quote da rilevazione locale di 0h fa"
   ],
   [
    "Pavlovic",
@@ -105,12 +105,12 @@
    null,
    0.9,
    null,
-   null,
-   null,
-   null,
-   null,
+   12.0,
+   12.0,
+   13.0,
+   4.33,
    0,
-   "titolare (fantacalcio.it) / titolare (Gazzetta)"
+   "titolare (fantacalcio.it) / titolare (Gazzetta) / quote da rilevazione locale di 0h fa"
   ],
   [
    "Vojvoda",
@@ -121,12 +121,12 @@
    null,
    0.9,
    null,
-   null,
-   null,
-   null,
-   null,
+   15.0,
+   16.0,
+   11.0,
+   4.2,
    0,
-   "titolare (fantacalcio.it) / titolare (Gazzetta)"
+   "titolare (fantacalcio.it) / titolare (Gazzetta) / quote da rilevazione locale di 0h fa"
   ],
   [
    "Kalulu",
@@ -137,12 +137,12 @@
    null,
    0.9,
    null,
-   null,
-   null,
-   null,
-   null,
+   13.5,
+   12.0,
+   6.5,
+   5.75,
    0,
-   "titolare (fantacalcio.it) / titolare (Gazzetta)"
+   "titolare (fantacalcio.it) / titolare (Gazzetta) / quote da rilevazione locale di 0h fa"
   ],
   [
    "Miranda J.",
@@ -153,12 +153,12 @@
    null,
    0.9,
    null,
-   null,
-   null,
-   null,
-   null,
+   18.0,
+   25.0,
+   8.0,
+   4.0,
    0,
-   "ballottaggio 55% (fantacalcio.it) / titolare (Gazzetta)"
+   "ballottaggio 55% (fantacalcio.it) / titolare (Gazzetta) / quote da rilevazione locale di 0h fa"
   ],
   [
    "Gallo",
@@ -169,12 +169,12 @@
    null,
    0.9,
    null,
-   null,
-   null,
-   null,
-   null,
+   16.5,
+   25.0,
+   7.5,
+   5.25,
    0,
-   "titolare (fantacalcio.it) / titolare (Gazzetta)"
+   "titolare (fantacalcio.it) / titolare (Gazzetta) / quote da rilevazione locale di 0h fa"
   ],
   [
    "Alajbegovic",
@@ -185,12 +185,12 @@
    null,
    0.9,
    null,
-   null,
-   null,
-   null,
-   null,
+   3.6,
+   3.5,
+   4.6,
+   5.75,
    0,
-   "ballottaggio 45% (fantacalcio.it) / titolare (Gazzetta)"
+   "ballottaggio 45% (fantacalcio.it) / titolare (Gazzetta) / quote da rilevazione locale di 0h fa"
   ],
   [
    "Gudmundsson A.",
@@ -201,12 +201,12 @@
    null,
    0.12,
    null,
-   null,
-   null,
-   null,
-   null,
+   5.25,
+   4.5,
+   9.25,
+   5.0,
    0,
-   "ballottaggio 35% (fantacalcio.it) / in panchina (Gazzetta)"
+   "ballottaggio 35% (fantacalcio.it) / in panchina (Gazzetta) / quote da rilevazione locale di 0h fa"
   ],
   [
    "Kone M.",
@@ -215,14 +215,14 @@
    "Torino-Roma",
    0.5,
    null,
-   0.0,
+   0.9,
    null,
-   null,
-   null,
-   null,
-   null,
-   0,
-   "in dubbio (fantacalcio.it) / indisponibile o squalificato (Gazzetta)"
+   8.25,
+   9.0,
+   7.0,
+   4.2,
+   1,
+   "in dubbio (fantacalcio.it) / titolare (Gazzetta) — dato piu vecchio di 48h, peso dimezzato / quote da rilevazione locale di 0h fa"
   ],
   [
    "Jones C.",
@@ -233,12 +233,12 @@
    null,
    0.45,
    null,
-   null,
-   null,
-   null,
-   null,
+   5.25,
+   4.0,
+   5.0,
+   5.75,
    0,
-   "ballottaggio 60% (fantacalcio.it) / ballottaggio 45% (Gazzetta)"
+   "ballottaggio 60% (fantacalcio.it) / ballottaggio 45% (Gazzetta) / quote da rilevazione locale di 0h fa"
   ],
   [
    "Gonzalez N.",
@@ -249,12 +249,12 @@
    null,
    0.9,
    null,
-   null,
-   null,
-   null,
-   null,
+   2.95,
+   3.5,
+   4.8,
+   4.75,
    0,
-   "titolare (fantacalcio.it) / titolare (Gazzetta)"
+   "titolare (fantacalcio.it) / titolare (Gazzetta) / quote da rilevazione locale di 0h fa"
   ],
   [
    "Pulisic",
@@ -266,11 +266,11 @@
    0.12,
    null,
    null,
-   null,
+   3.25,
    null,
    null,
    0,
-   "in panchina (fantacalcio.it) / in panchina (Gazzetta)"
+   "in panchina (fantacalcio.it) / in panchina (Gazzetta) / quote da rilevazione locale di 0h fa"
   ],
   [
    "Politano",
@@ -281,12 +281,12 @@
    null,
    0.9,
    null,
-   null,
-   null,
-   null,
-   null,
+   4.75,
+   4.0,
+   4.8,
+   4.8,
    0,
-   "titolare (fantacalcio.it) / titolare (Gazzetta)"
+   "titolare (fantacalcio.it) / titolare (Gazzetta) / quote da rilevazione locale di 0h fa"
   ],
   [
    "Bernardeschi",
@@ -297,12 +297,12 @@
    null,
    0.9,
    null,
-   null,
-   null,
-   null,
-   null,
+   5.75,
+   6.0,
+   6.5,
+   4.8,
    0,
-   "titolare (fantacalcio.it) / titolare (Gazzetta)"
+   "titolare (fantacalcio.it) / titolare (Gazzetta) / quote da rilevazione locale di 0h fa"
   ],
   [
    "Pellegrino M.",
@@ -313,12 +313,12 @@
    null,
    0.45,
    null,
-   null,
-   null,
-   null,
-   null,
+   3.0,
+   2.5,
+   7.0,
+   4.4,
    0,
-   "ballottaggio 40% (fantacalcio.it) / ballottaggio 45% (Gazzetta)"
+   "ballottaggio 40% (fantacalcio.it) / ballottaggio 45% (Gazzetta) / quote da rilevazione locale di 0h fa"
   ],
   [
    "Woltemade",
@@ -329,12 +329,12 @@
    null,
    0.4,
    null,
-   null,
-   null,
-   null,
-   null,
+   3.0,
+   2.5,
+   5.0,
+   6.25,
    0,
-   "ballottaggio 55% (fantacalcio.it) / ballottaggio 40% (Gazzetta)"
+   "ballottaggio 55% (fantacalcio.it) / ballottaggio 40% (Gazzetta) / quote da rilevazione locale di 0h fa"
   ],
   [
    "Ramos G.",
@@ -345,12 +345,12 @@
    null,
    0.9,
    null,
-   null,
-   null,
-   null,
-   null,
+   2.95,
+   3.0,
+   7.75,
+   5.75,
    0,
-   "titolare (fantacalcio.it) / titolare (Gazzetta)"
+   "titolare (fantacalcio.it) / titolare (Gazzetta) / quote da rilevazione locale di 0h fa"
   ],
   [
    "Kolo Muani",
@@ -361,12 +361,12 @@
    null,
    0.9,
    null,
-   null,
-   null,
-   null,
-   null,
+   2.75,
+   2.5,
+   6.0,
+   5.75,
    0,
-   "titolare (fantacalcio.it) / titolare (Gazzetta)"
+   "titolare (fantacalcio.it) / titolare (Gazzetta) / quote da rilevazione locale di 0h fa"
   ],
   [
    "Colombo",
@@ -377,12 +377,12 @@
    null,
    0.9,
    null,
-   null,
-   null,
-   null,
-   null,
+   2.7,
+   3.0,
+   7.0,
+   6.5,
    0,
-   "titolare (fantacalcio.it) / titolare (Gazzetta)"
+   "titolare (fantacalcio.it) / titolare (Gazzetta) / quote da rilevazione locale di 0h fa"
   ],
   [
    "Thuram",
@@ -393,12 +393,12 @@
    null,
    0.55,
    null,
-   null,
-   null,
-   null,
-   null,
+   1.93,
+   2.0,
+   4.4,
+   6.75,
    0,
-   "ballottaggio 40% (fantacalcio.it) / ballottaggio 55% (Gazzetta)"
+   "ballottaggio 40% (fantacalcio.it) / ballottaggio 55% (Gazzetta) / quote da rilevazione locale di 0h fa"
   ]
  ],
  "stimate": [

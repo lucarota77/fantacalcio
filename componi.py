@@ -6,7 +6,23 @@ def norm(s):
     s = unicodedata.normalize('NFKD', s)
     return ''.join(c for c in s if not unicodedata.combining(c)).lower()
 import os
+from datetime import datetime
 gz   = json.load(open('gz.json'))
+# Quote per giocatore salvate dall'ultima passata locale: si riusano se sono della STESSA
+# giornata. Il browser non e disponibile in cloud, quindi senza questa cache i campi
+# resterebbero vuoti.
+CACHE, cache_eta = {}, None
+if os.path.exists('quote_cache.json'):
+    _c = json.load(open('quote_cache.json'))
+    # GIORNATA puo arrivare vuota dalle esecuzioni schedulate: in quel caso si accetta la
+    # cache cosi com'e (sara scartata al cambio giornata dal confronto sulle partite).
+    _g = os.environ.get('GIORNATA') or None
+    if _g is None or str(_c.get('giornata')) == str(_g):
+        CACHE = _c.get('quote', {})
+        try:
+            dt = datetime.fromisoformat(_c['rilevate'])
+            cache_eta = (datetime.now().astimezone() - dt).total_seconds()/3600
+        except Exception: cache_eta = None
 fc   = json.load(open('fc.json')) if os.path.exists('fc.json') else {}
 q    = json.load(open('dati_cloud.json'))['matches']
 rosa = json.load(open('rosa.json'))['rosa']
@@ -51,12 +67,17 @@ for g in rosa:
         key = f"{m['home']}-{m['away']}" if m else None
     if not key: continue
     f = fc.get(g['nome'], {})
+    c = CACHE.get(g['nome'], {})
     note = ' / '.join(x for x in (f.get('nota'), info.get('nota')) if x)
+    if c and cache_eta is not None:
+        note = (note + ' / ' if note else '') + f'quote da rilevazione locale di {cache_eta:.0f}h fa'
     out.append([g['nome'], g['ruolo'], g['squadra'], key, f.get('fc'), None,
-                info.get('gz'), None, None, None, None, None,
+                info.get('gz'), None, c.get('qg'), c.get('qgs'), c.get('qa'), c.get('qc'),
                 1 if info.get('stale') else 0, note])
 json.dump({'giocatori': out, 'stimate': stimate}, open('giocatori_input.json', 'w'),
           ensure_ascii=False, indent=1)
 print(f"dati.json: {len(matches)} partite ({len(stimate)} con quote stimate o assenti)")
-print(f"giocatori_input.json: {len(out)} giocatori")
+print(f"giocatori_input.json: {len(out)} giocatori"
+      + (f" — quote riusate dalla cache locale di {cache_eta:.0f}h fa ({len(CACHE)} giocatori)"
+         if CACHE else " — nessuna quota in cache"))
 for s in stimate: print("  ! " + s)

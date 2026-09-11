@@ -2,10 +2,11 @@ name: Report fantacalcio
 
 on:
   schedule:
-    # GitHub Actions usa sempre UTC e non conosce l'ora legale. Si fira alle 12:00 e alle 13:00
-    # UTC e si tiene solo l'esecuzione in cui a Roma sono le 14: cosi il venerdi alle 14:00
-    # italiane vale tutto l'anno, senza doverlo correggere a ogni cambio d'ora.
-    - cron: '0 12,13 * * 5'
+    # GitHub Actions usa sempre UTC e non conosce l'ora legale. Si fira ogni ora fra le 11:00
+    # e le 19:00 UTC — finestra che copre le 14:00-20:00 italiane sia con l'ora legale (UTC+2)
+    # sia con quella solare (UTC+1) — e lo step successivo tiene solo le esecuzioni in cui a
+    # Roma l'ora e fra le 14 e le 20. Cosi la finestra vale tutto l'anno senza manutenzione.
+    - cron: '0 11-19 * * 5'
   workflow_dispatch:        # esecuzione a richiesta, anche via API (IFTTT, Shortcut, curl)
     inputs:
       giornata:
@@ -20,19 +21,19 @@ jobs:
   report:
     runs-on: ubuntu-latest
     steps:
-      - name: Esegui solo se a Roma sono le 14 (salta l'altro fire)
+      - name: Esegui solo nella finestra 14-20 ora di Roma
         id: ora
         run: |
-          H=$(TZ=Europe/Rome date +%H)
+          H=$(TZ=Europe/Rome date +%-H)
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "esegui=si" >> $GITHUB_OUTPUT
             echo "Esecuzione manuale: procedo."
-          elif [ "$H" = "14" ]; then
+          elif [ "$H" -ge 14 ] && [ "$H" -le 20 ]; then
             echo "esegui=si" >> $GITHUB_OUTPUT
-            echo "A Roma sono le $H: procedo."
+            echo "A Roma sono le $H, dentro la finestra 14-20: procedo."
           else
             echo "esegui=no" >> $GITHUB_OUTPUT
-            echo "A Roma sono le $H, non le 14: salto questa esecuzione."
+            echo "A Roma sono le $H, fuori dalla finestra 14-20: salto."
           fi
 
       - uses: actions/checkout@v4
@@ -60,13 +61,21 @@ jobs:
         if: steps.ora.outputs.esegui == 'si'
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
-        run: python3 raccolta_cloud.py dati
+        run: |
+          python3 raccolta_cloud.py dati
+          # I mercati per giocatore non sono raggiungibili da qui: si riusano quelli
+          # dell'ultima passata locale, se sono della stessa giornata (quote_cache.json).
+          if [ -f quote_cache.json ]; then
+            python3 -c "import json;c=json.load(open('quote_cache.json'));print('cache quote: giornata',c['giornata'],'rilevate',c['rilevate'],'—',len(c['quote']),'giocatori')"
+          else
+            echo "nessuna cache quote: i mercati per giocatore resteranno n.d."
+          fi
 
       - name: Calcolo
         if: steps.ora.outputs.esegui == 'si'
         run: |
           set -e
-          python3 componi.py
+          GIORNATA="${{ inputs.giornata }}" python3 componi.py
           python3 calcola.py dati.json
           python3 giocatori.py
           N="${{ inputs.giornata }}"

@@ -120,23 +120,23 @@
  },
  "Lulli": {
   "gz": 0.9,
-  "stale": false,
-  "nota": "titolare (Gazzetta)",
-  "ts": "2026-09-11T11:29:00",
+  "stale": true,
+  "nota": "titolare (Gazzetta) — dato piu vecchio di 48h, peso dimezzato",
+  "ts": "2026-09-07T16:44:00",
   "match": "Torino - Roma"
  },
  "Comuzzo": {
   "gz": 0.9,
-  "stale": false,
-  "nota": "titolare (Gazzetta)",
-  "ts": "2026-09-11T11:29:00",
+  "stale": true,
+  "nota": "titolare (Gazzetta) — dato piu vecchio di 48h, peso dimezzato",
+  "ts": "2026-09-07T16:44:00",
   "match": "Torino - Roma"
  },
  "Kone M.": {
-  "gz": 0.0,
-  "stale": false,
-  "nota": "indisponibile o squalificato (Gazzetta)",
-  "ts": "2026-09-11T11:29:00",
+  "gz": 0.9,
+  "stale": true,
+  "nota": "titolare (Gazzetta) — dato piu vecchio di 48h, peso dimezzato",
+  "ts": "2026-09-07T16:44:00",
   "match": "Torino - Roma"
  },
  "Martinez Jo.": {
