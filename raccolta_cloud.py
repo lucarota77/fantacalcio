@@ -29,23 +29,37 @@ GAZZETTA = 'https://www.gazzetta.it/Calcio/prob_form/'
 ODDS_API = ('https://api.the-odds-api.com/v4/sports/soccer_italy_serie_a/odds'
             '?regions=eu&markets=h2h,totals&oddsFormat=decimal&apiKey=')
 
-def fetch(url, timeout=40, follow=True):
+def fetch(url, timeout=40, follow=True, tentativi=3, obbligatoria=True):
+    """Scarica con qualche tentativo. Una fonte che sbaglia un colpo non deve far fallire
+    l'intero report: con obbligatoria=False si restituisce stringa vuota e si prosegue."""
+    import time
     cmd = ['curl', '-s'] + (['-L'] if follow else []) + ['-A', UA, '-m', str(timeout), url]
-    r = subprocess.run(cmd, capture_output=True, text=True)
-    if r.returncode != 0 or not r.stdout:
-        raise SystemExit(f"fetch fallito ({r.returncode}): {url}")
-    return r.stdout
+    for i in range(tentativi):
+        r = subprocess.run(cmd, capture_output=True, text=True)
+        if r.returncode == 0 and r.stdout:
+            return r.stdout
+        if i < tentativi - 1:
+            time.sleep(3 * (i + 1))
+    msg = f"fetch fallito dopo {tentativi} tentativi: {url}"
+    if obbligatoria: raise SystemExit(msg)
+    print("# " + msg, file=sys.stderr)
+    return ''
 
 def calendario(html=None):
     """Tutte le partite del campionato dal JSON-LD, con data/ora ISO."""
-    h = html or fetch(BE)
+    h = html if html is not None else fetch(BE, obbligatoria=False)
+    if not h: return []
     ev = re.findall(r'"name":\s*"([^"]+)",\s*"startDate":\s*"([^"]+)",\s*"url":\s*"([^"]+)"', h)
     return [{'name': n, 'start': d, 'url': u} for n, d, u in ev]
 
 def quote_betexplorer(html=None):
     """1X2 medie di mercato. I nomi si prendono dal JSON-LD via URL, non dal testo della riga:
     il testo contiene anche orari e punteggi e si presta a falsi match."""
-    h = html or fetch(BE)
+    h = html if html is not None else fetch(BE, obbligatoria=False)
+    if not h:
+        print("# BetExplorer non raggiungibile: nessuna quota 1X2 in questa esecuzione",
+              file=sys.stderr)
+        return []
     byurl = {e['url'].rstrip('/').split('/')[-1]: e for e in calendario(h)}
     out = []
     for r in re.findall(r'<tr[^>]*>(.*?)</tr>', h, re.S):
@@ -93,7 +107,7 @@ def giornata(testo=None):
     return m.group(1) if m else None
 
 def gazzetta_testo():
-    h = fetch(GAZZETTA, 60)
+    h = fetch(GAZZETTA, 60)   # obbligatoria: senza Gazzetta il report non ha senso
     h = re.sub(r'(?is)<(script|style|noscript)[^>]*>.*?</\1>', ' ', h)
     h = re.sub(r'(?i)<br\s*/?>|</(p|div|li|tr|h\d|section|span)>', '\n', h)
     t = re.sub(r'<[^>]+>', ' ', h)

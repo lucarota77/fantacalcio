@@ -59,10 +59,11 @@ jobs:
 
       - name: Quote
         if: steps.ora.outputs.esegui == 'si'
+        continue-on-error: true      # una fonte che sbaglia un colpo non deve abbattere il report
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
         run: |
-          python3 raccolta_cloud.py dati
+          python3 raccolta_cloud.py dati || echo '{"matches":[]}' > dati_cloud.json
           # I mercati per giocatore non sono raggiungibili da qui: si riusano quelli
           # dell'ultima passata locale, se sono della stessa giornata (quote_cache.json).
           if [ -f quote_cache.json ]; then
