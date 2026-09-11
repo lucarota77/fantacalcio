@@ -101,8 +101,8 @@ L.append("Il simbolo ⚠️ segnala uno scarto superiore a 32 punti fra ciò che
 L.append("\n## 5. Limiti di questo report\n")
 L.append("- Quote rilevate in un istante preciso: si muovono, soprattutto per le gare di domenica e lunedì.\n"
          "- Assist e ammonizioni vengono dal solo bwin: non sono verificate da un secondo book.\n"
-         "- Le probabili formazioni del venerdì mattina sono incomplete per le gare di lunedì; la formazione "
-         "della Roma su Gazzetta è ferma al 7 settembre e il suo peso è stato dimezzato.\n"
+         "- Le probabili formazioni del venerdì sono più soggette a cambiare per le gare di lunedì: dove il dato "
+         "di una fonte è più vecchio di 48 ore il suo peso viene dimezzato (vedi METODO.md).\n"
          "- Il clean sheet è derivato da un modello di Poisson sui gol attesi, non da un mercato dedicato.\n"
          "- bet365 blocca l'automazione: le famiglie di book realmente indipendenti sono due.\n")
 open(sys.argv[3] if len(sys.argv)>3 else '/tmp/report.md','w').write('\n'.join(L))
