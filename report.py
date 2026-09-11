@@ -6,6 +6,16 @@ _d = json.load(open('/tmp/rows.json')); rows = _d['rows']; TIT = _d['titolari']
 S = json.load(open('/tmp/mstate.json'))
 GIORNATA = sys.argv[1] if len(sys.argv) > 1 else '4'
 TS = sys.argv[2] if len(sys.argv) > 2 else datetime.now().strftime('%d/%m/%Y %H:%M')
+GG = ['lun','mar','mer','gio','ven','sab','dom']
+def quando(v):
+    """Le date arrivano in ISO da BetExplorer e leggibili dalla passata locale: uniforma."""
+    if not v: return ''
+    m = __import__('re').match(r'(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})', str(v))
+    if not m: return str(v)
+    import datetime
+    a, ms, g, h, mi = m.groups()
+    d = datetime.date(int(a), int(ms), int(g))
+    return f"{GG[d.weekday()]} {g}/{ms} {h}:{mi}"
 RUOLO = {'P':'Portieri','D':'Difensori','C':'Centrocampisti','A':'Attaccanti'}
 SLOT = {'titolare': '🟢 TITOLARE', 'riserva': '🔵 1ª RISERVA',
         'alternativa': '⚪ ALTERNATIVA', 'fuori': '🔴 FUORI'}

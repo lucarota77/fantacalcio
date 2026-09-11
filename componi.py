@@ -11,7 +11,7 @@ gz   = json.load(open('gz.json'))
 # Quote per giocatore salvate dall'ultima passata locale: si riusano se sono della STESSA
 # giornata. Il browser non e disponibile in cloud, quindi senza questa cache i campi
 # resterebbero vuoti.
-CACHE, cache_eta = {}, None
+CACHE, CACHE_MATCH, cache_eta = {}, {}, None
 if os.path.exists('quote_cache.json'):
     _c = json.load(open('quote_cache.json'))
     # GIORNATA puo arrivare vuota dalle esecuzioni schedulate: in quel caso si accetta la
@@ -19,6 +19,7 @@ if os.path.exists('quote_cache.json'):
     _g = os.environ.get('GIORNATA') or None
     if _g is None or str(_c.get('giornata')) == str(_g):
         CACHE = _c.get('quote', {})
+        CACHE_MATCH = _c.get('match', {})
         try:
             dt = datetime.fromisoformat(_c['rilevate'])
             cache_eta = (datetime.now().astimezone() - dt).total_seconds()/3600
@@ -39,22 +40,37 @@ for g in rosa:
     info = gz.get(g['nome'], {})
     nome_match = info.get('match')
     m = byteam.get(c)
-    if m:
-        key = f"{m['home']}-{m['away']}"
-        if key not in visti:
-            visti.add(key)
-            matches.append({'name': key, 'home': m['home'], 'away': m['away'],
-                            'when': m.get('when') or '', 'bwin': {'odds': m['odds'],
-                            'ou': m['ou'] or [1.85, 1.95, 2.5]}})
-            if not m['ou']: stimate.append(key + ' (Over/Under stimato)')
-    elif nome_match:
-        key = nome_match.replace(' - ', '-')
-        if key not in visti:
-            visti.add(key)
-            h, a = (nome_match.split(' - ') + [''])[:2]
-            matches.append({'name': key, 'home': h, 'away': a, 'when': '',
-                            'bwin': {'odds': [3.0, 3.3, 3.0], 'ou': [1.85, 1.95, 2.5]}})
-            stimate.append(key + ' (nessuna quota: contesto neutro)')
+    key = f"{m['home']}-{m['away']}" if m else (nome_match.replace(' - ', '-') if nome_match else None)
+    if not key or key in visti: continue
+    visti.add(key)
+    # Priorita: quote fresche di BetExplorer, poi quelle salvate dalla passata locale,
+    # e solo in ultima istanza un contesto neutro, sempre dichiarato nel report.
+    cm = CACHE_MATCH.get(key) or next((v for k, v in CACHE_MATCH.items()
+                                       if k.replace(' ', '') == key.replace(' ', '')), None)
+    if m and m['ou']:
+        matches.append({'name': key, 'home': m['home'], 'away': m['away'],
+                        'when': m.get('when') or '', 'bwin': {'odds': m['odds'], 'ou': m['ou']}})
+    elif cm:
+        rec = {'name': key, 'home': cm.get('home', key.split('-')[0]),
+               'away': cm.get('away', key.split('-')[-1]), 'when': cm.get('when') or ''}
+        for b in ('bwin', 'snai'):
+            if cm.get(b): rec[b] = cm[b]
+        if m:   # 1X2 fresche di BetExplorer + Over/Under dalla cache
+            rec['bwin'] = {'odds': m['odds'], 'ou': (cm.get('bwin') or {}).get('ou') or [1.85,1.95,2.5]}
+            stimate.append(key + ' (1X2 fresche, Over/Under dalla rilevazione locale)')
+        else:
+            stimate.append(key + ' (quote dalla rilevazione locale)')
+        matches.append(rec)
+    elif m:
+        matches.append({'name': key, 'home': m['home'], 'away': m['away'],
+                        'when': m.get('when') or '',
+                        'bwin': {'odds': m['odds'], 'ou': [1.85, 1.95, 2.5]}})
+        stimate.append(key + ' (Over/Under stimato)')
+    else:
+        h, a = (nome_match.split(' - ') + [''])[:2] if nome_match else (key, '')
+        matches.append({'name': key, 'home': h, 'away': a, 'when': '',
+                        'bwin': {'odds': [3.0, 3.3, 3.0], 'ou': [1.85, 1.95, 2.5]}})
+        stimate.append(key + ' (NESSUNA QUOTA: contesto neutro, valori poco affidabili)')
 json.dump({'matches': matches}, open('dati.json', 'w'), ensure_ascii=False, indent=1)
 # righe per giocatori.py
 out = []

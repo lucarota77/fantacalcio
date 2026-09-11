@@ -5,6 +5,16 @@ S = json.load(open('/tmp/mstate.json'))
 G = sys.argv[1] if len(sys.argv) > 1 else '4'
 TS = sys.argv[2] if len(sys.argv) > 2 else '11/09/2026 09:40'
 OUT = sys.argv[3]
+GG = ['lun','mar','mer','gio','ven','sab','dom']
+def quando(v):
+    """Le date arrivano in ISO da BetExplorer e leggibili dalla passata locale: uniforma."""
+    if not v: return ''
+    m = __import__('re').match(r'(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})', str(v))
+    if not m: return str(v)
+    import datetime
+    a, ms, g, h, mi = m.groups()
+    d = datetime.date(int(a), int(ms), int(g))
+    return f"{GG[d.weekday()]} {g}/{ms} {h}:{mi}"
 RN = {'P':'Portieri','D':'Difensori','C':'Centrocampisti','A':'Attaccanti'}
 # Consiglio e rischio sono due dimensioni distinte: il consiglio deriva dall'unico
 # ordinamento (fanta atteso), il rischio dalla sola probabilita di scendere in campo.
@@ -76,7 +86,7 @@ teams.sort(key=lambda t: -t[1])
 tmax = teams[0][1]
 team_rows = ''.join(
     f'<tr><td class="rk">{i}</td><td class="nm"><b>{e(n)}</b></td><td class="mt">{e(o)}'
-    f'<span class="wh">{e(w)}</span></td><td class="num wide">'
+    f'<span class="wh">{e(quando(w))}</span></td><td class="num wide">'
     f'<div class="bar team-bar" style="--w:{round(p/tmax*100)}%"></div>'
     f'<span class="v">{p*100:.1f}%</span></td></tr>'
     for i,(n,p,o,w) in enumerate(teams,1))
