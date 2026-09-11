@@ -250,15 +250,30 @@ MV_attesa = (MV * presenze + 6,0 * 3) / (presenze + 3)
 **Punteggio finale su cui si ordina:**
 
 ```
-Fanta atteso = P_gioca * ( 6,0 + W_MV * (MV_attesa - 6,0) )  +  W_Q * IR
+Fanta atteso = R_panchina
+             + P_gioca * ( 6,0 - R_panchina + W_MV * (MV_attesa - 6,0) )
+             + W_Q * IR
 
-   W_MV = 1,0     peso dello storico (scarto della media voto da 6,0)
-   W_Q  = 2,5     peso della prospettiva (quote)
+   R_panchina = 5,5    rendimento di chi subentra col cambio automatico
+   W_MV       = 1,0    peso dello storico (scarto della media voto da 6,0)
+   W_Q        = 2,5    peso della prospettiva (quote)
 ```
 
-Il **6,0 è comune a tutti e non ordina nulla**: a ordinare sono `P_gioca`, lo scarto di MV
-rispetto a 6 e l'IR. Scriverlo in questa forma serve proprio a rendere visibile quanto pesa
-davvero ciascun pezzo.
+**Perché `R_panchina` e non zero.** Se il giocatore non scende in campo non prendi zero:
+entra la riserva col cambio automatico. Il costo di una presenza incerta è quindi la
+**differenza rispetto alla riserva**, non l'intero punteggio.
+
+Senza questa correzione la formula conteneva un termine `P_gioca × 6,0` che pesava più della
+differenza fra una partita facile e una difficile. Misurato su Kolo Muani contro Gonçalo Ramos
+nella 4ª giornata: le quote davano giustamente Kolo Muani avanti (−0,60 per Ramos), ma il
+termine di presenza lo ribaltava (+0,67 per Ramos) e la media voto aggiungeva +0,33. Risultato:
+Ramos davanti, nonostante affrontasse una partita molto più difficile (Milan 41% di vittoria
+contro Juventus 58%) e avesse una probabilità di gol più bassa. Con `R_panchina = 5,5` il
+termine di presenza vale 0,5 invece di 6,0 e l'ordine si raddrizza.
+
+> **Limite da tenere presente.** Il punteggio presuppone che il cambio automatico scatti. Se
+> schieri più giocatori a rischio nello stesso reparto, le riserve potrebbero non coprirli
+> tutti: in quel caso l'etichetta 🟠 BALLOTTAGGIO vale più del numero.
 
 **Perché W_Q = 2,5.** Misurato sulla 4ª giornata 2026/27 sui 25 della rosa:
 
@@ -282,8 +297,11 @@ da 1,0 a 4,0 — segno che il grosso del lavoro lo fa comunque `P_gioca`.
 | W_Q | Effetto |
 |---|---|
 | 1,0 | storico e prospettiva alla pari — premia i titolari fissi con voti regolari |
-| **2,5** | *default* — le quote guidano, la presenza resta il filtro |
+| **2,5** | *default* — le quote guidano, lo storico corregge |
 | 4,0 | quasi solo quote — entrano i ballottaggi con alta probabilità di bonus |
+
+L'altro parametro da toccare è `R_panchina`: alzarlo (verso 6,0) rende quasi indifferente la
+probabilità di giocare, abbassarlo (verso 0) la rende decisiva.
 
 **Il caso che mostra la differenza.** Kolo Muani ha l'IR fra i più alti della rosa (1,23:
 34% di segnare) ma la MV più bassa (5,17): segna e prende voti bassi. A W_Q = 1,0 finiva 13º

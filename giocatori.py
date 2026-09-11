@@ -14,6 +14,7 @@ if os.path.exists('statistiche.json'):
 # quello dell'IR da 0 e 0.82 — le quote sono ~6 volte piu informative dello storico.
 W_MV = 1.0          # peso dello scarto di media voto rispetto a 6.0
 W_Q  = 2.5          # peso delle quote (IR). Alzarlo per dare piu peso alla prospettiva
+R_PANCHINA = 5.5    # rendimento atteso di chi subentra col cambio automatico
 K_SHRINK = 3.0      # con poche presenze la MV e rumorosa: si tira verso 6.0 (k = presenze equivalenti)
 MV_BASE = 6.0
 W = {'fc': .28, 'sf': .22, 'gz': .30, 'sky': .20}   # pesi fonti editoriali
@@ -103,7 +104,13 @@ for (n, r, sq, mt, fc, sf, gz, sky, qgb, qgs, qab, qcb, stale, nota) in P:
     st = ST.get(n) or {}
     mv, fm, pgio_st = st.get('mv'), st.get('fm'), st.get('pg') or 0
     mv_att = ((mv*pgio_st + MV_BASE*K_SHRINK)/(pgio_st + K_SHRINK)) if mv else MV_BASE
-    fanta = pgio*(MV_BASE + W_MV*(mv_att - MV_BASE)) + W_Q*ir
+    # Se il giocatore non scende in campo non prendi zero: entra la riserva col cambio
+    # automatico. Il costo di una presenza incerta e quindi la DIFFERENZA rispetto alla
+    # riserva, non l'intero punteggio. Senza questa correzione il termine P_gioca*6,0
+    # pesava piu della differenza fra una partita facile e una difficile.
+    fanta = (R_PANCHINA
+             + pgio*(MV_BASE - R_PANCHINA + W_MV*(mv_att - MV_BASE))
+             + W_Q*ir)
     rows.append(dict(n=n, r=r, sq=sq, mt=mt, when=m['when'], pgio=pgio, pg=pg, pa=pa, pc=pc,
                      cs=cs, pvit=pvit, ir=ir, flag=flag, nota=nota, qg=qgb, qgs=qgs, qa=qab, qc=qcb,
                      spread_g=spread_g, books=len(est), mv=mv, fm=fm, pres=pgio_st,
