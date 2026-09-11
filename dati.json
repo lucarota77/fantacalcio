@@ -55,15 +55,15 @@
    }
   },
   {
-   "name": "Lazio-AC Milan",
+   "name": "Lazio-Milan",
    "home": "Lazio",
-   "away": "AC Milan",
-   "when": "2026-09-12T18:00:00+02:00",
+   "away": "Milan",
+   "when": "",
    "bwin": {
     "odds": [
-     3.24,
-     3.15,
-     2.28
+     3.0,
+     3.3,
+     3.0
     ],
     "ou": [
      1.85,
@@ -94,12 +94,12 @@
    "name": "Lecce-Monza",
    "home": "Lecce",
    "away": "Monza",
-   "when": "2026-09-13T15:00:00+02:00",
+   "when": "",
    "bwin": {
     "odds": [
-     2.66,
-     3.03,
-     2.8
+     3.0,
+     3.3,
+     3.0
     ],
     "ou": [
      1.85,
@@ -112,12 +112,12 @@
    "name": "Venezia-Fiorentina",
    "home": "Venezia",
    "away": "Fiorentina",
-   "when": "2026-09-11T20:45:00+02:00",
+   "when": "",
    "bwin": {
     "odds": [
-     2.83,
+     3.0,
      3.3,
-     2.47
+     3.0
     ],
     "ou": [
      1.85,
@@ -130,12 +130,12 @@
    "name": "Genoa-Frosinone",
    "home": "Genoa",
    "away": "Frosinone",
-   "when": "2026-09-12T15:00:00+02:00",
+   "when": "",
    "bwin": {
     "odds": [
-     2.14,
-     3.27,
-     3.48
+     3.0,
+     3.3,
+     3.0
     ],
     "ou": [
      1.85,
