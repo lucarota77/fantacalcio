@@ -7,7 +7,14 @@ S = json.load(open('/tmp/mstate.json'))
 ST = {}
 if os.path.exists('statistiche.json'):
     ST = json.load(open('statistiche.json'))
-K_SHRINK = 3.0      # con poche presenze la MV e rumorosa: si tira verso 6.0
+# --- Pesi del punteggio finale (vedi METODO.md par. 5-ter) --------------------------
+# Fanta atteso = P_gioca * (6.0 + W_MV * (MV_attesa - 6.0)) + W_Q * IR
+# Il 6.0 e comune a tutti e non ordina nulla: a ordinare sono P_gioca, lo scarto di MV
+# rispetto a 6 e l'IR. Misurato sulla 4a giornata: lo scarto medio della MV da 6.00 e 0.13,
+# quello dell'IR da 0 e 0.82 — le quote sono ~6 volte piu informative dello storico.
+W_MV = 1.0          # peso dello scarto di media voto rispetto a 6.0
+W_Q  = 2.5          # peso delle quote (IR). Alzarlo per dare piu peso alla prospettiva
+K_SHRINK = 3.0      # con poche presenze la MV e rumorosa: si tira verso 6.0 (k = presenze equivalenti)
 MV_BASE = 6.0
 W = {'fc': .28, 'sf': .22, 'gz': .30, 'sky': .20}   # pesi fonti editoriali
 STALE = .5                                           # moltiplicatore per dato piu vecchio di 48h
@@ -96,7 +103,7 @@ for (n, r, sq, mt, fc, sf, gz, sky, qgb, qgs, qab, qcb, stale, nota) in P:
     st = ST.get(n) or {}
     mv, fm, pgio_st = st.get('mv'), st.get('fm'), st.get('pg') or 0
     mv_att = ((mv*pgio_st + MV_BASE*K_SHRINK)/(pgio_st + K_SHRINK)) if mv else MV_BASE
-    fanta = pgio*mv_att + ir
+    fanta = pgio*(MV_BASE + W_MV*(mv_att - MV_BASE)) + W_Q*ir
     rows.append(dict(n=n, r=r, sq=sq, mt=mt, when=m['when'], pgio=pgio, pg=pg, pa=pa, pc=pc,
                      cs=cs, pvit=pvit, ir=ir, flag=flag, nota=nota, qg=qgb, qgs=qgs, qa=qab, qc=qcb,
                      spread_g=spread_g, books=len(est), mv=mv, fm=fm, pres=pgio_st,

@@ -250,10 +250,47 @@ MV_attesa = (MV * presenze + 6,0 * 3) / (presenze + 3)
 **Punteggio finale su cui si ordina:**
 
 ```
-Fanta atteso = P_gioca * MV_attesa + IR
+Fanta atteso = P_gioca * ( 6,0 + W_MV * (MV_attesa - 6,0) )  +  W_Q * IR
+
+   W_MV = 1,0     peso dello storico (scarto della media voto da 6,0)
+   W_Q  = 2,5     peso della prospettiva (quote)
 ```
 
-> **La fantamedia NON va sommata.** FM contiene già i bonus e i malus realizzati: sommarla
+Il **6,0 è comune a tutti e non ordina nulla**: a ordinare sono `P_gioca`, lo scarto di MV
+rispetto a 6 e l'IR. Scriverlo in questa forma serve proprio a rendere visibile quanto pesa
+davvero ciascun pezzo.
+
+**Perché W_Q = 2,5.** Misurato sulla 4ª giornata 2026/27 sui 25 della rosa:
+
+| Termine | Scarto medio dal proprio centro | Dev. standard | Correlazione di rango con la classifica |
+|---|---|---|---|
+| MV_attesa (da 6,00) | **0,13** | 0,18 | — |
+| IR (da 0) | **0,82** | 0,56 | +0,53 |
+| P_gioca | — | 0,20 | **+0,78** |
+
+Dopo lo shrinkage la media voto è quasi una costante: con due o tre presenze tutte le MV
+collassano verso 6, e lo scarto residuo è sei volte più piccolo di quello dell'IR. Le quote
+sono molto più informative perché **guardano avanti e incorporano tutto** — forma, avversario,
+ruolo in campo, notizie di formazione — mentre la MV guarda indietro su un campione minuscolo.
+W_Q = 2,5 riporta la dispersione delle quote (0,56 × 2,5 ≈ 1,4) allo stesso ordine di grandezza
+di quella del termine di presenza, così i due pesano in modo comparabile.
+
+**Alzare o abbassare W_Q.** È il parametro da toccare per spostare l'equilibrio. Effetto
+misurato sulla 4ª giornata: la formazione è abbastanza stabile, cambiano 2 slot su 11 passando
+da 1,0 a 4,0 — segno che il grosso del lavoro lo fa comunque `P_gioca`.
+
+| W_Q | Effetto |
+|---|---|
+| 1,0 | storico e prospettiva alla pari — premia i titolari fissi con voti regolari |
+| **2,5** | *default* — le quote guidano, la presenza resta il filtro |
+| 4,0 | quasi solo quote — entrano i ballottaggi con alta probabilità di bonus |
+
+**Il caso che mostra la differenza.** Kolo Muani ha l'IR fra i più alti della rosa (1,23:
+34% di segnare) ma la MV più bassa (5,17): segna e prende voti bassi. A W_Q = 1,0 finiva 13º
+e restava fuori dalla formazione; a W_Q = 2,5 risale al 9º, primo degli esclusi in attacco.
+È esattamente il compromesso che il parametro governa.
+
+> **La fantamedia non entra nel calcolo**, è solo visualizzata. FM contiene già i bonus e i malus realizzati: sommarla
 > all'IR, che stima gli stessi bonus in prospettiva su *questa* partita, li conterebbe due
 > volte. La FM resta in tabella come riferimento storico, ed è utile come segnale: se diverge
 > molto dal fanta atteso, o il giocatore sta attraversando un periodo anomalo, o la partita
