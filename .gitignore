@@ -2,3 +2,16 @@ __pycache__/
 *.pyc
 .DS_Store
 /tmp_*
+
+# File intermedi rigenerati a ogni esecuzione: versionarli produce solo conflitti
+# fra la passata locale e il workflow, che girano a pochi minuti di distanza.
+dati_cloud.json
+dati.json
+gz.txt
+gz.json
+fc.json
+statistiche.json
+giocatori_input.json
+
+# quote_cache.json INVECE va versionato: e il modo in cui le quote raccolte dal Mac
+# arrivano alle esecuzioni cloud. Stessa cosa per report/ e docs/, che sono l'output.
