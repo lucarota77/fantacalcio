@@ -27,8 +27,14 @@ if os.path.exists('quote_cache.json'):
 fc   = json.load(open('fc.json')) if os.path.exists('fc.json') else {}
 q    = json.load(open('dati_cloud.json'))['matches']
 rosa = json.load(open('rosa.json'))['rosa']
-ALIAS = {'ac milan': 'milan', 'as roma': 'roma', 'inter milan': 'inter'}
+ALIAS = {'ac milan': 'milan', 'as roma': 'roma', 'inter milan': 'inter',
+         'ssc napoli': 'napoli', 'us lecce': 'lecce', 'fc torino': 'torino'}
 def canon(s): return ALIAS.get(norm(s), norm(s))
+def bello(s):
+    """Nome squadra come lo usa la passata locale, cosi le chiavi combaciano con la cache."""
+    n = canon(s)
+    return {'milan':'Milan','roma':'Roma','inter':'Inter','napoli':'Napoli',
+            'lecce':'Lecce','torino':'Torino'}.get(n, s)
 byteam = {}
 for m in q:
     m['home_c'], m['away_c'] = canon(m['home']), canon(m['away'])
@@ -40,7 +46,8 @@ for g in rosa:
     info = gz.get(g['nome'], {})
     nome_match = info.get('match')
     m = byteam.get(c)
-    key = f"{m['home']}-{m['away']}" if m else (nome_match.replace(' - ', '-') if nome_match else None)
+    key = f"{bello(m['home'])}-{bello(m['away'])}" if m else (
+          nome_match.replace(' - ', '-') if nome_match else None)
     if not key or key in visti: continue
     visti.add(key)
     # Priorita: quote fresche di BetExplorer, poi quelle salvate dalla passata locale,
@@ -48,7 +55,7 @@ for g in rosa:
     cm = CACHE_MATCH.get(key) or next((v for k, v in CACHE_MATCH.items()
                                        if k.replace(' ', '') == key.replace(' ', '')), None)
     if m and m['ou']:
-        matches.append({'name': key, 'home': m['home'], 'away': m['away'],
+        matches.append({'name': key, 'home': bello(m['home']), 'away': bello(m['away']),
                         'when': m.get('when') or '', 'bwin': {'odds': m['odds'], 'ou': m['ou']}})
     elif cm:
         rec = {'name': key, 'home': cm.get('home', key.split('-')[0]),
@@ -62,7 +69,7 @@ for g in rosa:
             stimate.append(key + ' (quote dalla rilevazione locale)')
         matches.append(rec)
     elif m:
-        matches.append({'name': key, 'home': m['home'], 'away': m['away'],
+        matches.append({'name': key, 'home': bello(m['home']), 'away': bello(m['away']),
                         'when': m.get('when') or '',
                         'bwin': {'odds': m['odds'], 'ou': [1.85, 1.95, 2.5]}})
         stimate.append(key + ' (Over/Under stimato)')

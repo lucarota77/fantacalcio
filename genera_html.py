@@ -68,7 +68,7 @@ def trow(i, x, show_role=True):
           f"{x['qgs']:.2f} (solo Snai)" if x['qgs'] else (f"{x['qg']:.2f}" if x['qg'] else None))
     return (f'<tr><td class="rk">{i}</td>'
             f'<td class="nm"><b>{e(x["n"])}</b>{wr}{st}<span class="sq">{e(x["sq"])}</span></td>'
-            f'{role}<td class="mt">{e(x["mt"])}<span class="wh">{e(x["when"])}</span></td>'
+            f'{role}<td class="mt">{e(x["mt"])}<span class="wh">{e(quando(x["when"]))}</span></td>'
             f'{cell(x["pgio"],None)}{risk(x)}{plain(x["mv"])}{plain(x["fm"])}{cellq(x["pg"],qg2)}'
             f'{cell(x["pa"],x["qa"])}{cell(x["pc"],x["qc"])}'
             f'{irc(x["ir"], x["ir"])}{fantac(x["fanta"])}'
@@ -91,7 +91,7 @@ team_rows = ''.join(
     f'<span class="v">{p*100:.1f}%</span></td></tr>'
     for i,(n,p,o,w) in enumerate(teams,1))
 match_rows = ''.join(
-    f'<tr><td class="nm"><b>{e(k)}</b><span class="sq">{e(v["when"])}</span></td>'
+    f'<tr><td class="nm"><b>{e(k)}</b><span class="sq">{e(quando(v["when"]))}</span></td>'
     f'<td class="num s"><span class="v">{v["p1"]*100:.0f}%</span></td>'
     f'<td class="num s"><span class="v">{v["px"]*100:.0f}%</span></td>'
     f'<td class="num s"><span class="v">{v["p2"]*100:.0f}%</span></td>'
