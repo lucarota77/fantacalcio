@@ -27,6 +27,14 @@ def cellq(p, q):
     return (f'<td class="num"><div class="bar" style="--w:{w}%"></div>'
             f'<span class="v">{round(p*100)}%</span>'
             + (f'<span class="q">{e(q)}</span>' if q else '') + '</td>')
+nq = sum(1 for x in rows if x['r'] != 'P' and x['pg'] is None)
+tot = sum(1 for x in rows if x['r'] != 'P')
+BANNER = ('<div class="banner"><b>Report parziale.</b> Per '
+          f'{nq} giocatori su {tot} mancano le quote di gol, assist e ammonizione: questa '
+          'esecuzione non ha avuto accesso ai mercati per giocatore, che richiedono il browser. '
+          'Probabilita di giocare, clean sheet, contesto partita e ranking squadre sono completi. '
+          'La pagina viene aggiornata con i dati mancanti alla prima esecuzione locale.</div>'
+          ) if nq > tot/2 else ''
 irmax = max(x['ir'] for x in rows)
 def irc(v):
     w = max(1, min(100, round(v/irmax*100))) if v > 0 else 1
@@ -225,6 +233,9 @@ td.num.s{min-width:60px}
 .notes li:last-child{border-bottom:0}
 .notes b{color:var(--ink);font-weight:600}
 .nsq{font:400 11.5px/1 "IBM Plex Mono",monospace;color:var(--muted);margin-left:4px}
+.banner{background:var(--surface);border:1px solid var(--warn);border-left:3px solid var(--warn);
+  border-radius:3px;padding:13px 16px;margin:0 0 8px;font-size:13.5px;color:var(--muted)}
+.banner b{color:var(--ink)}
 .callout{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);
   border-radius:3px;padding:15px 18px;margin-top:18px;font-size:14px;color:var(--muted)}
 .callout b{color:var(--ink)}
@@ -254,7 +265,7 @@ footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);
 </div></header>
 
 <div class="wrap">
-
+@@BANNER@@
 <section>
   <h2>Formazione consigliata <span>3-4-3 &middot; 1 portiere, 3 difensori, 4 centrocampisti, 3 attaccanti</span></h2>
   <div class="best">@@BEST@@</div>
@@ -346,6 +357,7 @@ Il gioco e riservato ai maggiorenni e puo creare dipendenza patologica.</footer>
 out = (TPL.replace('@@G@@', G).replace('@@TS@@', TS).replace('@@BEST@@', best)
        .replace('@@HEAD@@', HEAD.format(R='<th>R</th>')).replace('@@ALLROWS@@', all_rows)
        .replace('@@BYROLE@@', by_role).replace('@@TEAMS@@', team_rows)
-       .replace('@@MATCHES@@', match_rows).replace('@@NOTES@@', notes))
+       .replace('@@MATCHES@@', match_rows).replace('@@NOTES@@', notes)
+       .replace('@@BANNER@@', BANNER))
 open(OUT, 'w').write(out)
 print('scritto', OUT, len(out), 'byte')
