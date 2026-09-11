@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """P(gioca) da 4 fonti editoriali + floor di mercato; P(gol) media bwin+snai; indice di rilevanza."""
-import json
+import json, sys
 from statistics import mean
 S = json.load(open('/tmp/mstate.json'))
 W = {'fc': .28, 'sf': .22, 'gz': .30, 'sky': .20}   # pesi fonti editoriali
@@ -12,8 +12,10 @@ MODULO = {'P': 1, 'D': 3, 'C': 4, 'A': 3}            # 3-4-3
 # Se esiste giocatori_input.json (prodotto da componi.py nel workflow automatico) la lista
 # viene letta da li; altrimenti si usa quella qui sotto, compilata a mano nella passata locale.
 import os
+# `python3 giocatori.py locale` ignora il JSON prodotto dal workflow e usa la lista qui sotto,
+# che nella passata locale contiene anche le quote di bwin e Snai.
 P_AUTO = None
-if os.path.exists('giocatori_input.json'):
+if 'locale' not in sys.argv and os.path.exists('giocatori_input.json'):
     P_AUTO = [tuple(r) for r in json.load(open('giocatori_input.json'))['giocatori']]
 # nome, ruolo, squadra, match, fc, sf, gz, sky, q_gol_bwin, q_gol_snai, q_ass_bwin, q_amm_bwin, gz_vecchia, nota
 P = [

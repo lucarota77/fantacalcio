@@ -1,148 +1,22 @@
-{
- "matches": [
-  {
-   "name": "Inter-Udinese",
-   "home": "Inter",
-   "away": "Udinese",
-   "when": "",
-   "bwin": {
-    "odds": [
-     3.0,
-     3.3,
-     3.0
-    ],
-    "ou": [
-     1.85,
-     1.95,
-     2.5
-    ]
-   }
-  },
-  {
-   "name": "Napoli-Bologna",
-   "home": "Napoli",
-   "away": "Bologna",
-   "when": "",
-   "bwin": {
-    "odds": [
-     3.0,
-     3.3,
-     3.0
-    ],
-    "ou": [
-     1.85,
-     1.95,
-     2.5
-    ]
-   }
-  },
-  {
-   "name": "Torino-Roma",
-   "home": "Torino",
-   "away": "Roma",
-   "when": "",
-   "bwin": {
-    "odds": [
-     3.0,
-     3.3,
-     3.0
-    ],
-    "ou": [
-     1.85,
-     1.95,
-     2.5
-    ]
-   }
-  },
-  {
-   "name": "Lazio-Milan",
-   "home": "Lazio",
-   "away": "Milan",
-   "when": "",
-   "bwin": {
-    "odds": [
-     3.0,
-     3.3,
-     3.0
-    ],
-    "ou": [
-     1.85,
-     1.95,
-     2.5
-    ]
-   }
-  },
-  {
-   "name": "Sassuolo-Juventus",
-   "home": "Sassuolo",
-   "away": "Juventus",
-   "when": "",
-   "bwin": {
-    "odds": [
-     3.0,
-     3.3,
-     3.0
-    ],
-    "ou": [
-     1.85,
-     1.95,
-     2.5
-    ]
-   }
-  },
-  {
-   "name": "Lecce-Monza",
-   "home": "Lecce",
-   "away": "Monza",
-   "when": "",
-   "bwin": {
-    "odds": [
-     3.0,
-     3.3,
-     3.0
-    ],
-    "ou": [
-     1.85,
-     1.95,
-     2.5
-    ]
-   }
-  },
-  {
-   "name": "Venezia-Fiorentina",
-   "home": "Venezia",
-   "away": "Fiorentina",
-   "when": "",
-   "bwin": {
-    "odds": [
-     3.0,
-     3.3,
-     3.0
-    ],
-    "ou": [
-     1.85,
-     1.95,
-     2.5
-    ]
-   }
-  },
-  {
-   "name": "Genoa-Frosinone",
-   "home": "Genoa",
-   "away": "Frosinone",
-   "when": "",
-   "bwin": {
-    "odds": [
-     3.0,
-     3.3,
-     3.0
-    ],
-    "ou": [
-     1.85,
-     1.95,
-     2.5
-    ]
-   }
-  }
- ]
-}
+{"matches":[
+ {"name":"Venezia-Fiorentina","home":"Venezia","away":"Fiorentina","when":"ven 11/09 20:45",
+  "bwin":{"odds":[2.65,3.30,2.50],"ou":[1.71,2.00,2.5]},"snai":{"odds":[2.90,3.25,2.45],"ou":[1.72,2.00,2.5]}},
+ {"name":"Genoa-Frosinone","home":"Genoa","away":"Frosinone","when":"sab 12/09 15:00",
+  "bwin":{"odds":[2.10,3.40,3.30],"ou":[1.83,1.85,2.5]},"snai":{"odds":[2.15,3.25,3.50],"ou":[1.90,1.80,2.5]}},
+ {"name":"Lazio-Milan","home":"Lazio","away":"Milan","when":"sab 12/09 18:00",
+  "bwin":{"odds":[3.20,3.20,2.25],"ou":[2.20,1.58,2.5]},"snai":{"odds":[3.25,3.10,2.30],"ou":[2.20,1.60,2.5]}},
+ {"name":"Atalanta-Cagliari","home":"Atalanta","away":"Cagliari","when":"sab 12/09 20:45",
+  "bwin":{"odds":[1.55,4.00,5.50],"ou":[1.87,1.82,2.5]},"snai":{"odds":[1.57,3.75,6.00],"ou":[1.85,1.85,2.5]}},
+ {"name":"Lecce-Monza","home":"Lecce","away":"Monza","when":"dom 13/09 15:00",
+  "bwin":{"odds":[2.60,3.10,2.70],"ou":[1.38,2.80,1.5]},"snai":{"odds":[2.70,3.00,2.80],"ou":[2.10,1.65,2.5]}},
+ {"name":"Napoli-Bologna","home":"Napoli","away":"Bologna","when":"dom 13/09 18:00",
+  "bwin":{"odds":[1.75,3.50,4.60],"ou":[2.00,1.70,2.5]},"snai":{"odds":[1.75,3.60,4.75],"ou":[2.00,1.72,2.5]}},
+ {"name":"Sassuolo-Juventus","home":"Sassuolo","away":"Juventus","when":"dom 13/09 20:45",
+  "bwin":{"odds":[5.25,3.90,1.60],"ou":[1.77,1.93,2.5]},"snai":{"odds":[5.25,3.75,1.65],"ou":[1.72,2.00,2.5]}},
+ {"name":"Como-Parma","home":"Como","away":"Parma","when":"lun 14/09 18:30",
+  "bwin":{"odds":[1.24,6.00,11.50],"ou":[1.65,2.10,2.5]},"snai":{"odds":[1.22,6.00,15.00],"ou":[1.72,2.00,2.5]}},
+ {"name":"Torino-Roma","home":"Torino","away":"Roma","when":"lun 14/09 18:30",
+  "bwin":{"odds":[5.50,4.00,1.57],"ou":[1.75,1.93,2.5]},"snai":{"odds":[6.00,3.75,1.60],"ou":[1.72,2.00,2.5]}},
+ {"name":"Inter-Udinese","home":"Inter","away":"Udinese","when":"lun 14/09 20:45",
+  "bwin":{"odds":[1.26,5.75,10.00],"ou":[2.30,1.55,3.5]},"snai":{"odds":[1.25,6.00,13.00],"ou":[1.57,2.25,2.5]}}
+]}
