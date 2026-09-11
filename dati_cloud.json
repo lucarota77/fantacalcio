@@ -1,3 +1,74 @@
 {
- "matches": []
+ "matches": [
+  {
+   "home": "Venezia",
+   "away": "Fiorentina",
+   "start": "2026-09-11T20:45:00+02:00",
+   "odds": [
+    2.83,
+    3.3,
+    2.47
+   ],
+   "ou": null,
+   "fonte": "betexplorer (media di mercato)",
+   "name": "Venezia-Fiorentina",
+   "when": "2026-09-11T20:45:00+02:00"
+  },
+  {
+   "home": "Genoa",
+   "away": "Frosinone",
+   "start": "2026-09-12T15:00:00+02:00",
+   "odds": [
+    2.14,
+    3.27,
+    3.48
+   ],
+   "ou": null,
+   "fonte": "betexplorer (media di mercato)",
+   "name": "Genoa-Frosinone",
+   "when": "2026-09-12T15:00:00+02:00"
+  },
+  {
+   "home": "Lazio",
+   "away": "AC Milan",
+   "start": "2026-09-12T18:00:00+02:00",
+   "odds": [
+    3.24,
+    3.15,
+    2.28
+   ],
+   "ou": null,
+   "fonte": "betexplorer (media di mercato)",
+   "name": "Lazio-AC Milan",
+   "when": "2026-09-12T18:00:00+02:00"
+  },
+  {
+   "home": "Atalanta",
+   "away": "Cagliari",
+   "start": "2026-09-12T20:45:00+02:00",
+   "odds": [
+    1.57,
+    3.97,
+    5.89
+   ],
+   "ou": null,
+   "fonte": "betexplorer (media di mercato)",
+   "name": "Atalanta-Cagliari",
+   "when": "2026-09-12T20:45:00+02:00"
+  },
+  {
+   "home": "Lecce",
+   "away": "Monza",
+   "start": "2026-09-13T15:00:00+02:00",
+   "odds": [
+    2.66,
+    3.03,
+    2.8
+   ],
+   "ou": null,
+   "fonte": "betexplorer (media di mercato)",
+   "name": "Lecce-Monza",
+   "when": "2026-09-13T15:00:00+02:00"
+  }
+ ]
 }

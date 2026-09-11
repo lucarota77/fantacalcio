@@ -9,6 +9,12 @@ CAP = {'A': [(.35,.92),(.25,.80),(.18,.65),(.12,.50)],
        'C': [(.20,.90),(.14,.75),(.10,.60),(.06,.45)],
        'D': [(.09,.90),(.06,.75),(.04,.60),(.025,.45)]}
 MODULO = {'P': 1, 'D': 3, 'C': 4, 'A': 3}            # 3-4-3
+# Se esiste giocatori_input.json (prodotto da componi.py nel workflow automatico) la lista
+# viene letta da li; altrimenti si usa quella qui sotto, compilata a mano nella passata locale.
+import os
+P_AUTO = None
+if os.path.exists('giocatori_input.json'):
+    P_AUTO = [tuple(r) for r in json.load(open('giocatori_input.json'))['giocatori']]
 # nome, ruolo, squadra, match, fc, sf, gz, sky, q_gol_bwin, q_gol_snai, q_ass_bwin, q_amm_bwin, gz_vecchia, nota
 P = [
 ("Martinez Jo.","P","Inter","Inter-Udinese",None,.95,.90,.90,None,None,None,13.0,0,""),
@@ -44,6 +50,7 @@ def floor_mkt(pg, r):
         if pg >= t: return f
     return .30
 
+if P_AUTO: P = P_AUTO
 rows = []
 for (n, r, sq, mt, fc, sf, gz, sky, qgb, qgs, qab, qcb, stale, nota) in P:
     m = S[mt]; casa = (m['home'] == sq)

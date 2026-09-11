@@ -1,0 +1,92 @@
+name: Report fantacalcio
+
+on:
+  schedule:
+    # GitHub Actions usa sempre UTC e non conosce l'ora legale. Si fira alle 12:00 e alle 13:00
+    # UTC e si tiene solo l'esecuzione in cui a Roma sono le 14: cosi il venerdi alle 14:00
+    # italiane vale tutto l'anno, senza doverlo correggere a ogni cambio d'ora.
+    - cron: '0 12,13 * * 5'
+  workflow_dispatch:        # esecuzione a richiesta, anche via API (IFTTT, Shortcut, curl)
+    inputs:
+      giornata:
+        description: 'Numero di giornata (vuoto = dedotto dai report gia presenti)'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Esegui solo se a Roma sono le 14 (salta l'altro fire)
+        id: ora
+        run: |
+          H=$(TZ=Europe/Rome date +%H)
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "esegui=si" >> $GITHUB_OUTPUT
+            echo "Esecuzione manuale: procedo."
+          elif [ "$H" = "14" ]; then
+            echo "esegui=si" >> $GITHUB_OUTPUT
+            echo "A Roma sono le $H: procedo."
+          else
+            echo "esegui=no" >> $GITHUB_OUTPUT
+            echo "A Roma sono le $H, non le 14: salto questa esecuzione."
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.ora.outputs.esegui == 'si'
+
+      - uses: actions/setup-python@v5
+        if: steps.ora.outputs.esegui == 'si'
+        with: { python-version: '3.11' }
+
+      - name: Probabili formazioni (Gazzetta)
+        if: steps.ora.outputs.esegui == 'si'
+        run: |
+          python3 raccolta_cloud.py gazzetta > gz.txt
+          python3 parse_gazzetta.py gz.txt rosa.json > gz.json
+          echo "risolti: $(python3 -c "import json;d=json.load(open('gz.json'));print(sum(1 for v in d.values() if v['gz'] is not None),'/',len(d))")"
+
+      - name: Quote
+        if: steps.ora.outputs.esegui == 'si'
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: python3 raccolta_cloud.py dati
+
+      - name: Calcolo
+        if: steps.ora.outputs.esegui == 'si'
+        run: |
+          set -e
+          python3 componi.py
+          python3 calcola.py dati.json
+          python3 giocatori.py
+          N="${{ inputs.giornata }}"
+          if [ -z "$N" ]; then
+            N=$(ls report/*.md 2>/dev/null | sed -n 's/.*giornata\([0-9]*\)\.md/\1/p' | sort -n | tail -1)
+            N=$(( ${N:-0} + 1 ))
+          fi
+          echo "GIORNATA=$N" >> $GITHUB_ENV
+          TS=$(TZ=Europe/Rome date '+%d/%m/%Y %H:%M')
+          D=$(TZ=Europe/Rome date '+%Y-%m-%d')
+          python3 report.py "$N" "$TS" "report/$D-giornata$N.md"
+          python3 genera_html.py "$N" "$TS" pagina.html
+          python3 pubblica_pages.py pagina.html docs/index.html
+
+      - name: Pubblica
+        if: steps.ora.outputs.esegui == 'si'
+        run: |
+          rm -f gz.txt pagina.html
+          git config user.name  "Report Fantacalcio"
+          git config user.email "action@github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Nessuna modifica da pubblicare."
+          else
+            PARZIALE=$(grep -c 'class="banner"' docs/index.html || true)
+            [ "$PARZIALE" -gt 0 ] && TAG="parziale" || TAG="completo"
+            git commit -m "Giornata $GIORNATA — report automatico ($TAG)"
+            git push
+            echo "Pubblicato: https://lucarota77.github.io/fantacalcio/"
+          fi
