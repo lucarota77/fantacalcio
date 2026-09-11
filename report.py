@@ -52,28 +52,36 @@ for k,v in S.items():
              f"{v['lam']:.2f} | {v['cs_home']*100:.0f}% | {v['cs_away']*100:.0f}% |")
 # classifica generale
 L.append(f"\n## 2. I tuoi 25 in ordine di rilevanza\n")
+L.append("**Fanta atteso** = `P(gioca) × media voto attesa + IR`: la stima del punteggio totale di "
+         "questa giornata, ed e il criterio con cui sono ordinati. La media voto attesa e la MV "
+         "stagionale tirata verso 6,0 quando le presenze sono poche. La **FM** (fantamedia) e "
+         "riportata come riferimento storico ma **non** viene sommata: contiene gia i bonus, che "
+         "l'IR stima in prospettiva su questa partita.\n")
 L.append("`IR` = punti fanta attesi dai bonus/malus (gol +3, assist +1, ammonizione −0,5, clean sheet +1 "
          "per i difensori), pesati per la probabilità di giocare e per il contesto della partita. "
          "Il contesto pesa molto sui portieri (2,2) e sui difensori (1,8), poco su centrocampisti (0,9) "
          "e attaccanti (0,7), perché per questi ultimi la forza della squadra è già dentro le quote di "
          "gol e assist. ★ = titolare nel 3-4-3 consigliato.\n")
-L.append("| # | Giocatore | R | Squadra | Partita | P(vitt) | Gioca | Gol | Assist | Amm. | CS | IR | Consiglio |")
-L.append("|---|---|---|---|---|---|---|---|---|---|---|---|---|")
+nv = lambda v: '—' if not v else f"{v:.2f}"
+L.append("| # | Giocatore | R | Squadra | Partita | Gioca | MV | FM | Gol | Assist | Amm. | IR | Fanta atteso | Consiglio |")
+L.append("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|")
 for i,x in enumerate(rows,1):
     st = " ★" if x['titolare'] else ""
-    L.append(f"| {i} | **{x['n']}**{x['flag']}{st} | {x['r']} | {x['sq']} | {x['mt']} | {pc(x['pvit'])} | {pc(x['pgio'])} | "
-             f"{pc(x['pg'])} | {pc(x['pa'])} | {pc(x['pc'])} | {pc(x['cs'])} | {x['ir']:.2f} | {lab(x)} |")
+    L.append(f"| {i} | **{x['n']}**{x['flag']}{st} | {x['r']} | {x['sq']} | {x['mt']} | {pc(x['pgio'])} | "
+             f"{nv(x['mv'])} | {nv(x['fm'])} | {pc(x['pg'])} | {pc(x['pa'])} | {pc(x['pc'])} | "
+             f"{x['ir']:.2f} | **{x['fanta']:.2f}** | {lab(x)} |")
 # per ruolo
 L.append("\n## 3. Per ruolo — come schierare\n")
 for r in 'PDCA':
     rr = [x for x in rows if x['r']==r]
     L.append(f"\n### {RUOLO[r]}\n")
-    L.append("| # | Giocatore | Squadra | Partita | P(vitt) | Gioca | Gol | Assist | Amm. | CS | IR | Consiglio |")
-    L.append("|---|---|---|---|---|---|---|---|---|---|---|---|")
+    L.append("| # | Giocatore | Squadra | Partita | Gioca | MV | FM | Gol | Assist | Amm. | IR | Fanta atteso | Consiglio |")
+    L.append("|---|---|---|---|---|---|---|---|---|---|---|---|---|")
     for i,x in enumerate(rr,1):
         st = " ★" if x['titolare'] else ""
-        L.append(f"| {i} | **{x['n']}**{x['flag']}{st} | {x['sq']} | {x['mt']} | {pc(x['pvit'])} | {pc(x['pgio'])} | "
-                 f"{pc(x['pg'])} | {pc(x['pa'])} | {pc(x['pc'])} | {pc(x['cs'])} | {x['ir']:.2f} | {lab(x)} |")
+        L.append(f"| {i} | **{x['n']}**{x['flag']}{st} | {x['sq']} | {x['mt']} | {pc(x['pgio'])} | "
+                 f"{nv(x['mv'])} | {nv(x['fm'])} | {pc(x['pg'])} | {pc(x['pa'])} | {pc(x['pc'])} | "
+                 f"{x['ir']:.2f} | **{x['fanta']:.2f}** | {lab(x)} |")
 # note
 L.append("\n## 4. Note e alert\n")
 for x in rows:

@@ -21,6 +21,13 @@ def cell(p, q):
     od = f'<span class="q">{q:.2f}</span>' if q else ''
     return (f'<td class="num"><div class="bar" style="--w:{w}%"></div>'
             f'<span class="v">{round(p*100)}%</span>{od}</td>')
+def plain(v):
+    return ('<td class="num s"><span class="v">%.2f</span></td>' % v) if v else \
+           '<td class="num s"><span class="nd">—</span></td>'
+def fantac(v):
+    w = max(1, min(100, round(v/9*100)))
+    return (f'<td class="num fx"><div class="bar fx-bar" style="--w:{w}%"></div>'
+            f'<span class="v">{v:.2f}</span></td>')
 def cellq(p, q):
     if p is None: return '<td class="num"><span class="nd">n.d.</span></td>'
     w = max(2, min(100, round(p*100)))
@@ -36,7 +43,7 @@ BANNER = ('<div class="banner"><b>Report parziale.</b> Per '
           'La pagina viene aggiornata con i dati mancanti alla prima esecuzione locale.</div>'
           ) if nq > tot/2 else ''
 irmax = max(x['ir'] for x in rows)
-def irc(v):
+def irc(v, _=None):
     w = max(1, min(100, round(v/irmax*100))) if v > 0 else 1
     return (f'<td class="num ir"><div class="bar ir-bar" style="--w:{w}%"></div>'
             f'<span class="v">{v:.2f}</span></td>')
@@ -50,13 +57,14 @@ def trow(i, x, show_role=True):
     return (f'<tr><td class="rk">{i}</td>'
             f'<td class="nm"><b>{e(x["n"])}</b>{wr}{st}<span class="sq">{e(x["sq"])}</span></td>'
             f'{role}<td class="mt">{e(x["mt"])}<span class="wh">{e(x["when"])}</span></td>'
-            f'{cell(x["pvit"],None)}{cell(x["pgio"],None)}{cellq(x["pg"],qg2)}'
-            f'{cell(x["pa"],x["qa"])}{cell(x["pc"],x["qc"])}{cell(x["cs"],None)}'
-            f'{irc(x["ir"])}<td><span class="pill {cls}">{txt}</span></td></tr>')
-HEAD = ('<tr><th>#</th><th>Giocatore</th>{R}<th>Partita</th><th class="num">P(vitt)</th>'
-        '<th class="num">Gioca</th><th class="num">Gol</th><th class="num">Assist</th>'
-        '<th class="num">Ammonito</th><th class="num">Clean sheet</th>'
-        '<th class="num">IR</th><th>Consiglio</th></tr>')
+            f'{cell(x["pgio"],None)}{plain(x["mv"])}{plain(x["fm"])}{cellq(x["pg"],qg2)}'
+            f'{cell(x["pa"],x["qa"])}{cell(x["pc"],x["qc"])}'
+            f'{irc(x["ir"], x["ir"])}{fantac(x["fanta"])}'
+            f'<td><span class="pill {cls}">{txt}</span></td></tr>')
+HEAD = ('<tr><th>#</th><th>Giocatore</th>{R}<th>Partita</th>'
+        '<th class="num">Gioca</th><th class="num">MV</th><th class="num">FM</th>'
+        '<th class="num">Gol</th><th class="num">Assist</th><th class="num">Ammonito</th>'
+        '<th class="num">IR</th><th class="num">Fanta atteso</th><th>Consiglio</th></tr>')
 # squadre
 teams = []
 for k, v in S.items():
@@ -88,9 +96,11 @@ for r in 'PDCA':
         f'<li><span class="bn">{e(x["n"])}'
         + (' <span class="warn-i">&#9888;</span>' if x['flag'] else '')
         + f'</span><span class="bi">{x["ir"]:.2f}</span>'
+        f'<span class="bp">{round(x["pgio"]*100)}% in campo &middot; MV {x["mv"]:.2f}</span></li>'
+        if x['mv'] else
         f'<span class="bp">{round(x["pgio"]*100)}% in campo &middot; {e(x["sq"])}</span></li>' for x in tt)
     res = ('<div class="bres"><span class="brl">Prime riserve</span>' + ''.join(
-        f'<span class="brn">{e(x["n"])} <em>{x["ir"]:.2f}</em></span>' for x in rs) + '</div>') if rs else ''
+        f'<span class="brn">{e(x["n"])} <em>{x["fanta"]:.2f}</em></span>' for x in rs) + '</div>') if rs else ''
     best += (f'<div class="bcard b-{r}"><h3><span class="role r-{r}">{r}</span>{RN[r]}'
              f'<span class="bcount">{len(tt)}</span></h3>'
              f'<ol class="blist">{items}</ol>{res}</div>')
@@ -205,6 +215,8 @@ td.num .nd{font:400 12px/1 "IBM Plex Mono",monospace;color:var(--muted)}
 .bar{position:absolute;left:0;bottom:0;top:0;width:var(--w);background:var(--bar);opacity:.55;
   border-right:1px solid var(--bar)}
 .ir-bar{background:var(--bar-ir);opacity:.6}
+.fx-bar{background:var(--bar-ir);opacity:.85}
+td.fx .v{font-weight:600;color:var(--ink)}
 .team-bar{background:var(--bar-team);opacity:.65}
 td.ir .v{font-weight:500;color:var(--accent)}
 td.num.wide{min-width:190px}

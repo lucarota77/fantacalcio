@@ -42,12 +42,19 @@ jobs:
         if: steps.ora.outputs.esegui == 'si'
         with: { python-version: '3.11' }
 
-      - name: Probabili formazioni (Gazzetta)
+      - name: Probabili formazioni (Gazzetta + fantacalcio.it)
         if: steps.ora.outputs.esegui == 'si'
         run: |
           python3 raccolta_cloud.py gazzetta > gz.txt
           python3 parse_gazzetta.py gz.txt rosa.json > gz.json
-          echo "risolti: $(python3 -c "import json;d=json.load(open('gz.json'));print(sum(1 for v in d.values() if v['gz'] is not None),'/',len(d))")"
+          python3 parse_fantacalcio.py - rosa.json > fc.json
+          python3 -c "import json;[print(f'{n}: '+str(sum(1 for v in json.load(open(f)).values() if v.get(k) is not None))+'/25') for n,f,k in [('gazzetta','gz.json','gz'),('fantacalcio','fc.json','fc')]]"
+
+      - name: Statistiche stagionali (MV e FM)
+        if: steps.ora.outputs.esegui == 'si'
+        run: |
+          python3 parse_statistiche.py rosa.json > statistiche.json
+          python3 -c "import json;d=json.load(open('statistiche.json'));print('con MV:',sum(1 for v in d.values() if v.get('mv')),'/',len(d))"
 
       - name: Quote
         if: steps.ora.outputs.esegui == 'si'

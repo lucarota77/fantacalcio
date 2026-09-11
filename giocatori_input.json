@@ -5,7 +5,7 @@
    "P",
    "Inter",
    "Inter-Udinese",
-   null,
+   0.9,
    null,
    0.9,
    null,
@@ -14,14 +14,14 @@
    null,
    null,
    0,
-   "titolare (Gazzetta)"
+   "titolare (fantacalcio.it) / titolare (Gazzetta)"
   ],
   [
    "Provedel",
    "P",
    "Inter",
    "Inter-Udinese",
-   null,
+   0.12,
    null,
    0.12,
    null,
@@ -30,14 +30,14 @@
    null,
    null,
    0,
-   "in panchina (Gazzetta)"
+   "in panchina (fantacalcio.it) / in panchina (Gazzetta)"
   ],
   [
    "Skorupski",
    "P",
    "Bologna",
    "Napoli-Bologna",
-   null,
+   0.9,
    null,
    0.9,
    null,
@@ -46,14 +46,14 @@
    null,
    null,
    0,
-   "titolare (Gazzetta)"
+   "titolare (fantacalcio.it) / titolare (Gazzetta)"
   ],
   [
    "Lulli",
    "D",
    "Roma",
    "Torino-Roma",
-   null,
+   0.45,
    null,
    0.9,
    null,
@@ -62,14 +62,14 @@
    null,
    null,
    1,
-   "titolare (Gazzetta) — dato piu vecchio di 48h, peso dimezzato"
+   "ballottaggio 45% (fantacalcio.it) / titolare (Gazzetta) — dato piu vecchio di 48h, peso dimezzato"
   ],
   [
    "Comuzzo",
    "D",
    "Torino",
    "Torino-Roma",
-   null,
+   0.9,
    null,
    0.9,
    null,
@@ -78,14 +78,14 @@
    null,
    null,
    1,
-   "titolare (Gazzetta) — dato piu vecchio di 48h, peso dimezzato"
+   "titolare (fantacalcio.it) / titolare (Gazzetta) — dato piu vecchio di 48h, peso dimezzato"
   ],
   [
    "Doekhi",
    "D",
    "Lazio",
-   "Lazio-Milan",
-   null,
+   "Lazio-AC Milan",
+   0.9,
    null,
    0.9,
    null,
@@ -94,14 +94,14 @@
    null,
    null,
    0,
-   "titolare (Gazzetta)"
+   "titolare (fantacalcio.it) / titolare (Gazzetta)"
   ],
   [
    "Pavlovic",
    "D",
    "Milan",
-   "Lazio-Milan",
-   null,
+   "Lazio-AC Milan",
+   0.9,
    null,
    0.9,
    null,
@@ -110,14 +110,14 @@
    null,
    null,
    0,
-   "titolare (Gazzetta)"
+   "titolare (fantacalcio.it) / titolare (Gazzetta)"
   ],
   [
    "Vojvoda",
    "D",
    "Udinese",
    "Inter-Udinese",
-   null,
+   0.9,
    null,
    0.9,
    null,
@@ -126,14 +126,14 @@
    null,
    null,
    0,
-   "titolare (Gazzetta)"
+   "titolare (fantacalcio.it) / titolare (Gazzetta)"
   ],
   [
    "Kalulu",
    "D",
    "Juventus",
    "Sassuolo-Juventus",
-   null,
+   0.9,
    null,
    0.9,
    null,
@@ -142,14 +142,14 @@
    null,
    null,
    0,
-   "titolare (Gazzetta)"
+   "titolare (fantacalcio.it) / titolare (Gazzetta)"
   ],
   [
    "Miranda J.",
    "D",
    "Bologna",
    "Napoli-Bologna",
-   null,
+   0.55,
    null,
    0.9,
    null,
@@ -158,14 +158,14 @@
    null,
    null,
    0,
-   "titolare (Gazzetta)"
+   "ballottaggio 55% (fantacalcio.it) / titolare (Gazzetta)"
   ],
   [
    "Gallo",
    "D",
    "Lecce",
    "Lecce-Monza",
-   null,
+   0.9,
    null,
    0.9,
    null,
@@ -174,14 +174,14 @@
    null,
    null,
    0,
-   "titolare (Gazzetta)"
+   "titolare (fantacalcio.it) / titolare (Gazzetta)"
   ],
   [
    "Alajbegovic",
    "C",
    "Juventus",
    "Sassuolo-Juventus",
-   null,
+   0.45,
    null,
    0.9,
    null,
@@ -190,14 +190,14 @@
    null,
    null,
    0,
-   "titolare (Gazzetta)"
+   "ballottaggio 45% (fantacalcio.it) / titolare (Gazzetta)"
   ],
   [
    "Gudmundsson A.",
    "C",
    "Lazio",
-   "Lazio-Milan",
-   null,
+   "Lazio-AC Milan",
+   0.35,
    null,
    0.12,
    null,
@@ -206,14 +206,14 @@
    null,
    null,
    0,
-   "in panchina (Gazzetta)"
+   "ballottaggio 35% (fantacalcio.it) / in panchina (Gazzetta)"
   ],
   [
    "Kone M.",
    "C",
    "Roma",
    "Torino-Roma",
-   null,
+   0.5,
    null,
    0.9,
    null,
@@ -222,14 +222,14 @@
    null,
    null,
    1,
-   "titolare (Gazzetta) — dato piu vecchio di 48h, peso dimezzato"
+   "in dubbio (fantacalcio.it) / titolare (Gazzetta) — dato piu vecchio di 48h, peso dimezzato"
   ],
   [
    "Jones C.",
    "C",
    "Inter",
    "Inter-Udinese",
-   null,
+   0.6,
    null,
    0.45,
    null,
@@ -238,14 +238,14 @@
    null,
    null,
    0,
-   "ballottaggio 45% (Gazzetta)"
+   "ballottaggio 60% (fantacalcio.it) / ballottaggio 45% (Gazzetta)"
   ],
   [
    "Gonzalez N.",
    "C",
    "Juventus",
    "Sassuolo-Juventus",
-   null,
+   0.9,
    null,
    0.9,
    null,
@@ -254,14 +254,14 @@
    null,
    null,
    0,
-   "titolare (Gazzetta)"
+   "titolare (fantacalcio.it) / titolare (Gazzetta)"
   ],
   [
    "Pulisic",
    "C",
    "Milan",
-   "Lazio-Milan",
-   null,
+   "Lazio-AC Milan",
+   0.12,
    null,
    0.12,
    null,
@@ -270,14 +270,14 @@
    null,
    null,
    0,
-   "in panchina (Gazzetta)"
+   "in panchina (fantacalcio.it) / in panchina (Gazzetta)"
   ],
   [
    "Politano",
    "C",
    "Napoli",
    "Napoli-Bologna",
-   null,
+   0.9,
    null,
    0.9,
    null,
@@ -286,14 +286,14 @@
    null,
    null,
    0,
-   "titolare (Gazzetta)"
+   "titolare (fantacalcio.it) / titolare (Gazzetta)"
   ],
   [
    "Bernardeschi",
    "C",
    "Bologna",
    "Napoli-Bologna",
-   null,
+   0.9,
    null,
    0.9,
    null,
@@ -302,14 +302,14 @@
    null,
    null,
    0,
-   "titolare (Gazzetta)"
+   "titolare (fantacalcio.it) / titolare (Gazzetta)"
   ],
   [
    "Pellegrino M.",
    "A",
    "Fiorentina",
    "Venezia-Fiorentina",
-   null,
+   0.4,
    null,
    0.45,
    null,
@@ -318,14 +318,14 @@
    null,
    null,
    0,
-   "ballottaggio 45% (Gazzetta)"
+   "ballottaggio 40% (fantacalcio.it) / ballottaggio 45% (Gazzetta)"
   ],
   [
    "Woltemade",
    "A",
    "Juventus",
    "Sassuolo-Juventus",
-   null,
+   0.55,
    null,
    0.4,
    null,
@@ -334,14 +334,14 @@
    null,
    null,
    0,
-   "ballottaggio 40% (Gazzetta)"
+   "ballottaggio 55% (fantacalcio.it) / ballottaggio 40% (Gazzetta)"
   ],
   [
    "Ramos G.",
    "A",
    "Milan",
-   "Lazio-Milan",
-   null,
+   "Lazio-AC Milan",
+   0.9,
    null,
    0.9,
    null,
@@ -350,14 +350,14 @@
    null,
    null,
    0,
-   "titolare (Gazzetta)"
+   "titolare (fantacalcio.it) / titolare (Gazzetta)"
   ],
   [
    "Kolo Muani",
    "A",
    "Juventus",
    "Sassuolo-Juventus",
-   null,
+   0.9,
    null,
    0.9,
    null,
@@ -366,14 +366,14 @@
    null,
    null,
    0,
-   "titolare (Gazzetta)"
+   "titolare (fantacalcio.it) / titolare (Gazzetta)"
   ],
   [
    "Colombo",
    "A",
    "Genoa",
    "Genoa-Frosinone",
-   null,
+   0.9,
    null,
    0.9,
    null,
@@ -382,14 +382,14 @@
    null,
    null,
    0,
-   "titolare (Gazzetta)"
+   "titolare (fantacalcio.it) / titolare (Gazzetta)"
   ],
   [
    "Thuram",
    "A",
    "Inter",
    "Inter-Udinese",
-   null,
+   0.4,
    null,
    0.55,
    null,
@@ -398,17 +398,17 @@
    null,
    null,
    0,
-   "ballottaggio 55% (Gazzetta)"
+   "ballottaggio 40% (fantacalcio.it) / ballottaggio 55% (Gazzetta)"
   ]
  ],
  "stimate": [
   "Inter-Udinese (nessuna quota: contesto neutro)",
   "Napoli-Bologna (nessuna quota: contesto neutro)",
   "Torino-Roma (nessuna quota: contesto neutro)",
-  "Lazio-Milan (nessuna quota: contesto neutro)",
+  "Lazio-AC Milan (Over/Under stimato)",
   "Sassuolo-Juventus (nessuna quota: contesto neutro)",
-  "Lecce-Monza (nessuna quota: contesto neutro)",
-  "Venezia-Fiorentina (nessuna quota: contesto neutro)",
-  "Genoa-Frosinone (nessuna quota: contesto neutro)"
+  "Lecce-Monza (Over/Under stimato)",
+  "Venezia-Fiorentina (Over/Under stimato)",
+  "Genoa-Frosinone (Over/Under stimato)"
  ]
 }

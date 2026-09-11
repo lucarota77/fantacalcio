@@ -49,7 +49,8 @@ def quote_betexplorer(html=None):
     byurl = {e['url'].rstrip('/').split('/')[-1]: e for e in calendario(h)}
     out = []
     for r in re.findall(r'<tr[^>]*>(.*?)</tr>', h, re.S):
-        link = re.search(r'href="/it/football/italy/serie-a/[^"]*?/([A-Za-z0-9]{6,10})/"', r)
+        # Dal runner GitHub (IP non italiano) i link sono /football/... senza il prefisso /it/
+        link = re.search(r'href="(?:/it)?/football/italy/serie-a/[^"]*?/([A-Za-z0-9]{6,10})/"', r)
         od = re.findall(r'data-odd="([\d.]+)"', r)
         if not link or len(od) < 3: continue
         ev = byurl.get(link.group(1))

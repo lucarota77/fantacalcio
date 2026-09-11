@@ -1,8 +1,14 @@
 #!/usr/bin/env python3
 """P(gioca) da 4 fonti editoriali + floor di mercato; P(gol) media bwin+snai; indice di rilevanza."""
-import json, sys
+import json, os, sys
 from statistics import mean
 S = json.load(open('/tmp/mstate.json'))
+# Statistiche stagionali (media voto e fantamedia) da parse_statistiche.py, se disponibili.
+ST = {}
+if os.path.exists('statistiche.json'):
+    ST = json.load(open('statistiche.json'))
+K_SHRINK = 3.0      # con poche presenze la MV e rumorosa: si tira verso 6.0
+MV_BASE = 6.0
 W = {'fc': .28, 'sf': .22, 'gz': .30, 'sky': .20}   # pesi fonti editoriali
 STALE = .5                                           # moltiplicatore per dato piu vecchio di 48h
 CAP = {'A': [(.35,.92),(.25,.80),(.18,.65),(.12,.50)],
@@ -11,7 +17,6 @@ CAP = {'A': [(.35,.92),(.25,.80),(.18,.65),(.12,.50)],
 MODULO = {'P': 1, 'D': 3, 'C': 4, 'A': 3}            # 3-4-3
 # Se esiste giocatori_input.json (prodotto da componi.py nel workflow automatico) la lista
 # viene letta da li; altrimenti si usa quella qui sotto, compilata a mano nella passata locale.
-import os
 # `python3 giocatori.py locale` ignora il JSON prodotto dal workflow e usa la lista qui sotto,
 # che nella passata locale contiene anche le quote di bwin e Snai.
 P_AUTO = None
@@ -84,14 +89,23 @@ for (n, r, sq, mt, fc, sf, gz, sky, qgb, qgs, qab, qcb, stale, nota) in P:
     else:
         k = .9 if r == 'C' else .7
         ir = 3*(pg or 0) + (pa or 0) - .5*(pc or 0) + pgio*k*ctx
+    # Voto base atteso: la media voto stagionale, ritirata verso 6.0 quando le presenze
+    # sono poche. La fantamedia NON si somma: contiene gia i bonus, che l'IR stima in
+    # prospettiva su questa partita; sommarle sarebbe un doppio conteggio. Resta come
+    # riferimento storico e come segnale quando diverge molto dalla stima.
+    st = ST.get(n) or {}
+    mv, fm, pgio_st = st.get('mv'), st.get('fm'), st.get('pg') or 0
+    mv_att = ((mv*pgio_st + MV_BASE*K_SHRINK)/(pgio_st + K_SHRINK)) if mv else MV_BASE
+    fanta = pgio*mv_att + ir
     rows.append(dict(n=n, r=r, sq=sq, mt=mt, when=m['when'], pgio=pgio, pg=pg, pa=pa, pc=pc,
                      cs=cs, pvit=pvit, ir=ir, flag=flag, nota=nota, qg=qgb, qgs=qgs, qa=qab, qc=qcb,
-                     spread_g=spread_g, books=len(est)))
-rows.sort(key=lambda x: -x['ir'])
+                     spread_g=spread_g, books=len(est), mv=mv, fm=fm, pres=pgio_st,
+                     mv_att=mv_att, fanta=fanta))
+rows.sort(key=lambda x: -x['fanta'])
 # formazione 3-4-3: i migliori per IR in ogni ruolo, con P(gioca) >= 0.40
 titolari, panchina = [], []
 for r, k in MODULO.items():
-    cand = [x for x in rows if x['r'] == r]
+    cand = [x for x in rows if x['r'] == r]   # gia ordinati per fanta atteso
     ok = [x for x in cand if x['pgio'] >= .40]
     sel = (ok + [x for x in cand if x not in ok])[:k]
     for x in sel: x['titolare'] = True
@@ -100,12 +114,15 @@ for r, k in MODULO.items():
 for x in rows: x.setdefault('titolare', False)
 json.dump({'rows': rows, 'titolari': [x['n'] for x in titolari]}, open('/tmp/rows.json','w'))
 f = lambda v: '  n.d.' if v is None else f'{v*100:5.1f}%'
-print(f"{'#':<3}{'GIOCATORE':<17}{'R':<2}{'SQUADRA':<11}{'P.VITT':>7}{'GIOCA':>7}{'GOL':>7}{'ASS':>7}{'AMM':>7}{'CS':>6}{'IR':>7}  ")
-print('-'*96)
+print(f"{'#':<3}{'GIOCATORE':<17}{'R':<2}{'SQUADRA':<11}{'GIOCA':>7}{'MV':>6}{'FM':>6}"
+      f"{'GOL':>7}{'ASS':>7}{'AMM':>7}{'IR':>7}{'FANTA':>7}  ")
+print('-'*99)
 for i, x in enumerate(rows, 1):
     star = '★' if x['titolare'] else ' '
-    print(f"{i:<3}{x['n']+x['flag']:<17}{x['r']:<2}{x['sq']:<11}{f(x['pvit'])}{f(x['pgio'])}"
-          f"{f(x['pg'])}{f(x['pa'])}{f(x['pc'])}{x['cs']*100:>5.0f}%{x['ir']:>7.2f} {star}")
+    mv = f"{x['mv']:.2f}" if x['mv'] else '  —'
+    fm = f"{x['fm']:.2f}" if x['fm'] else '  —'
+    print(f"{i:<3}{x['n']+x['flag']:<17}{x['r']:<2}{x['sq']:<11}{f(x['pgio'])}{mv:>6}{fm:>6}"
+          f"{f(x['pg'])}{f(x['pa'])}{f(x['pc'])}{x['ir']:>7.2f}{x['fanta']:>7.2f} {star}")
 print('\nFORMAZIONE 3-4-3:')
 for r in 'PDCA':
     print(f"  {r}: " + ', '.join(x['n'] for x in titolari if x['r'] == r))

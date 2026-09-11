@@ -5,7 +5,9 @@ import json, sys, unicodedata
 def norm(s):
     s = unicodedata.normalize('NFKD', s)
     return ''.join(c for c in s if not unicodedata.combining(c)).lower()
+import os
 gz   = json.load(open('gz.json'))
+fc   = json.load(open('fc.json')) if os.path.exists('fc.json') else {}
 q    = json.load(open('dati_cloud.json'))['matches']
 rosa = json.load(open('rosa.json'))['rosa']
 ALIAS = {'ac milan': 'milan', 'as roma': 'roma', 'inter milan': 'inter'}
@@ -48,9 +50,11 @@ for g in rosa:
         c = canon(g['squadra']); m = byteam.get(c)
         key = f"{m['home']}-{m['away']}" if m else None
     if not key: continue
-    out.append([g['nome'], g['ruolo'], g['squadra'], key, None, None,
+    f = fc.get(g['nome'], {})
+    note = ' / '.join(x for x in (f.get('nota'), info.get('nota')) if x)
+    out.append([g['nome'], g['ruolo'], g['squadra'], key, f.get('fc'), None,
                 info.get('gz'), None, None, None, None, None,
-                1 if info.get('stale') else 0, info.get('nota', '')])
+                1 if info.get('stale') else 0, note])
 json.dump({'giocatori': out, 'stimate': stimate}, open('giocatori_input.json', 'w'),
           ensure_ascii=False, indent=1)
 print(f"dati.json: {len(matches)} partite ({len(stimate)} con quote stimate o assenti)")
