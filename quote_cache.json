@@ -1,18 +1,145 @@
 {
  "giornata": "5",
- "rilevate": "2026-09-15T11:33+02:00",
+ "rilevate": "2026-09-15T14:33+02:00",
  "fonte": "bwin + Snai (browser, passata locale)",
  "partite": {
   "Milan-Lecce": "dom 20/09 20:45",
   "Juventus-Atalanta": "dom 20/09 18:00",
-  "Udinese-Cagliari": "sab 19/09 15:00",
   "Bologna-Torino": "sab 19/09 15:00",
   "Roma-Inter": "sab 19/09 18:00",
-  "Fiorentina-Napoli": "dom 20/09 12:30",
+  "Venezia-Lazio": "sab 19/09 20:45",
+  "Udinese-Cagliari": "sab 19/09 15:00",
   "Parma-Genoa": "dom 20/09 15:00",
-  "Venezia-Lazio": "sab 19/09 20:45"
+  "Fiorentina-Napoli": "dom 20/09 12:30"
  },
- "quote": {},
+ "quote": {
+  "Pulisic": {
+   "qg": 2.0,
+   "qgs": null,
+   "qa": null,
+   "qc": null
+  },
+  "Pavlovic": {
+   "qg": 7.5,
+   "qgs": null,
+   "qa": null,
+   "qc": null
+  },
+  "Gonzalez N.": {
+   "qg": 3.5,
+   "qgs": null,
+   "qa": null,
+   "qc": null
+  },
+  "Bernardeschi": {
+   "qg": 3.25,
+   "qgs": null,
+   "qa": null,
+   "qc": null
+  },
+  "Kolo Muani": {
+   "qg": 2.5,
+   "qgs": null,
+   "qa": null,
+   "qc": null
+  },
+  "Thuram": {
+   "qg": 3.0,
+   "qgs": null,
+   "qa": null,
+   "qc": null
+  },
+  "Kalulu": {
+   "qg": 12.0,
+   "qgs": null,
+   "qa": null,
+   "qc": null
+  },
+  "Alajbegovic": {
+   "qg": 3.25,
+   "qgs": null,
+   "qa": null,
+   "qc": null
+  },
+  "Woltemade": {
+   "qg": 2.75,
+   "qgs": null,
+   "qa": null,
+   "qc": null
+  },
+  "Gudmundsson A.": {
+   "qg": 3.0,
+   "qgs": null,
+   "qa": null,
+   "qc": null
+  },
+  "Vojvoda": {
+   "qg": 9.0,
+   "qgs": null,
+   "qa": null,
+   "qc": null
+  },
+  "Colombo": {
+   "qg": 3.5,
+   "qgs": null,
+   "qa": null,
+   "qc": null
+  },
+  "Politano": {
+   "qg": 4.0,
+   "qgs": null,
+   "qa": null,
+   "qc": null
+  },
+  "Pellegrino M.": {
+   "qg": 3.0,
+   "qgs": null,
+   "qa": null,
+   "qc": null
+  },
+  "Miranda J.": {
+   "qg": 12.0,
+   "qgs": null,
+   "qa": null,
+   "qc": null
+  },
+  "Jones C.": {
+   "qg": 6.0,
+   "qgs": null,
+   "qa": null,
+   "qc": null
+  },
+  "Kone M.": {
+   "qg": 12.0,
+   "qgs": null,
+   "qa": null,
+   "qc": null
+  },
+  "Lulli": {
+   "qg": 25.0,
+   "qgs": null,
+   "qa": null,
+   "qc": null
+  },
+  "Comuzzo": {
+   "qg": 33.0,
+   "qgs": null,
+   "qa": null,
+   "qc": null
+  },
+  "Doekhi": {
+   "qg": 9.0,
+   "qgs": null,
+   "qa": null,
+   "qc": null
+  },
+  "Gallo": {
+   "qg": 33.0,
+   "qgs": null,
+   "qa": null,
+   "qc": null
+  }
+ },
  "match": {
   "Monza-Sassuolo": {
    "home": "Monza",
