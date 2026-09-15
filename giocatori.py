@@ -53,35 +53,42 @@ P_AUTO = None
 if 'locale' not in sys.argv and os.path.exists('giocatori_input.json'):
     P_AUTO = [tuple(r) for r in json.load(open('giocatori_input.json'))['giocatori']]
 # nome, ruolo, squadra, match, fc, sf, gz, sky, q_gol_bwin, q_gol_snai, q_ass_bwin, q_amm_bwin, gz_vecchia, nota
-# Aggiornato 11/09 18:27 (seconda passata locale): rifatti gazzetta/fantacalcio.it/statistiche,
-# aggiunti sosfanta e sky (browser, articolo delle 13:45), quote bwin/Snai marcatore/assist/
-# ammonizione riscrapate su tutti gli 8 match con almeno uno dei 25.
+# Aggiornato 15/09 11:15 (passata locale, giornata 5): gazzetta/fantacalcio.it/statistiche/sosfanta
+# rifatti da capo con browser. Sky non disponibile: la pagina probabili-formazioni non ha ancora
+# pubblicato la scheda squadra-per-squadra della 5a giornata (link ancora sulla 4a, datato 11/09).
+# Quote bwin e Snai 1X2/Over-Under raccolte su tutti gli 8 match con almeno uno dei 25, ma i mercati
+# per giocatore (marcatore/assist/cartellino) NON sono ancora aperti su nessuno dei due book a 4-5
+# giorni dal turno: verificato su Bologna-Torino e Roma-Inter su bwin (solo "Ultimo Marcatore" con
+# "Nessun marcatore", nessun altro mercato Giocatori) e su Roma-Inter su Snai (nessun mercato
+# marcatore per giocatore in nessuna tab). Fanta atteso quindi guidato da P_gioca editoriale, MV/FM
+# storiche e clean sheet/contesto (questi ultimi due gia disponibili da 1X2/O-U); gol, assist e
+# ammonizione restano n.d. per tutti. Da riprovare in una passata locale piu vicina al weekend.
 P = [
-("Martinez Jo.","P","Inter","Inter-Udinese",.90,.95,.90,.90,None,None,None,11.5,0,""),
-("Provedel","P","Inter","Inter-Udinese",.12,None,.12,None,None,None,None,11.5,0,"Secondo portiere dell'Inter dopo il trasferimento dalla Lazio: mai favorito da alcuna fonte."),
-("Skorupski","P","Bologna","Napoli-Bologna",.90,.95,.90,.90,None,None,None,7.75,0,""),
-("Lulli","D","Roma","Torino-Roma",.45,.51,.60,.12,15.0,16.0,5.5,4.4,0,"Gazzetta e' passata da titolare (16:57) a ballottaggio 60% nell'ultimo aggiornamento; SosFanta lo da 51% favorito su Molina N.; Sky lo lascia fuori dalla probabile Roma pubblicata alle 13:45. Divergenza sulla fascia sinistra della difesa a tre."),
-("Comuzzo","D","Torino","Torino-Roma",.90,.95,.90,.90,18.5,33.0,21.0,3.8,0,"Quota ammonizione fra le piu basse del turno: alto rischio malus."),
-("Doekhi","D","Lazio","Lazio-Milan",.90,.95,.90,.90,14.0,16.0,13.5,4.75,0,""),
-("Pavlovic","D","Milan","Lazio-Milan",.90,.95,.90,.90,12.0,12.0,13.0,4.0,0,""),
-("Vojvoda","D","Udinese","Inter-Udinese",.90,.95,.90,.90,14.5,16.0,10.0,3.3,0,"Titolare sicuro ma l'Udinese e la squadra con la probabilita di vittoria piu bassa del turno."),
-("Kalulu","D","Juventus","Sassuolo-Juventus",.90,.95,.90,.90,13.5,12.0,6.5,5.75,0,""),
-("Miranda J.","D","Bologna","Napoli-Bologna",.55,.51,.90,.62,17.5,25.0,7.5,4.1,0,"Gazzetta lo da titolare; fantacalcio.it e SosFanta lo lasciano in ballottaggio stretto (51-55%) con Alhassane; Sky descrive il ballottaggio come 'vivo' ma lo schiera comunque nella probabile Bologna."),
-("Gallo","D","Lecce","Lecce-Monza",.90,.95,.90,.90,16.5,25.0,7.5,6.25,0,""),
-("Alajbegovic","C","Juventus","Sassuolo-Juventus",.45,.95,.90,.90,3.6,3.25,4.6,5.0,0,"fantacalcio.it lo da in ballottaggio (45%) mentre le altre tre fonti e le quote lo confermano titolare: probabile margine di cautela editoriale, non un vero dubbio. Nota: sia bwin che Snai lo etichettano 'Alajbegovic K.' invece di Benjamin: refuso del book su entrambe le piattaforme, stesso e unico Alajbegovic della Juventus in rosa.json."),
-("Gudmundsson A.","C","Lazio","Lazio-Milan",.35,.30,.12,.12,5.25,4.5,9.5,4.33,0,"Tutte e quattro le fonti editoriali concordano: parte in panchina, pronto a entrare a gara in corso (Sky: 'un altro ingresso a gara in corso'; SosFanta lo da 30% nel ballottaggio con Pinamonti). I book lo quotano regolarmente da subentrante."),
-("Kone M.","C","Roma","Torino-Roma",.50,None,.12,.12,8.0,9.0,7.0,4.0,0,"⚠️ CONFLITTO: Gazzetta lo segna in panchina, SosFanta lo mette 'in dubbio' per un fastidio al ginocchio (senza %) e la probabile Roma di Sky (13:45) non lo include neppure fra i titolari o i ballottaggi (schiera Pisilli). Solo fantacalcio.it lo da 'in dubbio' al 50%. Entrambi i book lo quotano pero regolarmente da titolare (8.00 bwin come 'Kouadio Kone', 9.00 Snai come 'KONE MANU'): il mercato non lo considera fuori. Da verificare a ridosso della gara."),
-("Jones C.","C","Inter","Inter-Udinese",.45,.49,.45,.62,5.0,4.0,4.6,5.75,0,"Fonti divise: Sky lo schiera titolare pur descrivendo un ballottaggio con Sucic a suo favore; Gazzetta e SosFanta lo danno sfavorito (45-49%) rispettivamente con Sucic e Calhanoglu. Le quote marcatore (5.00/4.00) sono coerenti con un titolare."),
-("Gonzalez N.","C","Juventus","Sassuolo-Juventus",.90,.95,.90,.90,2.95,3.25,4.75,4.6,0,"Il vecchio ballottaggio con Woltemade e superato: tutte le fonti lo confermano titolare; Woltemade ora e in ballottaggio con Kolo Muani per la punta centrale."),
-("Pulisic","C","Milan","Lazio-Milan",.45,None,.12,.12,None,3.25,None,None,0,"bwin non lo lista in alcun mercato e non compare ne' nella probabile Milan di Sky ne' nei ballottaggi (titolo Sky: 'Che fine ha fatto Pulisic? Zero minuti nel Milan di Amorim'), ma Snai lo quota regolarmente 3.25 marcatore: non risulta indisponibile, resta un'opzione dalla panchina. Assist e ammonizione non quotati da nessuno dei due book."),
-("Politano","C","Napoli","Napoli-Bologna",.90,.95,.90,.90,4.4,4.0,4.75,4.8,0,""),
-("Bernardeschi","C","Bologna","Napoli-Bologna",.90,.95,.90,.90,5.25,5.0,6.5,4.2,0,""),
-("Pellegrino M.","A","Fiorentina","Venezia-Fiorentina",.40,.49,.45,.12,2.87,2.4,7.0,4.6,0,"Sky non lo cita fra i candidati Fiorentina (parla solo del ballottaggio Goncalves-Njie e da Beto titolare), ma le altre tre fonti (fc 40%, sf 49%, gz 45%) e le quote (2.87/2.40 marcatore, fra le piu basse del turno per un ballottaggio) lo danno in lotta equilibrata con Beto per la maglia da centravanti. Si gioca stasera."),
-("Woltemade","A","Juventus","Sassuolo-Juventus",.55,.49,.40,.38,3.1,2.75,5.0,5.5,0,"Sky lo da sfavorito ('tutti gli indizi portano a Kolo Muani' per la punta centrale); SosFanta conferma il ballottaggio 49% con Kolo Muani; i book lo quotano comunque da titolare credibile (3.10/2.75 marcatore)."),
-("Ramos G.","A","Milan","Lazio-Milan",.90,.95,.90,.90,2.95,3.0,7.75,5.0,0,""),
-("Kolo Muani","A","Juventus","Sassuolo-Juventus",.90,.51,.90,.90,2.75,2.5,6.0,5.25,0,"SosFanta e Sky lo danno lievemente favorito su Woltemade per la punta centrale ('tutti gli indizi'); le quote marcatore restano vicinissime."),
-("Colombo","A","Genoa","Genoa-Frosinone",.90,.95,.90,.90,2.70,3.0,7.0,5.5,0,"Attenzione omonimo: un 'Colombo L.' (Leonardo, Monza) compare nei mercati di Lecce-Monza a quote diverse (12.0 anytime) — scartato, non e' il nostro Lorenzo Colombo del Genoa."),
-("Thuram","A","Inter","Inter-Udinese",.40,.49,.55,.12,1.85,2.0,4.33,5.5,0,"⚠️ CONFLITTO NETTO: l'articolo Sky delle 13:45 e esplicito — 'Thuram parte dalla panchina. Pio e Lautaro saranno i titolari' (probabile Inter pubblicata senza Thuram in formazione) — mentre Gazzetta (55%) e SosFanta (49% in due ballottaggi separati con Martinez L. ed Esposito F.P.) lo danno vicino alla titolarita. Il mercato marcatore e ancora piu netto in senso opposto a Sky: 1.85 su bwin e 2.00 su Snai sono fra le quote piu basse del turno, un segnale di titolarita fortissimo che scatta il floor di mercato (attaccante, P_gol devig alta) e porta P_gioca sopra la media editoriale nonostante Sky. Verificare le formazioni ufficiali prima del fischio d'inizio: possibile turnover last minute o formazione Sky non aggiornata."),
+("Martinez Jo.","P","Inter","Roma-Inter",.90,.95,.90,None,None,None,None,None,0,""),
+("Provedel","P","Inter","Roma-Inter",.12,.05,.12,None,None,None,None,None,0,"Secondo portiere dell'Inter: mai favorito da alcuna fonte."),
+("Skorupski","P","Bologna","Bologna-Torino",.90,.95,.90,None,None,None,None,None,0,""),
+("Lulli","D","Roma","Roma-Inter",.40,.49,.90,None,None,None,None,None,0,"Gazzetta lo da titolare; fantacalcio.it (40%) e SosFanta (49%, sfavorito 51-49 su Molina N.) lo mettono invece in ballottaggio sulla fascia destra della difesa a tre giallorossa. Nessuna quota di mercato disponibile per arbitrare (vedi nota di testata sui mercati giocatore non ancora aperti)."),
+("Comuzzo","D","Torino","Bologna-Torino",.90,.95,.90,None,None,None,None,None,0,""),
+("Doekhi","D","Lazio","Venezia-Lazio",.40,.05,.0,None,None,None,None,None,0,"⚠️ INFORTUNIO: Gazzetta lo da indisponibile e SosFanta lo elenca fra gli indisponibili della Lazio ('operazione alla mano destra, in dubbio per la 6a', quindi fuori per questo turno); fantacalcio.it non ha ancora aggiornato la scheda e lo mostra ancora in ballottaggio al 40%. P_gioca forzato quasi a zero (override manuale, vedi codice)."),
+("Pavlovic","D","Milan","Milan-Lecce",.90,.95,.90,None,None,None,None,None,0,""),
+("Vojvoda","D","Udinese","Udinese-Cagliari",.90,.95,.90,None,None,None,None,None,0,""),
+("Kalulu","D","Juventus","Juventus-Atalanta",.90,.95,.90,None,None,None,None,None,0,""),
+("Miranda J.","D","Bologna","Bologna-Torino",.60,.60,.90,None,None,None,None,None,0,"Gazzetta lo da titolare; fantacalcio.it e SosFanta lo mettono entrambi in ballottaggio al 60% con Alhassane."),
+("Gallo","D","Lecce","Milan-Lecce",.90,.95,.90,None,None,None,None,None,0,""),
+("Alajbegovic","C","Juventus","Juventus-Atalanta",.60,.95,.90,None,None,None,None,None,0,"fantacalcio.it lo mette in ballottaggio (60%) mentre Gazzetta e SosFanta lo confermano titolare: come gia notato la giornata scorsa, sembra cautela editoriale piu che un vero dubbio."),
+("Gudmundsson A.","C","Lazio","Venezia-Lazio",.12,.15,.12,None,None,None,None,None,0,"Tutte le fonti concordano: parte in panchina, pronto a subentrare."),
+("Kone M.","C","Roma","Roma-Inter",.90,.60,.90,None,None,None,None,None,0,"Gazzetta e fantacalcio.it lo confermano titolare; SosFanta lo mette invece in ballottaggio (60%) con Pisilli."),
+("Jones C.","C","Inter","Roma-Inter",.60,.49,.12,None,None,None,None,None,0,"Fonti divise: Gazzetta lo da in panchina, fantacalcio.it e SosFanta lo mettono invece in ballottaggio (49-60%) con Mkhitaryan."),
+("Gonzalez N.","C","Juventus","Juventus-Atalanta",.90,.95,.90,None,None,None,None,None,0,""),
+("Pulisic","C","Milan","Milan-Lecce",.55,.60,.12,None,None,None,None,None,0,"Gazzetta lo da ancora in panchina; fantacalcio.it e SosFanta lo mettono invece favorito nel ballottaggio (55-60%) con Loftus-Cheek."),
+("Politano","C","Napoli","Fiorentina-Napoli",.90,.55,.90,None,None,None,None,None,0,"Gazzetta e fantacalcio.it lo confermano titolare; SosFanta lo mette in ballottaggio piu stretto (55%) con Favasuli."),
+("Bernardeschi","C","Bologna","Bologna-Torino",.90,.95,.90,None,None,None,None,None,0,""),
+("Pellegrino M.","A","Fiorentina","Fiorentina-Napoli",.40,.49,.12,None,None,None,None,None,0,"Ballottaggio stretto con Beto per la maglia da centravanti: fantacalcio.it (40%) e SosFanta (49%, sfavorito 51-49) lo danno in lotta aperta; Gazzetta lo mette invece in panchina."),
+("Woltemade","A","Juventus","Juventus-Atalanta",.40,.49,.12,None,None,None,None,None,0,"In ballottaggio equilibrato con Kolo Muani per la punta centrale: SosFanta lo da quasi alla pari (49-51%); Gazzetta lo mette in panchina."),
+("Ramos G.","A","Milan","Milan-Lecce",.90,.95,.90,None,None,None,None,None,0,""),
+("Kolo Muani","A","Juventus","Juventus-Atalanta",.90,.51,.90,None,None,None,None,None,0,"Gazzetta e fantacalcio.it lo confermano titolare; SosFanta conferma il vantaggio ma con margine risicato (51-49%) su Woltemade."),
+("Colombo","A","Genoa","Parma-Genoa",.90,.55,.90,None,None,None,None,None,0,"Gazzetta e fantacalcio.it lo confermano titolare; SosFanta lo mette in ballottaggio piu stretto (55%) con Vitinha O."),
+("Thuram","A","Inter","Roma-Inter",.55,.60,.90,None,None,None,None,None,0,"Gazzetta lo conferma titolare; fantacalcio.it e SosFanta lo mettono invece in ballottaggio (55-60%) con Esposito F.P."),
 ]
 def devig(q, Mp): return None if not q else (1/q)/Mp
 def floor_mkt(pg, r):
@@ -114,6 +121,7 @@ for (n, r, sq, mt, fc, sf, gz, sky, qgb, qgs, qab, qcb, stale, nota) in P:
     elif fl - media > .32: pgio = .6*fl + .4*media; flag = ' ⚠️'
     else: pgio = fl
     if n == "Provedel": pgio, flag = .05, ''
+    if n == "Doekhi": pgio, flag = .03, ''  # override: infortunio confermato da Gazzetta+SosFanta
     pgio = min(pgio, .97)
     cs = m['cs_home'] if casa else m['cs_away']
     pvit = m['p1'] if casa else m['p2']

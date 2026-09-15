@@ -25,7 +25,10 @@ def risk(x): return RISCHIO[x['rischio']]
 pc = lambda v: 'n.d.' if v is None else f'{round(v*100)}%'
 L = []
 L.append(f"# Report Fantacalcio — Serie A, giornata {GIORNATA}\n")
-L.append(f"**Rilevazione:** {TS} · **Turno:** ven 11 – lun 14 settembre 2026\n")
+_whens = sorted({v['when'] for v in S.values() if v.get('when')},
+                key=lambda w: __import__('re').search(r'(\d{2})/(\d{2})', w).groups())
+_turno = f"{_whens[0].split()[0]} {_whens[0].split()[1]} – {_whens[-1].split()[0]} {_whens[-1].split()[1]} settembre 2026" if _whens else '?'
+L.append(f"**Rilevazione:** {TS} · **Turno:** {_turno}\n")
 L.append("**Probabili formazioni:** gazzetta.it (via browser), fantacalcio.it, sosfanta.com, sport.sky.it.  \n"
          "**Quote:** bwin (1X2, marcatore, assist, ammonizione) e Snai (1X2, marcatore) — due famiglie "
          "indipendenti. Sisal replica il feed Snai e bwin è la piattaforma di Eurobet: non aggiungono "
