@@ -1,6 +1,6 @@
 {
  "giornata": "5",
- "rilevate": "2026-09-15T11:17+02:00",
+ "rilevate": "2026-09-15T11:33+02:00",
  "fonte": "bwin + Snai (browser, passata locale)",
  "partite": {
   "Milan-Lecce": "dom 20/09 20:45",
@@ -14,6 +14,64 @@
  },
  "quote": {},
  "match": {
+  "Monza-Sassuolo": {
+   "home": "Monza",
+   "away": "Sassuolo",
+   "when": "ven 18/09 20:45",
+   "bwin": {
+    "odds": [
+     2.8,
+     3.4,
+     2.35
+    ],
+    "ou": [
+     1.8,
+     1.9,
+     2.5
+    ]
+   },
+   "snai": {
+    "odds": [
+     3.0,
+     3.25,
+     2.35
+    ],
+    "ou": [
+     1.8,
+     1.9,
+     2.5
+    ]
+   }
+  },
+  "Frosinone-Como": {
+   "home": "Frosinone",
+   "away": "Como",
+   "when": "dom 20/09 15:00",
+   "bwin": {
+    "odds": [
+     5.5,
+     4.33,
+     1.51
+    ],
+    "ou": [
+     1.46,
+     2.5,
+     2.5
+    ]
+   },
+   "snai": {
+    "odds": [
+     6.5,
+     4.25,
+     1.52
+    ],
+    "ou": [
+     1.45,
+     2.6,
+     2.5
+    ]
+   }
+  },
   "Bologna-Torino": {
    "home": "Bologna",
    "away": "Torino",

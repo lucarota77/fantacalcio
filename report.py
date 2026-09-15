@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Genera il report markdown da /tmp/rows.json e /tmp/mstate.json"""
-import json, sys
+import json, sys, turno
 from datetime import datetime
 _d = json.load(open('/tmp/rows.json')); rows = _d['rows']; TIT = _d['titolari']
 S = json.load(open('/tmp/mstate.json'))
-GIORNATA = sys.argv[1] if len(sys.argv) > 1 else '4'
+GIORNATA = sys.argv[1] if len(sys.argv) > 1 else '?'
 TS = sys.argv[2] if len(sys.argv) > 2 else datetime.now().strftime('%d/%m/%Y %H:%M')
 GG = ['lun','mar','mer','gio','ven','sab','dom']
 def quando(v):
@@ -25,10 +25,7 @@ def risk(x): return RISCHIO[x['rischio']]
 pc = lambda v: 'n.d.' if v is None else f'{round(v*100)}%'
 L = []
 L.append(f"# Report Fantacalcio — Serie A, giornata {GIORNATA}\n")
-_whens = sorted({v['when'] for v in S.values() if v.get('when')},
-                key=lambda w: __import__('re').search(r'(\d{2})/(\d{2})', w).groups())
-_turno = f"{_whens[0].split()[0]} {_whens[0].split()[1]} – {_whens[-1].split()[0]} {_whens[-1].split()[1]} settembre 2026" if _whens else '?'
-L.append(f"**Rilevazione:** {TS} · **Turno:** {_turno}\n")
+L.append(f"**Rilevazione:** {TS} · **Turno:** {turno.intervallo(S, anno=True)}\n")
 L.append("**Probabili formazioni:** gazzetta.it (via browser), fantacalcio.it, sosfanta.com, sport.sky.it.  \n"
          "**Quote:** bwin (1X2, marcatore, assist, ammonizione) e Snai (1X2, marcatore) — due famiglie "
          "indipendenti. Sisal replica il feed Snai e bwin è la piattaforma di Eurobet: non aggiungono "

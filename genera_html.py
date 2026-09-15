@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
-import json, sys, html
+import json, sys, html, turno
 _d = json.load(open('/tmp/rows.json')); rows = _d['rows']
 S = json.load(open('/tmp/mstate.json'))
-G = sys.argv[1] if len(sys.argv) > 1 else '4'
-TS = sys.argv[2] if len(sys.argv) > 2 else '11/09/2026 09:40'
+# Niente valori di ripiego "dell'ultima volta": una giornata o una data sbagliata in testata
+# e peggio di un punto interrogativo, perche sembra un dato.
+G = sys.argv[1] if len(sys.argv) > 1 else '?'
+GZ = G.zfill(2) if G.isdigit() else G
+TURNO = turno.intervallo(S)
+TS = sys.argv[2] if len(sys.argv) > 2 else '?'
 OUT = sys.argv[3]
 GG = ['lun','mar','mer','gio','ven','sab','dom']
 def quando(v):
@@ -279,9 +283,9 @@ footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);
 
 <header class="hdr"><div class="wrap">
   <div class="eyebrow">Serie A 2026/27 &middot; Rosa di 25</div>
-  <h1>Giornata <em>04</em></h1>
+  <h1>Giornata <em>@@GZ@@</em></h1>
   <div class="meta">
-    <span>Turno <b>ven 11 &ndash; lun 14 settembre</b></span>
+    <span>Turno <b>@@TURNO@@</b></span>
     <span>Quote rilevate <b>@@TS@@</b></span>
     <span>Bookmaker <b>bwin + Snai</b></span>
     <span>Modulo <b>3-4-3</b></span>
@@ -363,8 +367,9 @@ footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);
     <p><b>Assist e ammonizioni sono single-source</b> (solo bwin): Snai non espone l&rsquo;assist per
     giocatore e il suo tab Sanzioni contiene solo rigori, espulsioni e consulti VAR. Non sono quindi
     verificati da un secondo book.</p>
-    <p>La formazione della Roma su Gazzetta e ferma al 7 settembre: per Torino-Roma il peso di quella
-    fonte e stato dimezzato. Il venerdi mattina le gare di lunedi sono le meno affidabili.</p>
+    <p><b>Le probabili formazioni invecchiano.</b> Dove il dato di una fonte supera le 48 ore il suo
+    peso viene dimezzato (vedi METODO.md): le gare piu lontane nel turno sono sempre le meno
+    affidabili, perche le redazioni le aggiornano per ultime.</p>
     <p>Il clean sheet e derivato da un modello di Poisson sui gol attesi, non da un mercato dedicato.</p>
   </div>
 </section>
@@ -389,7 +394,8 @@ Il gioco e riservato ai maggiorenni e puo creare dipendenza patologica.</footer>
 })();
 </script>
 '''
-out = (TPL.replace('@@G@@', G).replace('@@TS@@', TS).replace('@@BEST@@', best)
+out = (TPL.replace('@@GZ@@', GZ).replace('@@G@@', G).replace('@@TURNO@@', TURNO)
+       .replace('@@TS@@', TS).replace('@@BEST@@', best)
        .replace('@@HEAD@@', HEAD.format(R='<th>R</th>')).replace('@@ALLROWS@@', all_rows)
        .replace('@@BYROLE@@', by_role).replace('@@TEAMS@@', team_rows)
        .replace('@@MATCHES@@', match_rows).replace('@@NOTES@@', notes)
