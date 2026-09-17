@@ -1,7 +1,7 @@
 {
   "proprietario": "Luca Rota",
   "stagione": "2026/27",
-  "aggiornata_al": "2026-09-11",
+  "aggiornata_al": "2026-09-17",
   "note": "Ruoli classic Mantra-agnostici: P/D/C/A. 'nome_fonte' e' l'alias usato dai bookmaker/siti quando differisce dal nome sulla lista fantacalcio.",
   "rosa": [
     {
@@ -60,10 +60,11 @@
       "squadra": "Juventus"
     },
     {
-      "nome": "Miranda J.",
-      "nome_fonte": "Juan Miranda",
+      "nome": "Chalobah",
+      "nome_fonte": "Trevoh Chalobah",
       "ruolo": "D",
-      "squadra": "Bologna"
+      "squadra": "Como",
+      "nota": "Sostituisce Miranda J. (ceduto) in rosa dal 17/09/2026."
     },
     {
       "nome": "Gallo",

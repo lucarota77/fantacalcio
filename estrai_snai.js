@@ -20,7 +20,7 @@ JSON.stringify(out);
 const leaf=s=>[...document.querySelectorAll('*')].filter(e=>(e.textContent||'').trim()===s&&!e.children.length);
 const g=leaf('GIOCATORI'); if(g.length) g[0].click();
 await new Promise(r=>setTimeout(r,5000));
-const TG=["MARTINEZ","JONES","THURAM","PROVEDEL","DOEKHI","GUDMUNDSSON","SKORUPSKI","MIRANDA",
+const TG=["MARTINEZ","JONES","THURAM","PROVEDEL","DOEKHI","GUDMUNDSSON","SKORUPSKI","CHALOBAH",
           "BERNARDESCHI","LULLI","KONE","COMUZZO","PAVLOVIC","PULISIC","RAMOS","VOJVODA","KALULU",
           "ALAJBEGOVIC","GONZALEZ","WOLTEMADE","KOLO","GALLO","POLITANO","PELLEGRINO","COLOMBO"];
 const t=(document.querySelector('main')||document.body).innerText;

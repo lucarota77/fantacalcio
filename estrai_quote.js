@@ -11,7 +11,7 @@ for(let i=0;i<3;i++){ L('Mostra di più').forEach(e=>{try{e.click()}catch(_){}})
 const t=document.querySelector('main').innerText,
       tm=document.title.replace(/^Quote scommesse /,'').replace(/ \| bwin.*$/,'').split(' - ').map(s=>s.trim());
 const TG=["Martinez","Martínez","Jones","Thuram","Provedel","Doekhi","Gudmundsson","Skorupski",
-          "Miranda","Bernardeschi","Lulli","Kone","Koné","Comuzzo","Pavlovic","Pulisic","Ramos",
+          "Chalobah","Bernardeschi","Lulli","Kone","Koné","Comuzzo","Pavlovic","Pulisic","Ramos",
           "Vojvoda","Kalulu","Alajbegovic","Gonzalez","González","Woltemade","Kolo","Gallo",
           "Politano","Pellegrino","Colombo"];
 // I nomi di squadra vanno scartati o disallineano l'accoppiamento nome <-> quota.

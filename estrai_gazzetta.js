@@ -7,7 +7,7 @@
 // ATTENZIONE: usare il timestamp "Ultimo aggiornamento" di ogni partita — se supera le 48h,
 // dimezzare il peso di questa fonte per quella partita (gz_vecchia=1 in giocatori.py).
 const TG=["Martinez","Martínez","Jones","Thuram","Provedel","Doekhi","Gudmundsson","Skorupski",
-          "Miranda","Bernardeschi","Lulli","Kone","Koné","Comuzzo","Pavlovic","Pulisic","Ramos",
+          "Chalobah","Bernardeschi","Lulli","Kone","Koné","Comuzzo","Pavlovic","Pulisic","Ramos",
           "Vojvoda","Kalulu","Alajbegovic","Gonzalez","González","Woltemade","Kolo","Gallo",
           "Politano","Pellegrino","Colombo"];
 const t=document.querySelector('main').innerText;
