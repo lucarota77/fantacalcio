@@ -53,12 +53,14 @@ P_AUTO = None
 if 'locale' not in sys.argv and os.path.exists('giocatori_input.json'):
     P_AUTO = [tuple(r) for r in json.load(open('giocatori_input.json'))['giocatori']]
 # nome, ruolo, squadra, match, fc, sf, gz, sky, q_gol_bwin, q_gol_snai, q_ass_bwin, q_amm_bwin, gz_vecchia, nota
-# Aggiornato 18/09 14:44 (sesta passata locale, giornata 5). Gazzetta/fantacalcio.it/statistiche
-# 25/25, nessun dato stale, invariati rispetto alla passata delle 14:10. SosFanta riverificato a
-# browser (non solo WebFetch): Martinez Jo. ora titolare 95% (prima assente dalla lista, sf n.d.),
-# Provedel sceso a 5% (prima sf n.d.), Gudmundsson A. salito da 12% a 15%. Quote bwin: movimenti
-# minimi su Kone M., Pellegrino M. (assist), Kalulu, Woltemade, Kolo Muani (marcatore+cartellino) e
-# sul 1X2 Bologna-Torino; tutto il resto (Snai, mercati bwin degli altri 20) confermato invariato.
+# Aggiornato 18/09 15:23 (settima passata locale, giornata 5). Gazzetta/fantacalcio.it/statistiche/
+# SosFanta/sky 25/25, tutti invariati rispetto alla passata delle 14:44 (riverificati, incluso
+# Gudmundsson 15% e Provedel 5% via JS mirato perche' get_page_text non li renderizzava). Quote:
+# 1X2 Bologna-Torino sale a 1.93 (era 1.83); cartellino +0.25 su Bernardeschi, Comuzzo e Colombo,
+# +1.25 su Chalobah; Kalulu scende a 12.0 su Snai (era 16.0); Colombo Snai marcatore 3.75 (era 3.5).
+# WOLTEMADE: bwin lo ha RITIRATO dai mercati giocatore (marcatore/assist/cartellino tutti None,
+# prima 2.95/6.0/5.75): Snai lo tiene ancora a 2.75, quindi non e' indisponibilita' ma solo bwin che
+# ha tolto il mercato. Vedi nota sul giocatore.
 # RIMOSSI I DUE OVERRIDE HARDCODED su Provedel (.05) e Doekhi (.03): erano valori legati alla
 # situazione di inizio settimana e ora i dati li contraddicono — Gazzetta apre un ballottaggio fra
 # i portieri dell'Inter (Martinez Jo. 70% / Provedel 30%) e sposta Doekhi da indisponibile a
@@ -84,12 +86,12 @@ P = [
 ("Provedel","P","Inter","Roma-Inter",.12,.05,.30,None,None,None,None,None,0,"⚠️ Gazzetta lo porta al 30% nel ballottaggio coi pali dell'Inter (era una riserva fissa): non e' piu' una comparsa, ma resta sfavorito su Martinez Jo. SosFanta lo elenca ora in panchina al 5% (verificato a browser): sf aggiornato da n.d. a .05. sky lo elenca ancora fra le riserve della Lazio (club sbagliato dopo la cessione): sky lasciata n.d."),
 ("Skorupski","P","Bologna","Bologna-Torino",.90,.60,.90,.90,None,None,None,9.25,0,"SosFanta lo mette in ballottaggio al 60% col secondo portiere; le altre tre fonti lo confermano titolare."),
 ("Lulli","D","Roma","Roma-Inter",.40,.51,.60,.90,17.5,25.0,7.5,4.75,0,"Ballottaggio sulla fascia destra della difesa a tre: fantacalcio.it 40%, SosFanta 51%, Gazzetta 60%; sky lo da titolare pieno."),
-("Comuzzo","D","Torino","Bologna-Torino",.90,.95,.90,.90,18.5,33.0,18.5,5.0,0,""),
+("Comuzzo","D","Torino","Bologna-Torino",.90,.95,.90,.90,18.5,33.0,18.5,5.25,0,""),
 ("Doekhi","D","Lazio","Venezia-Lazio",.40,None,.12,None,10.5,9.0,16.0,4.6,0,"RIENTRO: non e' piu' dato indisponibile. Gazzetta lo sposta da 'indisponibile' a panchina (12%) e bwin lo ha rimesso nei mercati giocatore (10.5 marcatore) dopo averlo escluso. SosFanta lo segna 'in dubbio' e sky 'in ballottaggio', entrambe senza percentuale: caselle lasciate n.d. per non inventare numeri. Rimosso l'override manuale che forzava il P_gioca a .03."),
 ("Pavlovic","D","Milan","Milan-Lecce",.90,.95,.90,.90,8.0,7.5,10.0,5.0,0,""),
 ("Vojvoda","D","Udinese","Udinese-Cagliari",.90,.95,.90,.90,8.75,9.0,6.5,4.4,0,"Gazzetta finalmente riaggiornata per Udinese-Cagliari: il dato non e' piu' stale, gz_vecchia torna a 0."),
-("Kalulu","D","Juventus","Juventus-Atalanta",.90,.95,.90,.90,13.0,16.0,6.5,5.25,0,""),
-("Chalobah","D","Como","Frosinone-Como",.90,.95,.90,.90,9.5,9.0,12.5,5.75,0,"Sostituisce Miranda J. (ceduto) in rosa dal 17/09/2026. Tutte e quattro le fonti lo danno titolare."),
+("Kalulu","D","Juventus","Juventus-Atalanta",.90,.95,.90,.90,13.0,12.0,6.5,5.25,0,""),
+("Chalobah","D","Como","Frosinone-Como",.90,.95,.90,.90,9.5,9.0,12.5,7.0,0,"Sostituisce Miranda J. (ceduto) in rosa dal 17/09/2026. Tutte e quattro le fonti lo danno titolare."),
 ("Gallo","D","Lecce","Milan-Lecce",.90,.95,.90,.90,23.0,33.0,10.5,5.25,0,""),
 ("Alajbegovic","C","Juventus","Juventus-Atalanta",.55,.49,.12,.90,3.4,3.5,4.5,5.5,0,"⚠️ CASO PIU' INCERTO DEL TURNO: le quattro fonti sono spaccate — Gazzetta lo mette in panchina (12%), SosFanta lo da sfavorito nel ballottaggio (49%), fantacalcio.it favorito (55%), sky titolare pieno. Il mercato lo tiene corto (3.40 marcatore), segno che i book lo aspettano in campo. Sia bwin ('Kerim Alajbegovic') che Snai ('ALAJBEGOVIC K.') usano il nome Kerim, non Benjamin come in rosa.json: probabile refuso da verificare."),
 ("Gudmundsson A.","C","Lazio","Venezia-Lazio",.12,.15,.12,.12,None,3.0,None,None,0,"Tutte e quattro le fonti concordano: parte in panchina, pronto a subentrare (SosFanta lo aggiorna a 15%, verificato a browser). Assente dal mercato marcatore bwin, quotato 3.00 su Snai."),
@@ -98,12 +100,12 @@ P = [
 ("Gonzalez N.","C","Juventus","Juventus-Atalanta",.65,.51,.90,.90,3.7,3.5,5.5,4.4,0,"fantacalcio.it lo abbassa a 65% e SosFanta a 51%, mentre Gazzetta e sky lo confermano titolare."),
 ("Pulisic","C","Milan","Milan-Lecce",.55,.55,.60,.90,None,2.0,None,None,0,"Ballottaggio con Loftus-Cheek: fantacalcio.it e SosFanta 55%, Gazzetta 60%, sky titolare. ⚠️ bwin lo tiene fuori dai mercati giocatore per il secondo giorno di fila; Snai lo quota 2.00 ed e' il suo top marcatore del Milan, quindi non e' un segnale di indisponibilita': solo le colonne bwin restano n.d."),
 ("Politano","C","Napoli","Fiorentina-Napoli",.90,.95,.90,.90,4.75,4.0,5.25,5.75,0,"Tutte e quattro le fonti lo danno titolare (SosFanta lo ha promosso da ballottaggio 55% a titolare)."),
-("Bernardeschi","C","Bologna","Bologna-Torino",.60,.55,.90,.90,3.8,3.5,4.75,5.0,0,"Si e' aperto un ballottaggio: fantacalcio.it 60% e SosFanta 55% (ieri lo davano titolare), mentre Gazzetta e sky lo confermano in campo."),
+("Bernardeschi","C","Bologna","Bologna-Torino",.60,.55,.90,.90,3.8,3.5,4.75,5.25,0,"Si e' aperto un ballottaggio: fantacalcio.it 60% e SosFanta 55% (ieri lo davano titolare), mentre Gazzetta e sky lo confermano in campo."),
 ("Pellegrino M.","A","Fiorentina","Fiorentina-Napoli",.40,.51,.55,.12,3.25,3.0,8.0,4.75,0,"Ballottaggio con Beto per la maglia da centravanti, ora girato a suo favore: Gazzetta lo porta da panchina a 55% e SosFanta a 51%; fantacalcio.it resta al 40% e sky lo mette in panchina."),
-("Woltemade","A","Juventus","Juventus-Atalanta",.45,.49,.12,.12,2.9,2.75,6.0,5.75,0,"⚠️ Mercato contro fonti editoriali: bwin lo ha rimesso fra i marcatori a 2.95, piu' corto di Kolo Muani (3.00), mentre Gazzetta e sky lo danno in panchina e fantacalcio.it/SosFanta lo tengono in ballottaggio quasi alla pari (45-49%)."),
+("Woltemade","A","Juventus","Juventus-Atalanta",.45,.49,.12,.12,None,2.75,None,None,0,"bwin lo ha ritirato dai mercati giocatore (era a 2.95 marcatore, assist e cartellino nella passata delle 14:44): ora nessuna colonna bwin. Snai invece lo tiene ancora quotato 2.75 marcatore, quindi non e' un segnale di indisponibilita' — solo bwin l'ha tolto. Gazzetta e sky continuano a darlo in panchina, fantacalcio.it/SosFanta in ballottaggio quasi alla pari (45-49%)."),
 ("Ramos G.","A","Milan","Milan-Lecce",.90,.95,.90,.90,1.85,2.0,5.25,6.75,0,"Gazzetta lo riporta a titolare pieno (ieri 80%): tutte e quattro le fonti concordi. Quota marcatore 1.85, la piu' corta della rosa."),
-("Kolo Muani","A","Juventus","Juventus-Atalanta",.90,.51,.90,.90,3.1,2.5,6.25,5.75,0,"Gazzetta, fantacalcio.it e sky lo confermano titolare; SosFanta lo tiene in ballottaggio risicato (51-49%) con Woltemade, che il mercato bwin quota addirittura piu' corto di lui."),
-("Colombo","A","Genoa","Parma-Genoa",.90,.60,.90,.90,3.0,3.5,7.0,5.0,0,"Gazzetta, fantacalcio.it e sky lo confermano titolare; SosFanta lo mette in ballottaggio al 60% con Vitinha O."),
+("Kolo Muani","A","Juventus","Juventus-Atalanta",.90,.51,.90,.90,3.1,2.5,6.25,5.75,0,"Gazzetta, fantacalcio.it e sky lo confermano titolare; SosFanta lo tiene in ballottaggio risicato (51-49%) con Woltemade, che il mercato Snai quota comunque un filo piu' corto (2.75 contro 2.50): bwin nel frattempo ha tolto Woltemade dai mercati."),
+("Colombo","A","Genoa","Parma-Genoa",.90,.60,.90,.90,3.0,3.75,7.0,6.25,0,"Gazzetta, fantacalcio.it e sky lo confermano titolare; SosFanta lo mette in ballottaggio al 60% con Vitinha O."),
 ("Thuram","A","Inter","Roma-Inter",.55,.95,.90,.90,2.75,3.0,6.0,5.25,0,"SosFanta lo promuove titolare pieno (era 60%), con Gazzetta e sky d'accordo; solo fantacalcio.it lo tiene in ballottaggio al 55% con Esposito F.P."),
 ]
 def devig(q, Mp): return None if not q else (1/q)/Mp
