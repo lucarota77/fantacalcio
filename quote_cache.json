@@ -1,12 +1,12 @@
 {
  "giornata": "6",
- "rilevate": "2026-10-07T12:11+02:00",
+ "rilevate": "2026-10-07T16:15+02:00",
  "fonte": "bwin + Snai (browser, passata locale)",
  "partite": {
   "Inter-Parma": "sab 10/10 18:00",
   "Sassuolo-Milan": "dom 11/10 18:00",
-  "Cagliari-Juventus": "dom 11/10 20:45",
   "Napoli-Frosinone": "sab 10/10 20:45",
+  "Cagliari-Juventus": "dom 11/10 20:45",
   "Lecce-Bologna": "dom 11/10 15:00",
   "Genoa-Fiorentina": "sab 10/10 15:00",
   "Lazio-Monza": "dom 11/10 15:00",
@@ -21,16 +21,22 @@
    "qc": 5.0
   },
   "Pulisic": {
-   "qg": 2.8,
+   "qg": 2.75,
    "qgs": 2.5,
-   "qa": 3.8,
+   "qa": 3.75,
    "qc": 5.25
   },
   "Ramos G.": {
-   "qg": 2.45,
-   "qgs": 2.4,
-   "qa": 6.5,
-   "qc": 5.0
+   "qg": 2.4,
+   "qgs": 2.25,
+   "qa": 6.25,
+   "qc": 5.25
+  },
+  "Politano": {
+   "qg": 3.9,
+   "qgs": 3.0,
+   "qa": 3.4,
+   "qc": 5.25
   },
   "Gonzalez N.": {
    "qg": 3.75,
@@ -38,11 +44,11 @@
    "qa": 5.25,
    "qc": 3.9
   },
-  "Politano": {
-   "qg": 3.75,
-   "qgs": 3.0,
-   "qa": 3.5,
-   "qc": 5.25
+  "Alajbegovic": {
+   "qg": 3.4,
+   "qgs": 3.25,
+   "qa": 4.5,
+   "qc": 4.33
   },
   "Kalulu": {
    "qg": 15.5,
@@ -56,8 +62,14 @@
    "qa": 4.75,
    "qc": 4.8
   },
+  "Kolo Muani": {
+   "qg": 3.2,
+   "qgs": 2.5,
+   "qa": 6.0,
+   "qc": 4.33
+  },
   "Jones C.": {
-   "qg": 4.8,
+   "qg": 5.0,
    "qgs": 4.5,
    "qa": 4.2,
    "qc": 5.75
@@ -68,29 +80,17 @@
    "qa": 5.75,
    "qc": 4.4
   },
-  "Alajbegovic": {
-   "qg": 3.5,
-   "qgs": 3.25,
-   "qa": 4.4,
-   "qc": 4.33
-  },
-  "Kolo Muani": {
-   "qg": 3.2,
-   "qgs": 2.5,
-   "qa": 6.25,
-   "qc": 4.33
+  "Pellegrino M.": {
+   "qg": 3.1,
+   "qgs": 3.0,
+   "qa": 7.0,
+   "qc": 3.9
   },
   "Pavlovic": {
    "qg": 14.0,
    "qgs": 25.0,
-   "qa": 14.0,
-   "qc": 4.1
-  },
-  "Pellegrino M.": {
-   "qg": 3.1,
-   "qgs": 3.25,
-   "qa": 6.75,
-   "qc": 4.0
+   "qa": 13.5,
+   "qc": 4.2
   },
   "Doekhi": {
    "qg": 9.75,
@@ -107,7 +107,7 @@
   "Kone M.": {
    "qg": 7.75,
    "qgs": 9.0,
-   "qa": 9.25,
+   "qa": 9.0,
    "qc": 3.4
   },
   "Chalobah": {
@@ -116,17 +116,17 @@
    "qa": 17.0,
    "qc": 4.4
   },
-  "Vojvoda": {
-   "qg": 11.0,
-   "qgs": 9.0,
-   "qa": 6.75,
-   "qc": 5.5
-  },
   "Comuzzo": {
    "qg": 16.0,
    "qgs": 25.0,
    "qa": 13.5,
    "qc": 4.1
+  },
+  "Vojvoda": {
+   "qg": 11.0,
+   "qgs": 9.0,
+   "qa": 6.75,
+   "qc": 5.5
   },
   "Lulli": {
    "qg": 19.0,
@@ -345,8 +345,8 @@
      1.8
     ],
     "ou": [
-     1.75,
-     1.95,
+     1.72,
+     2.0,
      2.5
     ]
    }
