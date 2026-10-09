@@ -1,6 +1,6 @@
 {
  "giornata": "6",
- "rilevate": "2026-10-09T16:09+02:00",
+ "rilevate": "2026-10-09T16:51+02:00",
  "fonte": "bwin + Snai (browser, passata locale)",
  "partite": {
   "Inter-Parma": "sab 10/10 18:00",
@@ -15,10 +15,10 @@
  },
  "quote": {
   "Thuram": {
-   "qg": 1.53,
-   "qgs": 1.75,
+   "qg": 1.55,
+   "qgs": 1.8,
    "qa": 3.4,
-   "qc": 6.75
+   "qc": 6.5
   },
   "Pulisic": {
    "qg": 2.8,
@@ -87,10 +87,16 @@
    "qc": 5.25
   },
   "Pavlovic": {
-   "qg": 14.0,
+   "qg": 14.5,
    "qgs": 25.0,
    "qa": 14.0,
    "qc": 4.1
+  },
+  "Martinez Jo.": {
+   "qg": null,
+   "qgs": null,
+   "qa": null,
+   "qc": 12.5
   },
   "Comuzzo": {
    "qg": 15.5,
@@ -115,12 +121,6 @@
    "qgs": 9.0,
    "qa": 6.75,
    "qc": 4.6
-  },
-  "Martinez Jo.": {
-   "qg": null,
-   "qgs": null,
-   "qa": null,
-   "qc": 12.5
   },
   "Lulli": {
    "qg": 18.5,

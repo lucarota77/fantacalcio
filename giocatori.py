@@ -53,30 +53,26 @@ P_AUTO = None
 if 'locale' not in sys.argv and os.path.exists('giocatori_input.json'):
     P_AUTO = [tuple(r) for r in json.load(open('giocatori_input.json'))['giocatori']]
 # nome, ruolo, squadra, match, fc, sf, gz, sky, q_gol_bwin, q_gol_snai, q_ass_bwin, q_amm_bwin, gz_vecchia, nota
-# Aggiornato 09/10 15:50 (ottava passata locale, giornata 6, venerdi': il giorno prima del turno).
-# GAZZETTA: valori invariati, timestamp per partita 08/10 18:28 - 09/10 14:34, 25/25.
-# SKY: "Aggiornato 09/10 15:18", giornata 6; unica novita' Jones C. fra gli indisponibili dell'Inter
-#   (scritto "Jines"): 0.12 -> 0.00. Politano, Josep Martinez, Woltemade, Gonzalez N. in panchina.
-# FANTACALCIO.IT: invariato rispetto alle 14:35.
+# Aggiornato 09/10 16:50 (nona passata locale, giornata 6, venerdi': il giorno prima del turno).
+# GAZZETTA: valori invariati, 25/25.
+# SKY: ancora "Aggiornato 09/10 15:18", invariata.
+# FANTACALCIO.IT: NOVITA' 16:35 -> torna titolare Martinez Jo. (0.12 -> 0.90), Provedel in panchina (0.90 -> 0.12).
 # SOSFANTA: invariata (Woltemade 5%, Kolo Muani 95%, Martinez Jo. 51%).
-# QUOTE: bwin letto il 09/10 alle 15:45 via API della pagina (cds-api fixture-view; la griglia non si
-# renderizza nel pannello; l'anytime si chiama "Segna in qualsiasi momento"): 1X2 e U/O invariati su 10
-# partite; marcatore ritoccato per Kolo Muani 3.10, Gonzalez 3.70, Kalulu e Comuzzo 15.50; cartellini
-# saliti per Gallo, Lulli, Chalobah, Thuram, Doekhi, Bernardeschi.
-# Snai riletto il 09/10 15:48: 1X2 ritoccati su Napoli-Frosinone, Lazio-Monza, Lecce-Bologna; marcatori su 9
-# partite invariati (Atalanta-Venezia senza nostri giocatori).
+# QUOTE: bwin letto il 09/10 alle 16:45 via API della pagina (cds-api fixture-view): 1X2 e U/O invariati su 10
+# partite; Thuram marcatore 1.53 -> 1.55 e cartellino 6.75 -> 6.50, Pavlovic marcatore 14.0 -> 14.5.
+# Snai riletto il 09/10 16:48: lista 1X2 e U/O invariata; marcatori invariati salvo Thuram 1.75 -> 1.80.
 # Jones C. assente da TUTTI i mercati di bwin e di Snai: conferma l'indisponibilita'.
 # Omonimi scartati: "Lautaro Martinez"/"MARTINEZ LAUTARO" (attaccante Inter). Snai elenca ancora un
 # "COLOMBO L." fra i marcatori di Lazio-Monza (16.00): NON agganciato (tutte le fonti danno il Colombo del
 # Genoa indisponibile e bwin non lo ha in Lazio-Monza). Alajbegovic e' "Kerim" su entrambi i book.
 P = [
-("Martinez Jo.","P","Inter","Inter-Parma",.12,.51,.90,.12,None,None,None,12.5,0,"⚠️ Fonti divise: titolare per Gazzetta, SosFanta 51% (con Provedel), in panchina per fantacalcio.it e Sky. bwin lo quota sul cartellino (12.50), Provedel no."),
-("Provedel","P","Inter","Inter-Parma",.90,.49,.12,.90,None,None,None,None,0,"⚠️ Titolare per fantacalcio.it (novita' 09/10) e Sky, in panchina per Gazzetta, SosFanta 49%. Assente dai mercati bwin."),
+("Martinez Jo.","P","Inter","Inter-Parma",.90,.51,.90,.12,None,None,None,12.5,0,"⚠️ Fonti divise: titolare per Gazzetta e fantacalcio.it (tornato titolare alle 16:35 del 09/10), SosFanta 51% (con Provedel), in panchina per Sky. bwin lo quota sul cartellino (12.50), Provedel no."),
+("Provedel","P","Inter","Inter-Parma",.12,.49,.12,.90,None,None,None,None,0,"⚠️ Titolare solo per Sky; in panchina per Gazzetta e fantacalcio.it (di nuovo dalle 16:35 del 09/10), SosFanta 49%. Assente dai mercati bwin."),
 ("Skorupski","P","Bologna","Lecce-Bologna",.90,.51,.90,.90,None,None,None,9.5,0,"Titolare per Gazzetta, Sky e fantacalcio.it (novita' pomeriggio del 09/10, era 60%); SosFanta 51% con Pessina. Cartellino bwin 9.50."),
 ("Lulli","D","Roma","Como-Roma",.35,.45,.12,.12,18.5,25.0,7.0,4.33,0,"In panchina per Gazzetta e Sky; fantacalcio.it 35%, SosFanta 45% (con Molina)."),
 ("Comuzzo","D","Torino","Torino-Udinese",.90,.95,.90,.90,15.5,25.0,13.5,4.4,0,"Titolare per tutte e quattro le fonti."),
 ("Doekhi","D","Lazio","Lazio-Monza",.55,.49,.12,.12,9.75,9.0,14.0,5.25,0,"Fuori per Gazzetta e Sky; fantacalcio.it 55%, SosFanta 49% (con Sutalo). Ma marcatore 9.75 bwin / 9.00 Snai: quota da difensore titolare."),
-("Pavlovic","D","Milan","Sassuolo-Milan",.90,.95,.90,.90,14.0,25.0,14.0,4.1,0,"Titolare per tutte e quattro le fonti. Cartellino 4.10."),
+("Pavlovic","D","Milan","Sassuolo-Milan",.90,.95,.90,.90,14.5,25.0,14.0,4.1,0,"Titolare per tutte e quattro le fonti. Cartellino 4.10."),
 ("Vojvoda","D","Udinese","Torino-Udinese",.60,.95,.90,.90,10.5,9.0,6.75,4.6,0,"Titolare per Gazzetta, Sky e SosFanta (95%); fantacalcio.it ballottaggio 60%. Marcatore 10.50 bwin / 9.00 Snai."),
 ("Kalulu","D","Juventus","Cagliari-Juventus",.90,.95,.90,.90,15.5,25.0,7.25,5.25,0,"Titolare per tutte e quattro le fonti."),
 ("Chalobah","D","Como","Como-Roma",.90,.95,.90,.90,12.5,12.0,17.0,5.75,0,"Titolare per tutte e quattro le fonti."),
@@ -94,7 +90,7 @@ P = [
 ("Ramos G.","A","Milan","Sassuolo-Milan",.90,.95,.90,.90,2.55,2.5,6.5,5.0,0,"Titolare per tutte e quattro le fonti. Marcatore 2.55 bwin / 2.50 Snai."),
 ("Kolo Muani","A","Juventus","Cagliari-Juventus",.90,.95,.90,.90,3.1,2.5,6.25,5.0,0,"Titolare per tutte e quattro le fonti (SosFanta 95%). Marcatore 3.10 bwin / 2.50 Snai."),
 ("Colombo","A","Genoa","Genoa-Fiorentina",0.0,0.0,0.0,0.0,None,None,None,None,0,"🔴 Infortunato alla caviglia per tutte e quattro le fonti; assente dai marcatori di Genoa-Fiorentina su bwin e Snai."),
-("Thuram","A","Inter","Inter-Parma",.90,.95,.90,.90,1.53,1.75,3.4,6.75,0,"Titolare per tutte e quattro le fonti (SosFanta 95%). Marcatore 1.53 bwin / 1.75 Snai contro il Parma, la quota piu' corta della rosa."),
+("Thuram","A","Inter","Inter-Parma",.90,.95,.90,.90,1.55,1.8,3.4,6.5,0,"Titolare per tutte e quattro le fonti (SosFanta 95%). Marcatore 1.55 bwin / 1.80 Snai contro il Parma, la quota piu' corta della rosa."),
 ]
 def devig(q, Mp): return None if not q else (1/q)/Mp
 def floor_mkt(pg, r):
