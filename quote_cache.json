@@ -1,6 +1,6 @@
 {
  "giornata": "6",
- "rilevate": "2026-10-09T16:51+02:00",
+ "rilevate": "2026-10-09T17:45+02:00",
  "fonte": "bwin + Snai (browser, passata locale)",
  "partite": {
   "Inter-Parma": "sab 10/10 18:00",
@@ -35,7 +35,7 @@
   "Politano": {
    "qg": 3.8,
    "qgs": 3.0,
-   "qa": 3.7,
+   "qa": 3.5,
    "qc": 7.25
   },
   "Kalulu": {
@@ -66,12 +66,12 @@
    "qg": 3.9,
    "qgs": 4.0,
    "qa": 4.8,
-   "qc": 5.5
+   "qc": 5.75
   },
   "Woltemade": {
    "qg": 2.85,
    "qgs": 2.75,
-   "qa": 5.75,
+   "qa": 5.5,
    "qc": 4.8
   },
   "Pellegrino M.": {
@@ -132,7 +132,7 @@
    "qg": 19.5,
    "qgs": 25.0,
    "qa": 9.25,
-   "qc": 5.5
+   "qc": 5.25
   },
   "Skorupski": {
    "qg": null,
@@ -305,9 +305,9 @@
    },
    "snai": {
     "odds": [
-     4.25,
+     4.75,
      3.25,
-     1.9
+     1.85
     ],
     "ou": [
      2.0,

@@ -53,14 +53,15 @@ P_AUTO = None
 if 'locale' not in sys.argv and os.path.exists('giocatori_input.json'):
     P_AUTO = [tuple(r) for r in json.load(open('giocatori_input.json'))['giocatori']]
 # nome, ruolo, squadra, match, fc, sf, gz, sky, q_gol_bwin, q_gol_snai, q_ass_bwin, q_amm_bwin, gz_vecchia, nota
-# Aggiornato 09/10 16:50 (nona passata locale, giornata 6, venerdi': il giorno prima del turno).
-# GAZZETTA: valori invariati, 25/25.
+# Aggiornato 09/10 17:44 (decima passata locale, giornata 6, venerdi': il giorno prima del turno).
+# GAZZETTA: valori invariati, 25/25 (Inter-Parma ridatata 17:14, stessi undici).
 # SKY: ancora "Aggiornato 09/10 15:18", invariata.
-# FANTACALCIO.IT: NOVITA' 16:35 -> torna titolare Martinez Jo. (0.12 -> 0.90), Provedel in panchina (0.90 -> 0.12).
+# FANTACALCIO.IT: invariata (Martinez Jo. titolare, Provedel panchina).
 # SOSFANTA: invariata (Woltemade 5%, Kolo Muani 95%, Martinez Jo. 51%).
-# QUOTE: bwin letto il 09/10 alle 16:45 via API della pagina (cds-api fixture-view): 1X2 e U/O invariati su 10
-# partite; Thuram marcatore 1.53 -> 1.55 e cartellino 6.75 -> 6.50, Pavlovic marcatore 14.0 -> 14.5.
-# Snai riletto il 09/10 16:48: lista 1X2 e U/O invariata; marcatori invariati salvo Thuram 1.75 -> 1.80.
+# QUOTE: bwin letto il 09/10 alle 17:40 via API della pagina (cds-api fixture-view): 1X2, U/O e marcatori
+# invariati su 10 partite; assist Politano 3.70 -> 3.50 e Woltemade 5.75 -> 5.50, cartellino Gallo
+# 5.50 -> 5.25 e Bernardeschi 5.50 -> 5.75.
+# Snai riletto il 09/10 17:43: marcatori invariati; 1X2 Lecce-Bologna 4.25/3.25/1.90 -> 4.75/3.25/1.85.
 # Jones C. assente da TUTTI i mercati di bwin e di Snai: conferma l'indisponibilita'.
 # Omonimi scartati: "Lautaro Martinez"/"MARTINEZ LAUTARO" (attaccante Inter). Snai elenca ancora un
 # "COLOMBO L." fra i marcatori di Lazio-Monza (16.00): NON agganciato (tutte le fonti danno il Colombo del
@@ -76,17 +77,17 @@ P = [
 ("Vojvoda","D","Udinese","Torino-Udinese",.60,.95,.90,.90,10.5,9.0,6.75,4.6,0,"Titolare per Gazzetta, Sky e SosFanta (95%); fantacalcio.it ballottaggio 60%. Marcatore 10.50 bwin / 9.00 Snai."),
 ("Kalulu","D","Juventus","Cagliari-Juventus",.90,.95,.90,.90,15.5,25.0,7.25,5.25,0,"Titolare per tutte e quattro le fonti."),
 ("Chalobah","D","Como","Como-Roma",.90,.95,.90,.90,12.5,12.0,17.0,5.75,0,"Titolare per tutte e quattro le fonti."),
-("Gallo","D","Lecce","Lecce-Bologna",.90,.95,.90,.90,19.5,25.0,9.25,5.5,0,"Titolare per tutte e quattro le fonti."),
+("Gallo","D","Lecce","Lecce-Bologna",.90,.95,.90,.90,19.5,25.0,9.25,5.25,0,"Titolare per tutte e quattro le fonti."),
 ("Alajbegovic","C","Juventus","Cagliari-Juventus",.45,.51,.45,.90,3.4,3.25,4.33,5.25,0,"Titolare per Sky; ballottaggio per fantacalcio.it (45%), SosFanta (51% con Conceicao) e Gazzetta (45%). Marcatore 3.40 bwin / 3.25 Snai."),
 ("Gudmundsson A.","C","Lazio","Lazio-Monza",0.0,0.0,0.0,0.0,None,None,None,None,0,"🔴 Infortunato alla spalla per tutte e quattro le fonti; assente dai mercati di bwin e Snai."),
 ("Kone M.","C","Roma","Como-Roma",.90,.95,.90,.90,8.0,9.0,9.25,3.4,0,"Titolare per tutte e quattro le fonti. Cartellino 3.40: il piu' esposto della rosa. bwin lo chiama Kouadio Kone, Snai Manu Kone."),
 ("Jones C.","C","Inter","Inter-Parma",0.0,0.0,0.0,0.0,None,None,None,None,0,"🔴 Novita' 09/10: indisponibile per Gazzetta, fantacalcio.it e SosFanta (problema all'adduttore), indisponibile anche per Sky (aggiornamento 09/10 15:18). Assente da tutti i mercati di bwin e Snai."),
 ("Gonzalez N.","C","Juventus","Cagliari-Juventus",.55,.40,.55,.12,3.7,3.25,5.25,3.8,0,"⚠️ Ballottaggio: fantacalcio.it 55% (novita' 09/10, era panchina), Gazzetta 55%, SosFanta 40% (con McKennie), panchina per Sky. I book lo quotano su tutti i mercati (Snai 3.25)."),
 ("Pulisic","C","Milan","Sassuolo-Milan",.90,.95,.90,.90,2.8,2.5,3.9,5.75,0,"Titolare per tutte e quattro le fonti. Marcatore 2.80 bwin / 2.50 Snai."),
-("Politano","C","Napoli","Napoli-Frosinone",.55,.95,.90,.12,3.8,3.0,3.7,7.25,0,"⚠️ Titolare per Gazzetta e SosFanta (95%), ballottaggio 55% per fantacalcio.it (novita' 09/10), in panchina per Sky (09/10 10:33). Marcatore 3.80 bwin / 3.00 Snai contro il Frosinone: il mercato lo da' in campo."),
-("Bernardeschi","C","Bologna","Lecce-Bologna",.90,.49,.12,.90,3.9,4.0,4.8,5.5,0,"⚠️ Titolare per Sky e fantacalcio.it; in panchina per Gazzetta, SosFanta 49% con Orsolini e Cambiaghi."),
+("Politano","C","Napoli","Napoli-Frosinone",.55,.95,.90,.12,3.8,3.0,3.5,7.25,0,"⚠️ Titolare per Gazzetta e SosFanta (95%), ballottaggio 55% per fantacalcio.it (novita' 09/10), in panchina per Sky (09/10 10:33). Marcatore 3.80 bwin / 3.00 Snai contro il Frosinone: il mercato lo da' in campo."),
+("Bernardeschi","C","Bologna","Lecce-Bologna",.90,.49,.12,.90,3.9,4.0,4.8,5.75,0,"⚠️ Titolare per Sky e fantacalcio.it; in panchina per Gazzetta, SosFanta 49% con Orsolini e Cambiaghi."),
 ("Pellegrino M.","A","Fiorentina","Genoa-Fiorentina",.60,.51,.90,.90,3.1,3.0,7.0,4.2,0,"Titolare per Gazzetta e Sky; ballottaggio con Beto per fantacalcio.it (60%) e SosFanta (51%). Marcatore 3.10 bwin / 3.00 Snai."),
-("Woltemade","A","Juventus","Cagliari-Juventus",.12,.05,.12,.12,2.85,2.75,5.75,4.8,0,"⚠️ Panchina per tutte e quattro le fonti (SosFanta 5%, fantacalcio.it non piu' in ballottaggio): ma la quota marcatore resta corta (2.85 bwin, 2.75 Snai). Conflitto fonti/mercato."),
+("Woltemade","A","Juventus","Cagliari-Juventus",.12,.05,.12,.12,2.85,2.75,5.5,4.8,0,"⚠️ Panchina per tutte e quattro le fonti (SosFanta 5%, fantacalcio.it non piu' in ballottaggio): ma la quota marcatore resta corta (2.85 bwin, 2.75 Snai). Conflitto fonti/mercato."),
 ("Ramos G.","A","Milan","Sassuolo-Milan",.90,.95,.90,.90,2.55,2.5,6.5,5.0,0,"Titolare per tutte e quattro le fonti. Marcatore 2.55 bwin / 2.50 Snai."),
 ("Kolo Muani","A","Juventus","Cagliari-Juventus",.90,.95,.90,.90,3.1,2.5,6.25,5.0,0,"Titolare per tutte e quattro le fonti (SosFanta 95%). Marcatore 3.10 bwin / 2.50 Snai."),
 ("Colombo","A","Genoa","Genoa-Fiorentina",0.0,0.0,0.0,0.0,None,None,None,None,0,"🔴 Infortunato alla caviglia per tutte e quattro le fonti; assente dai marcatori di Genoa-Fiorentina su bwin e Snai."),
