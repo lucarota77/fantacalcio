@@ -112,9 +112,9 @@ for r in 'PDCA':
         f'<li><span class="bn">{e(x["n"])}'
         + (' <span class="warn-i">&#9888;</span>' if x['flag'] else '')
         + f'</span><span class="bi">{x["fanta"]:.2f}</span>'
-        f'<span class="bp">{round(x["pgio"]*100)}% in campo &middot; MV {x["mv"]:.2f}</span></li>'
-        if x['mv'] else
-        f'<span class="bp">{round(x["pgio"]*100)}% in campo &middot; {e(x["sq"])}</span></li>' for x in tt)
+        f'<span class="bp">{round(x["pgio"]*100)}% in campo &middot; '
+        + (f'MV {x["mv"]:.2f}' if x['mv'] else f'{e(x["sq"])}, MV n.d.')
+        + '</span></li>' for x in tt)
     res = ('<div class="bres"><span class="brl">Prime riserve</span>' + ''.join(
         f'<span class="brn">{e(x["n"])} <em>{x["fanta"]:.2f}</em></span>' for x in rs) + '</div>') if rs else ''
     best += (f'<div class="bcard b-{r}"><h3><span class="role r-{r}">{r}</span>{RN[r]}'
