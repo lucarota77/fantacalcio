@@ -1,6 +1,6 @@
 {
  "giornata": "6",
- "rilevate": "2026-10-09T18:43+02:00",
+ "rilevate": "2026-10-09T19:44+02:00",
  "fonte": "bwin + Snai (browser, passata locale)",
  "partite": {
   "Inter-Parma": "sab 10/10 18:00",
@@ -24,13 +24,13 @@
    "qg": 2.8,
    "qgs": 2.5,
    "qa": 3.9,
-   "qc": 5.75
+   "qc": 6.75
   },
   "Ramos G.": {
    "qg": 2.55,
    "qgs": 2.5,
    "qa": 6.5,
-   "qc": 5.0
+   "qc": 6.0
   },
   "Politano": {
    "qg": 3.8,
@@ -74,6 +74,12 @@
    "qa": 5.5,
    "qc": 4.8
   },
+  "Martinez Jo.": {
+   "qg": null,
+   "qgs": null,
+   "qa": null,
+   "qc": 12.5
+  },
   "Pellegrino M.": {
    "qg": 3.1,
    "qgs": 3.0,
@@ -90,19 +96,13 @@
    "qg": 14.5,
    "qgs": 25.0,
    "qa": 14.0,
-   "qc": 4.1
-  },
-  "Martinez Jo.": {
-   "qg": null,
-   "qgs": null,
-   "qa": null,
-   "qc": 12.5
+   "qc": 4.8
   },
   "Comuzzo": {
    "qg": 15.5,
    "qgs": 25.0,
    "qa": 13.5,
-   "qc": 4.75
+   "qc": 4.4
   },
   "Chalobah": {
    "qg": 12.5,
