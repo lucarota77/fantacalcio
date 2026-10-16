@@ -53,17 +53,18 @@ P_AUTO = None
 if 'locale' not in sys.argv and os.path.exists('giocatori_input.json'):
     P_AUTO = [tuple(r) for r in json.load(open('giocatori_input.json'))['giocatori']]
 # nome, ruolo, squadra, match, fc, sf, gz, sky, q_gol_bwin, q_gol_snai, q_ass_bwin, q_amm_bwin, gz_vecchia, nota
-# Aggiornato 16/10 15:35 (passata locale, giornata 7: Frosinone-Sassuolo ven 16/10 - Parma-Torino lun 19/10).
+# Aggiornato 16/10 16:35 (passata locale, giornata 7: Frosinone-Sassuolo ven 16/10 - Parma-Torino lun 19/10).
 # GAZZETTA (aggiornata 16/10 08:53 - 11:33) e FANTACALCIO.IT ricopiate da gz.json/fc.json, TRANNE
 # Martinez Jo. e Provedel: i parser agganciano Martinez a "Lautaro Martinez" (indisponibile) e lo
 # danno a 0. Valori veri letti sulle pagine: Gazzetta ballottaggio Martinez-Provedel 70-30,
 # fantacalcio.it Martinez Jo. 75% / Provedel 5%. Bug omonimi nei parser da correggere.
-# SKY: giornata 7, aggiornata 16/10 14:42 (titolare 0.90, non nell'undici 0.12, indisponibile 0):
+# SKY: giornata 7, aggiornata 16/10 16:29 (titolare 0.90, non nell'undici 0.12, indisponibile 0):
 # per i 25 nessun cambio rispetto alle 13:30.
 # SOSFANTA: lista-formazioni, giornata 7 (16-19/10), invariata rispetto alle 09:44.
-# QUOTE: bwin letto il 16/10 alle 15:40 via API della pagina (cds-api fixture-view, fixture
-# 2:7872375-7872384), tutte e 10 le partite. Snai letto il 16/10 15:42-15:46 (lista + 8 schede
-# evento): marcatori invariati, ritoccate le 1X2 di Bologna-Inter, Milan-Atalanta, Juventus-Lazio.
+# QUOTE: bwin letto il 16/10 alle 16:40 via API della pagina (cds-api fixture-view, fixture
+# 2:7872375-7872384), tutte e 10 le partite. Snai letto il 16/10 16:42-16:48 (lista + 8 schede
+# evento). Rispetto alle 15:40: Woltemade 2.87->2.85 bwin, Kolo Muani 2.50->2.75 Snai,
+# ritoccate le 1X2 di Frosinone-Sassuolo su entrambi i book.
 # Kone M.: indisponibile per Gazzetta, fantacalcio.it e SosFanta; Sky lo mette fra i dubbi. bwin lo quota
 # ancora ("Kouadio Kone" 6.75), Snai NO: override assoluto P_gioca = 0, quote non caricate.
 # Omonimi scartati: "Lautaro Martinez"/"MARTINEZ LAUTARO" (attaccante Inter). Alajbegovic e' "Kerim" su
@@ -89,9 +90,9 @@ P = [
 ("Politano","C","Napoli","Venezia-Napoli",.90,.49,.12,.12,4.2,3.25,4.33,5.25,0,"⚠️ Titolare per fantacalcio.it; in panchina per Gazzetta (16/10 08:53) e Sky (gioca Giovane); SosFanta 49%. Marcatore 4.20 bwin / 3.25 Snai."),
 ("Bernardeschi","C","Bologna","Bologna-Inter",.90,.95,.90,.90,5.25,6.0,6.5,4.8,0,"Titolare per tutte e quattro le fonti."),
 ("Pellegrino M.","A","Fiorentina","Fiorentina-Como",.45,.55,.90,.12,3.3,3.25,7.75,4.8,0,"⚠️ Titolare per Gazzetta; SosFanta 55%, fantacalcio.it 45% (Beto 55%); Sky (13:30) lo mette in panchina con Beto e Njie davanti. Marcatore 3.30 bwin / 3.25 Snai: quota da titolare."),
-("Woltemade","A","Juventus","Juventus-Lazio",.40,.05,.12,.90,2.87,2.75,6.0,4.8,0,"⚠️ Titolare per Sky (14:42, con Gonzalez e Kolo Muani); panchina per Gazzetta e SosFanta (5%), 40% per fantacalcio.it. La quota marcatore resta corta (2.87 bwin, 2.75 Snai)."),
+("Woltemade","A","Juventus","Juventus-Lazio",.40,.05,.12,.90,2.85,2.75,6.0,4.8,0,"⚠️ Titolare per Sky (16:29, con Gonzalez e Kolo Muani); panchina per Gazzetta e SosFanta (5%), 40% per fantacalcio.it. La quota marcatore resta corta (2.85 bwin, 2.75 Snai)."),
 ("Ramos G.","A","Milan","Milan-Atalanta",.90,.95,.90,.90,2.35,2.4,6.5,5.75,0,"Titolare per tutte e quattro le fonti. Marcatore 2.35 bwin / 2.40 Snai."),
-("Kolo Muani","A","Juventus","Juventus-Lazio",.90,.95,.90,.90,3.1,2.5,6.25,4.4,0,"Titolare per tutte e quattro le fonti. Marcatore 3.10 bwin / 2.50 Snai."),
+("Kolo Muani","A","Juventus","Juventus-Lazio",.90,.95,.90,.90,3.1,2.75,6.25,4.4,0,"Titolare per tutte e quattro le fonti. Marcatore 3.10 bwin / 2.75 Snai."),
 ("Colombo","A","Genoa","Roma-Genoa",0.0,0.0,0.0,0.0,None,None,None,None,0,"🔴 Infortunato alla caviglia per tutte le fonti; assente dai marcatori di Roma-Genoa su bwin e Snai."),
 ("Thuram","A","Inter","Bologna-Inter",.60,.95,.90,.90,2.1,2.25,5.0,5.5,0,"Titolare per Gazzetta, Sky e SosFanta (95%); ballottaggio per fantacalcio.it (60%). Marcatore 2.10 bwin / 2.25 Snai."),
 ]
