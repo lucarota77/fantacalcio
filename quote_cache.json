@@ -1,248 +1,243 @@
 {
- "giornata": "7",
- "rilevate": "2026-10-16T18:41+02:00",
+ "giornata": "8",
+ "rilevate": "2026-10-21T12:17+02:00",
  "fonte": "bwin + Snai (browser, passata locale)",
  "partite": {
-  "Bologna-Inter": "sab 17/10 18:00",
-  "Milan-Atalanta": "dom 18/10 18:00",
-  "Juventus-Lazio": "dom 18/10 20:45",
-  "Udinese-Lecce": "dom 18/10 12:30",
-  "Venezia-Napoli": "sab 17/10 15:00",
-  "Fiorentina-Como": "dom 18/10 15:00",
-  "Roma-Genoa": "sab 17/10 20:45",
-  "Parma-Torino": "lun 19/10 20:45"
+  "Inter-Fiorentina": "dom 25/10 12:30",
+  "Udinese-Milan": "dom 25/10 20:45",
+  "Lecce-Juventus": "dom 25/10 18:00",
+  "Lazio-Parma": "sab 24/10 20:45",
+  "Cagliari-Bologna": "sab 24/10 15:00",
+  "Torino-Monza": "ven 23/10 20:45",
+  "Napoli-Roma": "sab 24/10 18:00",
+  "Como-Sassuolo": "sab 24/10 15:00",
+  "Genoa-Venezia": "dom 25/10 15:00"
  },
  "quote": {
   "Thuram": {
-   "qg": 2.1,
-   "qgs": 2.25,
-   "qa": 5.0,
-   "qc": 5.5
+   "qg": 1.8,
+   "qgs": 1.8,
+   "qa": 4.2,
+   "qc": 4.2
   },
   "Pulisic": {
-   "qg": 2.75,
+   "qg": 2.9,
    "qgs": 2.5,
    "qa": 4.1,
-   "qc": 6.5
+   "qc": 5.25
   },
   "Ramos G.": {
-   "qg": 2.35,
-   "qgs": 2.4,
+   "qg": 2.3,
+   "qgs": 2.25,
    "qa": 6.5,
-   "qc": 5.75
+   "qc": 4.8
   },
   "Gonzalez N.": {
-   "qg": 3.8,
-   "qgs": 3.25,
-   "qa": 5.25,
-   "qc": 3.5
-  },
-  "Kolo Muani": {
-   "qg": 3.1,
-   "qgs": 2.75,
-   "qa": 6.25,
-   "qc": 4.4
-  },
-  "Vojvoda": {
-   "qg": 7.75,
-   "qgs": 7.5,
-   "qa": 5.5,
-   "qc": 5.25
+   "qg": 3.3,
+   "qgs": 3.0,
+   "qa": 4.33,
+   "qc": 4.1
   },
   "Kalulu": {
-   "qg": 14.0,
-   "qgs": 25.0,
-   "qa": 8.25,
-   "qc": 4.8
+   "qg": 13.0,
+   "qgs": 16.0,
+   "qa": 6.25,
+   "qc": 5.5
   },
-  "Woltemade": {
-   "qg": 2.85,
-   "qgs": 2.75,
-   "qa": 6.0,
-   "qc": 4.8
-  },
-  "Alajbegovic": {
-   "qg": 3.5,
-   "qgs": 3.25,
-   "qa": 4.1,
-   "qc": 4.75
-  },
-  "Politano": {
-   "qg": 4.2,
-   "qgs": 3.25,
-   "qa": 4.33,
-   "qc": 5.25
-  },
-  "Pavlovic": {
-   "qg": 11.5,
-   "qgs": 25.0,
-   "qa": 12.5,
+  "Kolo Muani": {
+   "qg": 2.7,
+   "qgs": 2.4,
+   "qa": 5.25,
    "qc": 4.5
   },
-  "Chalobah": {
-   "qg": 10.5,
+  "Woltemade": {
+   "qg": 2.45,
+   "qgs": 2.4,
+   "qa": 5.25,
+   "qc": 4.6
+  },
+  "Alajbegovic": {
+   "qg": 3.2,
+   "qgs": 3.0,
+   "qa": 3.6,
+   "qc": 4.75
+  },
+  "Pavlovic": {
+   "qg": 9.5,
+   "qgs": 7.5,
+   "qa": 14.5,
+   "qc": 4.2
+  },
+  "Doekhi": {
+   "qg": 7.5,
    "qgs": 9.0,
-   "qa": 15.0,
-   "qc": 5.5
+   "qa": 14.0,
+   "qc": 4.33
+  },
+  "Bernardeschi": {
+   "qg": 4.33,
+   "qgs": 4.5,
+   "qa": 5.25,
+   "qc": 4.75
+  },
+  "Comuzzo": {
+   "qg": 13.5,
+   "qgs": 25.0,
+   "qa": 14.5,
+   "qc": 3.9
+  },
+  "Politano": {
+   "qg": 5.75,
+   "qgs": 4.5,
+   "qa": 5.25,
+   "qc": 4.6
+  },
+  "Pellegrino M.": {
+   "qg": 3.8,
+   "qgs": 4.0,
+   "qa": 8.75,
+   "qc": 4.4
   },
   "Lulli": {
    "qg": 14.0,
-   "qgs": 25.0,
-   "qa": 5.75,
-   "qc": 5.5
-  },
-  "Pellegrino M.": {
-   "qg": 3.3,
-   "qgs": 3.25,
-   "qa": 7.75,
-   "qc": 4.75
-  },
-  "Bernardeschi": {
-   "qg": 5.25,
-   "qgs": 6.0,
+   "qgs": 16.0,
    "qa": 6.5,
    "qc": 4.8
-  },
-  "Comuzzo": {
-   "qg": 15.0,
-   "qgs": 33.0,
-   "qa": 15.5,
-   "qc": 4.0
-  },
-  "Gallo": {
-   "qg": 18.5,
-   "qgs": 25.0,
-   "qa": 7.75,
-   "qc": 5.75
-  },
-  "Doekhi": {
-   "qg": 13.5,
-   "qgs": 16.0,
-   "qa": 21.0,
-   "qc": 4.33
   },
   "Martinez Jo.": {
    "qg": null,
    "qgs": null,
    "qa": null,
-   "qc": 10.5
+   "qc": 14.0
+  },
+  "Vojvoda": {
+   "qg": 12.0,
+   "qgs": 12.0,
+   "qa": 8.25,
+   "qc": 5.0
+  },
+  "Gallo": {
+   "qg": 20.0,
+   "qgs": 33.0,
+   "qa": 11.0,
+   "qc": 5.0
   },
   "Skorupski": {
    "qg": null,
    "qgs": null,
    "qa": null,
-   "qc": 8.5
+   "qc": 10.0
   }
  },
  "match": {
-  "Frosinone-Sassuolo": {
-   "home": "Frosinone",
-   "away": "Sassuolo",
-   "when": "ven 16/10 20:45",
+  "Torino-Monza": {
+   "home": "Torino",
+   "away": "Monza",
+   "when": "ven 23/10 20:45",
    "bwin": {
     "odds": [
-     2.25,
-     3.75,
-     2.7
-    ],
-    "ou": [
-     1.4,
-     2.7,
-     2.5
-    ]
-   },
-   "snai": {
-    "odds": [
-     2.4,
-     3.6,
-     2.75
-    ],
-    "ou": [
-     1.36,
-     2.9,
-     2.5
-    ]
-   }
-  },
-  "Venezia-Napoli": {
-   "home": "Venezia",
-   "away": "Napoli",
-   "when": "sab 17/10 15:00",
-   "bwin": {
-    "odds": [
-     4.4,
-     3.8,
-     1.7
-    ],
-    "ou": [
-     1.66,
-     2.05,
-     2.5
-    ]
-   },
-   "snai": {
-    "odds": [
-     4.75,
-     3.75,
-     1.75
-    ],
-    "ou": [
-     1.65,
      2.1,
-     2.5
-    ]
-   }
-  },
-  "Bologna-Inter": {
-   "home": "Bologna",
-   "away": "Inter",
-   "when": "sab 17/10 18:00",
-   "bwin": {
-    "odds": [
-     5.25,
-     3.9,
-     1.6
+     3.4,
+     3.3
     ],
     "ou": [
-     1.6,
-     2.15,
+     1.9,
+     1.78,
      2.5
     ]
    },
    "snai": {
     "odds": [
-     5.75,
-     4.0,
-     1.57
+     2.15,
+     3.25,
+     3.4
     ],
     "ou": [
-     1.6,
-     2.2,
+     1.9,
+     1.8,
      2.5
     ]
    }
   },
-  "Roma-Genoa": {
-   "home": "Roma",
-   "away": "Genoa",
-   "when": "sab 17/10 20:45",
+  "Cagliari-Bologna": {
+   "home": "Cagliari",
+   "away": "Bologna",
+   "when": "sab 24/10 15:00",
    "bwin": {
+    "odds": [
+     2.95,
+     3.1,
+     2.4
+    ],
+    "ou": [
+     2.1,
+     1.63,
+     2.5
+    ]
+   },
+   "snai": {
+    "odds": [
+     2.9,
+     3.1,
+     2.45
+    ],
+    "ou": [
+     2.1,
+     1.65,
+     2.5
+    ]
+   }
+  },
+  "Como-Sassuolo": {
+   "home": "Como",
+   "away": "Sassuolo",
+   "when": "sab 24/10 15:00",
+   "bwin": {
+    "odds": [
+     1.51,
+     4.5,
+     5.5
+    ],
+    "ou": [
+     1.43,
+     2.6,
+     2.5
+    ]
+   },
+   "snai": {
     "odds": [
      1.52,
-     4.2,
-     5.75
+     4.25,
+     5.5
     ],
     "ou": [
-     1.75,
-     1.95,
+     1.45,
+     2.6,
+     2.5
+    ]
+   }
+  },
+  "Napoli-Roma": {
+   "home": "Napoli",
+   "away": "Roma",
+   "when": "sab 24/10 18:00",
+   "bwin": {
+    "odds": [
+     2.7,
+     3.4,
+     2.45
+    ],
+    "ou": [
+     1.8,
+     1.87,
      2.5
     ]
    },
    "snai": {
     "odds": [
-     1.55,
-     4.0,
-     6.0
+     2.75,
+     3.25,
+     2.5
     ],
     "ou": [
      1.8,
@@ -251,114 +246,27 @@
     ]
    }
   },
-  "Udinese-Lecce": {
-   "home": "Udinese",
-   "away": "Lecce",
-   "when": "dom 18/10 12:30",
+  "Lazio-Parma": {
+   "home": "Lazio",
+   "away": "Parma",
+   "when": "sab 24/10 20:45",
    "bwin": {
     "odds": [
-     1.87,
-     3.4,
-     4.1
+     1.44,
+     4.2,
+     7.0
     ],
     "ou": [
-     1.95,
-     1.73,
-     2.5
-    ]
-   },
-   "snai": {
-    "odds": [
+     1.82,
      1.85,
-     3.5,
-     4.5
-    ],
-    "ou": [
-     2.0,
-     1.72,
-     2.5
-    ]
-   }
-  },
-  "Fiorentina-Como": {
-   "home": "Fiorentina",
-   "away": "Como",
-   "when": "dom 18/10 15:00",
-   "bwin": {
-    "odds": [
-     3.25,
-     3.6,
-     2.05
-    ],
-    "ou": [
-     1.62,
-     2.15,
      2.5
     ]
    },
    "snai": {
     "odds": [
-     3.4,
-     3.6,
-     2.05
-    ],
-    "ou": [
-     1.6,
-     2.2,
-     2.5
-    ]
-   }
-  },
-  "Milan-Atalanta": {
-   "home": "Milan",
-   "away": "Atalanta",
-   "when": "dom 18/10 18:00",
-   "bwin": {
-    "odds": [
-     1.78,
-     3.75,
-     4.0
-    ],
-    "ou": [
-     1.7,
-     2.0,
-     2.5
-    ]
-   },
-   "snai": {
-    "odds": [
-     1.75,
-     3.75,
-     4.5
-    ],
-    "ou": [
-     1.65,
-     2.1,
-     2.5
-    ]
-   }
-  },
-  "Juventus-Lazio": {
-   "home": "Juventus",
-   "away": "Lazio",
-   "when": "dom 18/10 20:45",
-   "bwin": {
-    "odds": [
-     1.65,
-     3.8,
-     5.0
-    ],
-    "ou": [
-     1.88,
-     1.8,
-     2.5
-    ]
-   },
-   "snai": {
-    "odds": [
-     1.67,
-     3.75,
-     5.0
+     1.42,
+     4.25,
+     7.5
     ],
     "ou": [
      1.85,
@@ -367,60 +275,147 @@
     ]
    }
   },
-  "Monza-Cagliari": {
-   "home": "Monza",
-   "away": "Cagliari",
-   "when": "lun 19/10 18:30",
+  "Inter-Fiorentina": {
+   "home": "Inter",
+   "away": "Fiorentina",
+   "when": "dom 25/10 12:30",
    "bwin": {
     "odds": [
-     2.3,
-     3.2,
-     3.1
+     1.37,
+     5.0,
+     7.0
     ],
     "ou": [
-     2.0,
-     1.7,
+     1.42,
+     2.65,
      2.5
     ]
    },
    "snai": {
     "odds": [
-     2.45,
-     3.0,
-     3.1
+     1.33,
+     5.25,
+     8.0
     ],
     "ou": [
-     1.95,
-     1.75,
-     2.5
-    ]
-   }
-  },
-  "Parma-Torino": {
-   "home": "Parma",
-   "away": "Torino",
-   "when": "lun 19/10 20:45",
-   "bwin": {
-    "odds": [
-     3.2,
-     3.0,
-     2.35
-    ],
-    "ou": [
-     2.3,
-     1.55,
-     2.5
-    ]
-   },
-   "snai": {
-    "odds": [
-     3.4,
+     1.4,
      2.9,
-     2.3
+     2.5
+    ]
+   }
+  },
+  "Atalanta-Frosinone": {
+   "home": "Atalanta",
+   "away": "Frosinone",
+   "when": "dom 25/10 15:00",
+   "bwin": {
+    "odds": [
+     1.75,
+     4.2,
+     3.8
     ],
     "ou": [
-     2.25,
-     1.57,
+     1.38,
+     2.8,
+     2.5
+    ]
+   },
+   "snai": {
+    "odds": [
+     1.8,
+     4.0,
+     3.75
+    ],
+    "ou": [
+     1.36,
+     2.9,
+     2.5
+    ]
+   }
+  },
+  "Genoa-Venezia": {
+   "home": "Genoa",
+   "away": "Venezia",
+   "when": "dom 25/10 15:00",
+   "bwin": {
+    "odds": [
+     2.0,
+     3.4,
+     3.5
+    ],
+    "ou": [
+     1.85,
+     1.83,
+     2.5
+    ]
+   },
+   "snai": {
+    "odds": [
+     2.05,
+     3.5,
+     3.5
+    ],
+    "ou": [
+     1.85,
+     1.85,
+     2.5
+    ]
+   }
+  },
+  "Lecce-Juventus": {
+   "home": "Lecce",
+   "away": "Juventus",
+   "when": "dom 25/10 18:00",
+   "bwin": {
+    "odds": [
+     6.75,
+     4.2,
+     1.46
+    ],
+    "ou": [
+     1.8,
+     1.87,
+     2.5
+    ]
+   },
+   "snai": {
+    "odds": [
+     7.5,
+     4.25,
+     1.42
+    ],
+    "ou": [
+     1.8,
+     1.9,
+     2.5
+    ]
+   }
+  },
+  "Udinese-Milan": {
+   "home": "Udinese",
+   "away": "Milan",
+   "when": "dom 25/10 20:45",
+   "bwin": {
+    "odds": [
+     5.0,
+     3.8,
+     1.65
+    ],
+    "ou": [
+     1.8,
+     1.88,
+     2.5
+    ]
+   },
+   "snai": {
+    "odds": [
+     5.25,
+     3.75,
+     1.65
+    ],
+    "ou": [
+     1.8,
+     1.9,
      2.5
     ]
    }
