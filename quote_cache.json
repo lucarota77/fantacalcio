@@ -1,6 +1,6 @@
 {
  "giornata": "10",
- "rilevate": "2026-10-30T14:21+01:00",
+ "rilevate": "2026-10-30T14:55+01:00",
  "fonte": "bwin + Snai (browser, passata locale)",
  "partite": {
   "Milan-Inter": "sab 31/10 20:45",
@@ -38,17 +38,17 @@
    "qa": null,
    "qc": null
   },
+  "Pellegrino M.": {
+   "qg": 2.75,
+   "qgs": 2.75,
+   "qa": 6.5,
+   "qc": 4.75
+  },
   "Pulisic": {
    "qg": 3.7,
    "qgs": 3.5,
    "qa": 5.25,
    "qc": 5.0
-  },
-  "Pellegrino M.": {
-   "qg": 2.75,
-   "qgs": 2.75,
-   "qa": 6.5,
-   "qc": 4.6
   },
   "Ramos G.": {
    "qg": 3.2,
@@ -71,7 +71,7 @@
   "Kolo Muani": {
    "qg": 3.6,
    "qgs": 3.25,
-   "qa": 7.0,
+   "qa": 7.25,
    "qc": 4.75
   },
   "Alajbegovic": {
@@ -102,7 +102,7 @@
    "qg": 13.5,
    "qgs": 9.0,
    "qa": 18.0,
-   "qc": 3.5
+   "qc": 3.6
   },
   "Comuzzo": {
    "qg": 14.0,
