@@ -60,7 +60,11 @@ if 'locale' not in sys.argv and os.path.exists('giocatori_input.json'):
 # GAZZETTA e FANTACALCIO.IT copiate da gz.json/fc.json (25/25; Gazzetta 28/10 19:53 - 30/10 13:47,
 #   fantacalcio.it Milan-Inter 14:08), TRANNE Martinez Jo.: i parser lo agganciano a Lautaro (indisponibile).
 #   Pagine: Gazzetta "1 Martinez" in panchina (0.12), fantacalcio.it ballottaggio Provedel 55 / Martinez 45.
-# SKY: ora sulla giornata 10 (aggiornata 30/10 13:37). Nessun ballottaggio fra i 25: titolare 0.90, fuori
+# PASSATA 30/10 15:35: Gazzetta, fantacalcio.it, SosFanta e Sky (14:16) identici alle 14:55. bwin (15:40)
+#   1X2/O-U invariati, cartellini Martinez 7.75, Provedel 8.25, Skorupski 9.75, Pavlovic 3.70, Pellegrino 4.80,
+#   assist Pellegrino 6.25; mercati giocatore aperti ora anche su Atalanta-Parma (nessuno dei 25). Snai marcatori
+#   identici; 1X2/O-U mossi su Bologna-Monza, Frosinone-Torino, Lazio-Cagliari, Juventus-Napoli, Sassuolo-Fiorentina.
+# SKY: ora sulla giornata 10 (aggiornata 30/10 13:37, poi 14:16). Nessun ballottaggio fra i 25: titolare 0.90, fuori
 #   dall'undici 0.12, indisponibile 0.0. Inter con Josep Martinez in porta (Provedel fuori).
 # SOSFANTA: lista-formazioni, partite 31/10-02/11, riletta 30/10 14:15: portiere Inter ribaltato,
 #   Martinez 55 / Provedel 45 (stamattina 5/95).
@@ -102,13 +106,13 @@ if 'locale' not in sys.argv and os.path.exists('giocatori_input.json'):
 # Omonimi scartati: "Lautaro Martinez" (attaccante Inter), "Thuram K." (Juventus, infortunato).
 # Alajbegovic e' "Kerim" su entrambi i book. Provedel ora quotato da bwin solo come cartellino (12.00).
 P = [
-("Martinez Jo.","P","Inter","Milan-Inter",.45,.55,.12,.90,None,None,None,8.0,0,"⚠️ Ballottaggio aperto: titolare per Sky (13:37) e SosFanta (55%); fantacalcio.it 45% (Provedel 55%); in panchina per Gazzetta (\"1 Martinez\"). Cartellino bwin 8.00."),
-("Provedel","P","Inter","Milan-Inter",.55,.45,.90,.12,None,None,None,8.5,0,"⚠️ Ballottaggio aperto: titolare per Gazzetta e fantacalcio.it (55%); SosFanta 45%; fuori per Sky (Martinez in porta). Cartellino bwin 8.50."),
-("Skorupski","P","Bologna","Bologna-Monza",.90,.95,.90,.90,None,None,None,10.0,0,"Titolare per tutte e quattro le fonti. Cartellino bwin 10.00."),
+("Martinez Jo.","P","Inter","Milan-Inter",.45,.55,.12,.90,None,None,None,7.75,0,"⚠️ Ballottaggio aperto: titolare per Sky (14:16) e SosFanta (55%); fantacalcio.it 45% (Provedel 55%); in panchina per Gazzetta (\"1 Martinez\"). Cartellino bwin 7.75."),
+("Provedel","P","Inter","Milan-Inter",.55,.45,.90,.12,None,None,None,8.25,0,"⚠️ Ballottaggio aperto: titolare per Gazzetta e fantacalcio.it (55%); SosFanta 45%; fuori per Sky (Martinez in porta). Cartellino bwin 8.25."),
+("Skorupski","P","Bologna","Bologna-Monza",.90,.95,.90,.90,None,None,None,9.75,0,"Titolare per tutte e quattro le fonti. Cartellino bwin 9.75."),
 ("Lulli","D","Roma","Udinese-Roma",.40,.51,.90,.90,9.0,9.0,4.75,5.75,0,"⚠️ Titolare per Gazzetta e Sky; fantacalcio.it 40% e SosFanta 51% (ballottaggio con Molina). Marcatore 9.00 bwin / 9.00 Snai, assist 4.75."),
 ("Comuzzo","D","Torino","Frosinone-Torino",.90,.95,.90,.90,14.0,25.0,15.5,4.2,0,"Titolare per tutte e quattro le fonti. Marcatore 14.00 bwin / 25.00 Snai, cartellino 4.20."),
 ("Doekhi","D","Lazio","Lazio-Cagliari",.45,.51,.12,.12,None,9.0,None,None,0,"⚠️ In panchina per Gazzetta e Sky (Sutalo-Provstgaard); fantacalcio.it 45% e SosFanta 51% (ballottaggio con Sutalo). bwin ha aperto i mercati di Lazio-Cagliari e NON lo quota (Sutalo e Provstgaard sì): segnale di panchina. Snai marcatore 9.00."),
-("Pavlovic","D","Milan","Milan-Inter",.90,.95,.90,.90,13.5,9.0,18.0,3.6,0,"Titolare per tutte e quattro le fonti. Marcatore 13.50 bwin / 9.00 Snai, cartellino 3.60."),
+("Pavlovic","D","Milan","Milan-Inter",.90,.95,.90,.90,13.5,9.0,18.0,3.7,0,"Titolare per tutte e quattro le fonti. Marcatore 13.50 bwin / 9.00 Snai, cartellino 3.70."),
 ("Vojvoda","D","Udinese","Udinese-Roma",.90,.95,.90,.90,10.5,9.0,8.0,4.8,0,"Titolare per tutte e quattro le fonti. Marcatore 10.50 bwin / 9.00 Snai, assist 8.00."),
 ("Kalulu","D","Juventus","Juventus-Napoli",.90,.95,.90,.90,15.5,25.0,7.5,4.8,0,"Titolare per tutte e quattro le fonti. Marcatore 15.50 bwin / 25.00 Snai, assist 7.50."),
 ("Chalobah","D","Como","Como-Venezia",0.0,0.0,0.0,0.0,None,None,None,None,0,"🔴 Infortunato: indisponibile per Gazzetta, fantacalcio.it, SosFanta e Sky (in dubbio per l'11a). Snai lo quota comunque 7.50 marcatore (non usata: override indisponibile); bwin non ha ancora aperto i mercati giocatore di Como-Venezia."),
@@ -121,7 +125,7 @@ P = [
 ("Pulisic","C","Milan","Milan-Inter",.90,.60,.90,.90,3.7,3.5,5.25,5.0,0,"Titolare per Gazzetta, fantacalcio.it e Sky; SosFanta 60% (ballottaggio con Cisse). Marcatore 3.70 bwin / 3.50 Snai."),
 ("Politano","C","Napoli","Juventus-Napoli",.90,.95,.90,.90,5.75,5.0,5.75,4.6,0,"Titolare per tutte e quattro le fonti. Marcatore 5.75 bwin / 5.00 Snai."),
 ("Bernardeschi","C","Bologna","Bologna-Monza",.90,.55,.90,.90,3.2,2.75,4.1,4.6,0,"Titolare per Gazzetta, fantacalcio.it e Sky; SosFanta 55% (ballottaggio con Orsolini). Marcatore 3.20 bwin / 2.75 Snai, assist 4.10."),
-("Pellegrino M.","A","Fiorentina","Sassuolo-Fiorentina",.60,.60,.90,.90,2.75,2.75,6.5,4.75,0,"Titolare per Gazzetta e Sky; fantacalcio.it e SosFanta 60% (ballottaggio con Beto). Marcatore 2.75 bwin / 2.75 Snai: il mercato lo dà titolare."),
+("Pellegrino M.","A","Fiorentina","Sassuolo-Fiorentina",.60,.60,.90,.90,2.75,2.75,6.25,4.8,0,"Titolare per Gazzetta e Sky; fantacalcio.it e SosFanta 60% (ballottaggio con Beto). Marcatore 2.75 bwin / 2.75 Snai: il mercato lo dà titolare."),
 ("Woltemade","A","Juventus","Juventus-Napoli",.90,.51,.90,.90,3.3,3.25,7.0,5.25,0,"Titolare per Gazzetta, fantacalcio.it e Sky; SosFanta 51% (ballottaggio con Alajbegovic). Marcatore 3.30 bwin / 3.25 Snai."),
 ("Ramos G.","A","Milan","Milan-Inter",.90,.95,.90,.90,3.2,3.0,9.0,4.33,0,"Titolare per tutte e quattro le fonti. Marcatore 3.20 bwin / 3.00 Snai."),
 ("Kolo Muani","A","Juventus","Juventus-Napoli",.90,.95,.90,.90,3.6,3.25,7.25,4.75,0,"Titolare per tutte e quattro le fonti. Marcatore 3.60 bwin / 3.25 Snai."),
