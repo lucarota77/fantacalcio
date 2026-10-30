@@ -15,7 +15,9 @@ const TG=["Martinez","Martínez","Jones","Thuram","Provedel","Doekhi","Gudmundss
           "Vojvoda","Kalulu","Alajbegovic","Gonzalez","González","Woltemade","Kolo","Gallo",
           "Politano","Pellegrino","Colombo"];
 // I nomi di squadra vanno scartati o disallineano l'accoppiamento nome <-> quota.
+// Idem l'etichetta del carosello "Slide 1 of 1" (comparsa a fine ottobre 2026 in assist/cartellino).
 const SK=new Set(['Tutti','1+','2+','3+','4+','5+','Mostra di più','Mostra di meno','Gol singolo',
+  'Slide 1 of 1',
   'Gol multipli','In qualsiasi momento','Nessun marcatore','Tempi regolamentari','1° tempo',
   '2° tempo','Over','Under','Sì','No'].concat(tm));
 const ST=['Ultimo Marcatore','1° marcatore','1º marcatore','Totale tiri','Fuorigioco',
