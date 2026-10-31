@@ -72,7 +72,9 @@ def analizza(h, rosa):
             return any(k == n_ or (len(k) > 4 and k in n_) for k in ks)
         hit = lambda lst: any(match(c) for c in lst)
         pb = next((v for k, v in ballo_all.items() if match(k)), None)
-        if hit(fuori):
+        # chi e fra titolari o ballottaggi non e l'indisponibile: e un omonimo dello stesso club
+        # (31/10: "Lautaro Martinez" infortunato faceva risultare indisponibile Martinez Jo.)
+        if hit(fuori) and pb is None and not hit(start_all):
             info['fc'], info['nota'] = 0.0, 'indisponibile o squalificato (fantacalcio.it)'
         elif pb is not None:
             info['fc'], info['nota'] = pb, f'ballottaggio {round(pb*100)}% (fantacalcio.it)'

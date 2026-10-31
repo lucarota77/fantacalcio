@@ -76,7 +76,9 @@ def analizza(testo, rosa, adesso=None):
             info = {'gz': None, 'stale': stale, 'nota': '',
                     'ts': ts.isoformat() if ts else None, 'match': ' - '.join(sq)}
             hit = lambda testo: any(k in norm(testo) for k in ks)
-            if hit(fuori):
+            # chi e nell'undici non e l'indisponibile: e un omonimo dello stesso club
+            # (31/10: "Lautaro Martinez" fuori faceva risultare indisponibile J. Martinez titolare)
+            if hit(fuori) and not hit(undici):
                 info['gz'], info['nota'] = 0.0, 'indisponibile o squalificato (Gazzetta)'
             else:
                 perc = None
