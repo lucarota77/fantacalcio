@@ -1,10 +1,10 @@
 {
  "giornata": "11",
- "rilevate": "2026-11-05T13:16+01:00",
+ "rilevate": "2026-11-05T17:02+01:00",
  "fonte": "bwin + Snai (browser, passata locale)",
  "partite": {
-  "Inter-Como": "dom 08/11 18:00",
   "Roma-Sassuolo": "sab 07/11 20:45",
+  "Inter-Como": "dom 08/11 18:00",
   "Genoa-Milan": "dom 08/11 15:00",
   "Parma-Bologna": "sab 07/11 18:00",
   "Fiorentina-Juventus": "dom 08/11 20:45",
@@ -13,47 +13,47 @@
   "Venezia-Udinese": "ven 06/11 20:45"
  },
  "quote": {
-  "Thuram": {
-   "qg": null,
-   "qgs": 2.25,
-   "qa": null,
-   "qc": null
-  },
   "Lulli": {
-   "qg": null,
+   "qg": 7.0,
    "qgs": 7.5,
-   "qa": null,
-   "qc": null
+   "qa": 3.7,
+   "qc": 6.0
+  },
+  "Thuram": {
+   "qg": 2.15,
+   "qgs": 2.25,
+   "qa": 5.25,
+   "qc": 4.1
   },
   "Pulisic": {
-   "qg": null,
+   "qg": 3.2,
    "qgs": 2.75,
-   "qa": null,
-   "qc": null
-  },
-  "Ramos G.": {
-   "qg": null,
-   "qgs": 2.5,
-   "qa": null,
-   "qc": null
+   "qa": 4.6,
+   "qc": 4.75
   },
   "Bernardeschi": {
-   "qg": null,
+   "qg": 3.3,
    "qgs": 3.0,
-   "qa": null,
-   "qc": null
+   "qa": 4.8,
+   "qc": 4.4
   },
-  "Pavlovic": {
-   "qg": null,
-   "qgs": 7.5,
-   "qa": null,
-   "qc": null
+  "Ramos G.": {
+   "qg": 2.7,
+   "qgs": 2.5,
+   "qa": 8.5,
+   "qc": 4.0
   },
   "Alajbegovic": {
    "qg": null,
    "qgs": 3.5,
    "qa": null,
    "qc": null
+  },
+  "Pavlovic": {
+   "qg": 11.5,
+   "qgs": 7.5,
+   "qa": 21.0,
+   "qc": 3.8
   },
   "Woltemade": {
    "qg": null,
@@ -68,16 +68,16 @@
    "qc": null
   },
   "Politano": {
-   "qg": null,
+   "qg": 4.75,
    "qgs": 4.0,
-   "qa": null,
-   "qc": null
+   "qa": 4.6,
+   "qc": 4.75
   },
   "Comuzzo": {
-   "qg": null,
+   "qg": 13.0,
    "qgs": 25.0,
-   "qa": null,
-   "qc": null
+   "qa": 13.0,
+   "qc": 5.0
   },
   "Pellegrino M.": {
    "qg": null,
@@ -98,10 +98,10 @@
    "qc": null
   },
   "Vojvoda": {
-   "qg": null,
+   "qg": 9.75,
    "qgs": 9.0,
-   "qa": null,
-   "qc": null
+   "qa": 6.5,
+   "qc": 6.0
   },
   "Doekhi": {
    "qg": null,
@@ -110,10 +110,22 @@
    "qc": null
   },
   "Gallo": {
-   "qg": null,
+   "qg": 19.0,
    "qgs": 25.0,
+   "qa": 8.5,
+   "qc": 5.75
+  },
+  "Skorupski": {
+   "qg": null,
+   "qgs": null,
    "qa": null,
-   "qc": null
+   "qc": 9.25
+  },
+  "Martinez Jo.": {
+   "qg": null,
+   "qgs": null,
+   "qa": null,
+   "qc": 11.0
   }
  },
  "match": {
@@ -121,6 +133,18 @@
    "home": "Venezia",
    "away": "Udinese",
    "when": "ven 06/11 20:45",
+   "bwin": {
+    "odds": [
+     2.2,
+     3.5,
+     3.0
+    ],
+    "ou": [
+     1.7,
+     2.0,
+     2.5
+    ]
+   },
    "snai": {
     "odds": [
      2.2,
@@ -138,11 +162,23 @@
    "home": "Cagliari",
    "away": "Frosinone",
    "when": "sab 07/11 15:00",
+   "bwin": {
+    "odds": [
+     2.7,
+     3.6,
+     2.35
+    ],
+    "ou": [
+     1.52,
+     2.35,
+     2.5
+    ]
+   },
    "snai": {
     "odds": [
      2.6,
      3.6,
-     2.4
+     2.45
     ],
     "ou": [
      1.52,
@@ -155,15 +191,27 @@
    "home": "Torino",
    "away": "Lecce",
    "when": "sab 07/11 15:00",
+   "bwin": {
+    "odds": [
+     1.78,
+     3.6,
+     4.2
+    ],
+    "ou": [
+     1.87,
+     1.8,
+     2.5
+    ]
+   },
    "snai": {
     "odds": [
-     1.75,
+     1.8,
      3.6,
      4.25
     ],
     "ou": [
-     1.75,
-     1.95,
+     1.85,
+     1.85,
      2.5
     ]
    }
@@ -172,6 +220,18 @@
    "home": "Parma",
    "away": "Bologna",
    "when": "sab 07/11 18:00",
+   "bwin": {
+    "odds": [
+     4.2,
+     3.5,
+     1.82
+    ],
+    "ou": [
+     2.05,
+     1.68,
+     2.5
+    ]
+   },
    "snai": {
     "odds": [
      4.25,
@@ -189,6 +249,18 @@
    "home": "Roma",
    "away": "Sassuolo",
    "when": "sab 07/11 20:45",
+   "bwin": {
+    "odds": [
+     1.31,
+     5.75,
+     8.25
+    ],
+    "ou": [
+     1.36,
+     2.9,
+     2.5
+    ]
+   },
    "snai": {
     "odds": [
      1.3,
@@ -206,6 +278,18 @@
    "home": "Napoli",
    "away": "Lazio",
    "when": "dom 08/11 12:30",
+   "bwin": {
+    "odds": [
+     2.15,
+     3.6,
+     3.0
+    ],
+    "ou": [
+     1.7,
+     2.0,
+     2.5
+    ]
+   },
    "snai": {
     "odds": [
      2.2,
@@ -223,11 +307,23 @@
    "home": "Genoa",
    "away": "Milan",
    "when": "dom 08/11 15:00",
+   "bwin": {
+    "odds": [
+     4.4,
+     3.5,
+     1.78
+    ],
+    "ou": [
+     2.0,
+     1.68,
+     2.5
+    ]
+   },
    "snai": {
     "odds": [
      4.5,
-     3.6,
-     1.75
+     3.4,
+     1.8
     ],
     "ou": [
      2.0,
@@ -257,11 +353,23 @@
    "home": "Inter",
    "away": "Como",
    "when": "dom 08/11 18:00",
+   "bwin": {
+    "odds": [
+     1.8,
+     3.9,
+     3.75
+    ],
+    "ou": [
+     1.46,
+     2.5,
+     2.5
+    ]
+   },
    "snai": {
     "odds": [
-     1.85,
+     1.8,
      4.0,
-     3.6
+     3.75
     ],
     "ou": [
      1.45,
