@@ -1,0 +1,17 @@
+{
+  "giornata": 11,
+  "aggiornato": "06/11/2026 17:38",
+  "nota": "Link alle schede evento bwin della giornata. La griglia della pagina Serie A si disegna solo col pannello del browser visibile: a pannello nascosto si vedono solo le 7 partite del carosello. Le schede evento invece si leggono anche a pannello nascosto, quindi i link trovati una volta valgono per tutto il turno.",
+  "eventi": {
+    "Venezia-Udinese": "/it/sports/eventi/venezia-udinese-2:7902324",
+    "Cagliari-Frosinone": "/it/sports/eventi/cagliari-frosinone-2:7903286",
+    "Torino-Lecce": "/it/sports/eventi/torino-lecce-2:7903302",
+    "Parma-Bologna": "/it/sports/eventi/parma-bologna-2:7903289",
+    "Roma-Sassuolo": "/it/sports/eventi/roma-sassuolo-2:7903292",
+    "Napoli-Lazio": "/it/sports/eventi/napoli-lazio-2:7904399",
+    "Genoa-Milan": "/it/sports/eventi/genoa-milan-2:7904514",
+    "Monza-Atalanta": "/it/sports/eventi/monza-atalanta-2:7904402",
+    "Inter-Como": "/it/sports/eventi/inter-como-2:7904517",
+    "Fiorentina-Juventus": "/it/sports/eventi/fiorentina-juventus-2:7904520"
+  }
+}
