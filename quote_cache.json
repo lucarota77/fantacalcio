@@ -1,6 +1,6 @@
 {
  "giornata": "11",
- "rilevate": "2026-11-06T16:43+01:00",
+ "rilevate": "2026-11-06T17:38+01:00",
  "fonte": "bwin + Snai (browser, passata locale)",
  "partite": {
   "Inter-Como": "dom 08/11 18:00",
@@ -14,10 +14,10 @@
  },
  "quote": {
   "Thuram": {
-   "qg": 2.15,
+   "qg": 2.2,
    "qgs": 2.25,
    "qa": 5.25,
-   "qc": 4.1
+   "qc": 5.25
   },
   "Pulisic": {
    "qg": 3.1,
@@ -44,28 +44,28 @@
    "qc": 4.6
   },
   "Woltemade": {
-   "qg": null,
+   "qg": 3.0,
    "qgs": 3.0,
-   "qa": null,
-   "qc": null
+   "qa": 6.25,
+   "qc": 6.0
   },
   "Alajbegovic": {
-   "qg": null,
+   "qg": 3.75,
    "qgs": 3.75,
-   "qa": null,
-   "qc": null
-  },
-  "Kolo Muani": {
-   "qg": null,
-   "qgs": 2.75,
-   "qa": null,
-   "qc": null
+   "qa": 4.5,
+   "qc": 4.6
   },
   "Politano": {
    "qg": 4.6,
    "qgs": 4.0,
    "qa": 4.33,
    "qc": 4.6
+  },
+  "Kolo Muani": {
+   "qg": 3.25,
+   "qgs": 2.75,
+   "qa": 6.0,
+   "qc": 5.0
   },
   "Pavlovic": {
    "qg": 11.5,
@@ -80,16 +80,16 @@
    "qc": 6.0
   },
   "Pellegrino M.": {
-   "qg": null,
+   "qg": 3.5,
    "qgs": 3.25,
-   "qa": null,
-   "qc": null
+   "qa": 8.5,
+   "qc": 4.5
   },
   "Kalulu": {
-   "qg": null,
+   "qg": 15.0,
    "qgs": 25.0,
-   "qa": null,
-   "qc": null
+   "qa": 7.5,
+   "qc": 5.0
   },
   "Colombo": {
    "qg": null,
@@ -125,7 +125,7 @@
    "qg": null,
    "qgs": null,
    "qa": null,
-   "qc": 11.0
+   "qc": 9.75
   }
  },
  "match": {
@@ -336,6 +336,18 @@
    "home": "Monza",
    "away": "Atalanta",
    "when": "dom 08/11 15:00",
+   "bwin": {
+    "odds": [
+     3.2,
+     3.7,
+     2.05
+    ],
+    "ou": [
+     1.53,
+     2.3,
+     2.5
+    ]
+   },
    "snai": {
     "odds": [
      3.25,
@@ -355,9 +367,9 @@
    "when": "dom 08/11 18:00",
    "bwin": {
     "odds": [
-     1.8,
+     1.85,
      3.9,
-     3.75
+     3.6
     ],
     "ou": [
      1.46,
@@ -382,6 +394,18 @@
    "home": "Fiorentina",
    "away": "Juventus",
    "when": "dom 08/11 20:45",
+   "bwin": {
+    "odds": [
+     3.25,
+     3.5,
+     2.05
+    ],
+    "ou": [
+     1.72,
+     1.98,
+     2.5
+    ]
+   },
    "snai": {
     "odds": [
      3.4,
