@@ -163,6 +163,14 @@ if 'locale' not in sys.argv and os.path.exists('giocatori_input.json'):
 # Kone M.: ora quotato da entrambi i book (bwin "Kouadio Kone" 5.25, Snai 5.00) ma infortunato per
 #   Gazzetta, fantacalcio.it e SosFanta, in dubbio per Sky -> quote NON caricate (override §1).
 #   "Ismael Kone" di Roma-Sassuolo e il sassolese, scartato.
+# ===== GIORNATA 11 — passata locale 06/11/2026 13:35 =====
+# gz.json/fc.json rigenerati (25/25, git diff vuoto: Gazzetta fino 13:21, Lulli 40% e Kone M. fuori confermati).
+#   Sincronizzato Bernardeschi fc .90 -> .65: fc.json lo da al 65% gia dalla passata delle 10:10.
+# SosFanta riletta 13:37: invariata. Sky aggiornata 06/11 12:34 (articolo ultime news): nessun cambio sui 25.
+# bwin 13:39 sulle stesse 7 partite (Inter-Como, Monza-Atalanta, Fiorentina-Juventus ancora assenti):
+#   Venezia-Udinese 1X2 2.25/3.30/3.00, Vojvoda marcatore 10.00 e cartellino 5.75, Bernardeschi 3.30 e assist 4.60.
+# Snai 13:41: lista di tutte e 10 (Monza-Atalanta di nuovo presente), 8 schede evento:
+#   Pulisic 2.75, Colombo L. 4.00, Pellegrino 3.25, Alajbegovic 3.75.
 P = [
 ("Martinez Jo.","P","Inter","Inter-Como",.90,.95,.90,.90,None,None,None,11.0,0,"Titolare per tutte e quattro le fonti (SosFanta 95%). Cartellino bwin 11.00 (05/11: Inter-Como non in palinsesto bwin il 06/11)."),
 ("Provedel","P","Inter","Inter-Como",.12,.05,.12,.12,None,None,None,None,0,"🔴 Panchina per tutte e quattro le fonti: gioca Martinez. Assente dai mercati bwin."),
@@ -171,23 +179,23 @@ P = [
 ("Comuzzo","D","Torino","Torino-Lecce",.90,.95,.90,.90,13.0,25.0,13.0,5.75,0,"Titolare per tutte e quattro le fonti. Marcatore bwin 13.00 / Snai 25.00, cartellino bwin 5.75."),
 ("Doekhi","D","Lazio","Napoli-Lazio",.12,.05,.12,.12,None,12.0,None,None,0,"🔴 Panchina per tutte e quattro le fonti. Assente dai mercati bwin; Snai lo quota 12.00 marcatore."),
 ("Pavlovic","D","Milan","Genoa-Milan",.90,.70,.90,.90,11.5,7.5,21.0,3.25,0,"Titolare per Gazzetta, fantacalcio.it e Sky; SosFanta 70% (Bartesaghi 30). Marcatore bwin 11.50 / Snai 7.50, cartellino bwin 3.25."),
-("Vojvoda","D","Udinese","Venezia-Udinese",.90,.95,.90,.90,9.75,9.0,6.75,6.0,0,"Titolare per tutte e quattro le fonti. Si gioca stasera, venerdì 06/11 alle 20:45. Marcatore bwin 9.75 / Snai 9.00."),
+("Vojvoda","D","Udinese","Venezia-Udinese",.90,.95,.90,.90,10.0,9.0,6.75,5.75,0,"Titolare per tutte e quattro le fonti. Si gioca stasera, venerdì 06/11 alle 20:45. Marcatore bwin 10.00 / Snai 9.00."),
 ("Kalulu","D","Juventus","Fiorentina-Juventus",.90,.95,.90,.90,None,25.0,None,None,0,"Titolare per tutte e quattro le fonti. Marcatore Snai 25.00; Fiorentina-Juventus non ancora su bwin."),
 ("Chalobah","D","Como","Inter-Como",0.0,0.0,0.0,.12,None,None,None,None,0,"🔴 Affaticamento muscolare: indisponibile per Gazzetta, fantacalcio.it e SosFanta, in dubbio per Sky. Snai lo quota 12.00 marcatore (non usata: override indisponibile)."),
 ("Gallo","D","Lecce","Torino-Lecce",.90,.95,.90,.90,19.0,25.0,8.5,6.25,0,"Titolare per tutte e quattro le fonti. Marcatore bwin 19.00 / Snai 25.00."),
-("Alajbegovic","C","Juventus","Fiorentina-Juventus",.60,.95,.90,.90,None,3.5,None,None,0,"Titolare per Gazzetta, SosFanta (95%) e Sky; fantacalcio.it 60%. Marcatore Snai 3.50."),
+("Alajbegovic","C","Juventus","Fiorentina-Juventus",.60,.95,.90,.90,None,3.75,None,None,0,"Titolare per Gazzetta, SosFanta (95%) e Sky; fantacalcio.it 60%. Marcatore Snai 3.75."),
 ("Gudmundsson A.","C","Lazio","Napoli-Lazio",0.0,0.0,0.0,0.0,None,None,None,None,0,"🔴 Lussazione alla spalla: indisponibile per tutte e quattro le fonti (in dubbio per la 12a). Assente dai marcatori."),
 ("Kone M.","C","Roma","Roma-Sassuolo",0.0,0.0,0.0,.12,None,None,None,None,0,"🔴 Lesione alla coscia: indisponibile per Gazzetta, fantacalcio.it e SosFanta, in dubbio per Sky. Quotato bwin 5.25 / Snai 5.00 (non usate: override indisponibile)."),
 ("Jones C.","C","Inter","Inter-Como",.12,.05,.12,.12,None,None,None,None,0,"🔴 Panchina per tutte e quattro le fonti (in dubbio per Sky, rientra parzialmente in gruppo). Snai lo quota 6.00 marcatore (non usata: altrimenti il floor lo rimetterebbe in campo)."),
 ("Gonzalez N.","C","Juventus","Fiorentina-Juventus",0.0,0.0,0.0,0.0,None,None,None,None,0,"🔴 Lesione al soleo: indisponibile per tutte e quattro le fonti (in dubbio per la 12a). Assente dai marcatori Snai."),
-("Pulisic","C","Milan","Genoa-Milan",.90,.95,.90,.90,3.2,3.0,4.6,6.0,0,"Titolare per tutte e quattro le fonti (SosFanta 95%). Marcatore bwin 3.20 / Snai 3.00."),
+("Pulisic","C","Milan","Genoa-Milan",.90,.95,.90,.90,3.2,2.75,4.6,6.0,0,"Titolare per tutte e quattro le fonti (SosFanta 95%). Marcatore bwin 3.20 / Snai 2.75."),
 ("Politano","C","Napoli","Napoli-Lazio",.90,.95,.90,.90,4.75,4.0,4.5,4.6,0,"Titolare per tutte e quattro le fonti. Marcatore bwin 4.75 / Snai 4.00."),
-("Bernardeschi","C","Bologna","Parma-Bologna",.90,.70,.90,.90,3.4,3.0,4.8,4.4,0,"Titolare per Gazzetta, fantacalcio.it e Sky; SosFanta 70% (Orsolini 30). Marcatore bwin 3.40 / Snai 3.00."),
-("Pellegrino M.","A","Fiorentina","Fiorentina-Juventus",.65,.95,.90,.90,None,3.5,None,None,0,"Titolare per Gazzetta, SosFanta (95%) e Sky; fantacalcio.it 65%. Marcatore Snai 3.50."),
+("Bernardeschi","C","Bologna","Parma-Bologna",.65,.70,.90,.90,3.3,3.0,4.6,4.4,0,"⚠️ Titolare per Gazzetta e Sky; fantacalcio.it 65%, SosFanta 70% (Orsolini 30). Marcatore bwin 3.30 / Snai 3.00."),
+("Pellegrino M.","A","Fiorentina","Fiorentina-Juventus",.65,.95,.90,.90,None,3.25,None,None,0,"Titolare per Gazzetta, SosFanta (95%) e Sky; fantacalcio.it 65%. Marcatore Snai 3.25."),
 ("Woltemade","A","Juventus","Fiorentina-Juventus",.90,.95,.90,.90,None,3.0,None,None,0,"Titolare per tutte e quattro le fonti. Marcatore Snai 3.00."),
 ("Ramos G.","A","Milan","Genoa-Milan",.90,.95,.90,.90,2.7,2.5,8.25,5.0,0,"Titolare per tutte e quattro le fonti. Marcatore bwin 2.70 / Snai 2.50."),
 ("Kolo Muani","A","Juventus","Fiorentina-Juventus",.90,.95,.90,.90,None,2.75,None,None,0,"Titolare per tutte e quattro le fonti (SosFanta 95%, era 51). Marcatore Snai 2.75."),
-("Colombo","A","Genoa","Genoa-Milan",.12,.05,.55,.12,None,4.5,None,None,0,"⚠️ Gazzetta 55% (06/11 09:37, era titolare); panchina per fantacalcio.it, SosFanta e Sky. Marcatore Snai 4.50 (Lorenzo, Genoa); assente da tutti i mercati bwin."),
+("Colombo","A","Genoa","Genoa-Milan",.12,.05,.55,.12,None,4.0,None,None,0,"⚠️ Gazzetta 55% (06/11 09:37, era titolare); panchina per fantacalcio.it, SosFanta e Sky. Marcatore Snai 4.00 (Lorenzo, Genoa); assente da tutti i mercati bwin."),
 ("Thuram","A","Inter","Inter-Como",.90,.95,.90,.90,2.15,2.25,5.25,4.1,0,"Titolare per tutte e quattro le fonti. Marcatore Snai 2.25 / bwin 2.15 (05/11: Inter-Como non in palinsesto bwin il 06/11)."),
 ]
 def devig(q, Mp): return None if not q else (1/q)/Mp
