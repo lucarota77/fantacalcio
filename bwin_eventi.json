@@ -1,17 +1,17 @@
 {
-  "giornata": 11,
-  "aggiornato": "06/11/2026 17:38",
-  "nota": "Link alle schede evento bwin della giornata. La griglia della pagina Serie A si disegna solo col pannello del browser visibile: a pannello nascosto si vedono solo le 7 partite del carosello. Le schede evento invece si leggono anche a pannello nascosto, quindi i link trovati una volta valgono per tutto il turno.",
+  "giornata": 12,
+  "aggiornato": "18/11/2026 17:45",
+  "nota": "Link alle schede evento bwin della giornata. La griglia della pagina Serie A si disegna solo col pannello del browser visibile, ma i link di TUTTE le partite sono comunque nel sorgente della pagina anche a pannello nascosto: [...new Set(document.documentElement.outerHTML.match(/eventi\\/[a-z0-9-]+:\\d+/g))] (trovato il 18/11/2026). Le schede evento si leggono anche a pannello nascosto, quindi i link trovati una volta valgono per tutto il turno.",
   "eventi": {
-    "Venezia-Udinese": "/it/sports/eventi/venezia-udinese-2:7902324",
-    "Cagliari-Frosinone": "/it/sports/eventi/cagliari-frosinone-2:7903286",
-    "Torino-Lecce": "/it/sports/eventi/torino-lecce-2:7903302",
-    "Parma-Bologna": "/it/sports/eventi/parma-bologna-2:7903289",
-    "Roma-Sassuolo": "/it/sports/eventi/roma-sassuolo-2:7903292",
-    "Napoli-Lazio": "/it/sports/eventi/napoli-lazio-2:7904399",
-    "Genoa-Milan": "/it/sports/eventi/genoa-milan-2:7904514",
-    "Monza-Atalanta": "/it/sports/eventi/monza-atalanta-2:7904402",
-    "Inter-Como": "/it/sports/eventi/inter-como-2:7904517",
-    "Fiorentina-Juventus": "/it/sports/eventi/fiorentina-juventus-2:7904520"
+    "Como-Cagliari": "/it/sports/eventi/como-cagliari-2:7910899",
+    "Lazio-Lecce": "/it/sports/eventi/lazio-lecce-2:7910900",
+    "Parma-Roma": "/it/sports/eventi/parma-roma-2:7910940",
+    "Napoli-Torino": "/it/sports/eventi/napoli-torino-2:7911353",
+    "Juventus-Venezia": "/it/sports/eventi/juventus-venezia-2:7911857",
+    "Bologna-Udinese": "/it/sports/eventi/bologna-udinese-2:7911858",
+    "Sassuolo-Genoa": "/it/sports/eventi/sassuolo-genoa-2:7911850",
+    "Milan-Frosinone": "/it/sports/eventi/milan-frosinone-2:7911874",
+    "Atalanta-Inter": "/it/sports/eventi/atalanta-inter-2:7911889",
+    "Monza-Fiorentina": "/it/sports/eventi/monza-fiorentina-2:7912811"
   }
 }
