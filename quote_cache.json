@@ -1,14 +1,14 @@
 {
  "giornata": "12",
- "rilevate": "2026-11-20T15:45+01:00",
+ "rilevate": "2026-11-20T16:42+01:00",
  "fonte": "bwin + Snai (browser, passata locale)",
  "partite": {
   "Atalanta-Inter": "dom 22/11 20:45",
   "Milan-Frosinone": "dom 22/11 18:00",
   "Juventus-Venezia": "dom 22/11 12:30",
   "Parma-Roma": "sab 21/11 18:00",
-  "Bologna-Udinese": "dom 22/11 15:00",
   "Napoli-Torino": "sab 21/11 20:45",
+  "Bologna-Udinese": "dom 22/11 15:00",
   "Monza-Fiorentina": "lun 23/11 20:45",
   "Lazio-Lecce": "sab 21/11 15:00",
   "Como-Cagliari": "sab 21/11 15:00",
@@ -33,17 +33,17 @@
    "qa": 5.75,
    "qc": 4.8
   },
-  "Woltemade": {
-   "qg": 2.37,
-   "qgs": 2.4,
-   "qa": 5.25,
-   "qc": 7.5
-  },
   "Alajbegovic": {
    "qg": 2.95,
    "qgs": 2.75,
    "qa": 3.7,
    "qc": 7.0
+  },
+  "Woltemade": {
+   "qg": 2.37,
+   "qgs": 2.4,
+   "qa": 5.25,
+   "qc": 7.5
   },
   "Kolo Muani": {
    "qg": 2.6,
@@ -52,22 +52,22 @@
    "qc": 6.75
   },
   "Lulli": {
-   "qg": 8.25,
+   "qg": 7.25,
    "qgs": 9.0,
    "qa": 3.9,
    "qc": 6.0
-  },
-  "Bernardeschi": {
-   "qg": 3.2,
-   "qgs": 3.0,
-   "qa": 4.33,
-   "qc": 5.25
   },
   "Politano": {
    "qg": 3.8,
    "qgs": 3.0,
    "qa": 3.4,
    "qc": 6.75
+  },
+  "Bernardeschi": {
+   "qg": 3.2,
+   "qgs": 3.0,
+   "qa": 4.5,
+   "qc": 5.25
   },
   "Pellegrino M.": {
    "qg": 2.55,
@@ -78,14 +78,14 @@
   "Doekhi": {
    "qg": 7.5,
    "qgs": 7.5,
-   "qa": 12.5,
+   "qa": 13.0,
    "qc": 6.25
   },
   "Kone M.": {
    "qg": 5.75,
    "qgs": 6.0,
    "qa": 5.75,
-   "qc": 4.75
+   "qc": 4.8
   },
   "Chalobah": {
    "qg": 8.0,
@@ -118,7 +118,7 @@
    "qc": 9.75
   },
   "Gallo": {
-   "qg": 19.5,
+   "qg": 17.0,
    "qgs": 16.0,
    "qa": 8.0,
    "qc": 4.8
@@ -174,7 +174,7 @@
     "odds": [
      1.38,
      5.0,
-     7.25
+     7.0
     ],
     "ou": [
      1.55,
