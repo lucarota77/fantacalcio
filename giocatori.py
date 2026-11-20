@@ -251,6 +251,12 @@ if 'locale' not in sys.argv and os.path.exists('giocatori_input.json'):
 #   assist Gonzalez 3.90, Kolo Muani 4.75, Colombo 6.75; cartellini Pavlovic 3.80, Gallo 4.80, Alajbegovic 7.25,
 #   Woltemade 7.75, Kolo Muani 7.00, Colombo 5.25. Snai ~13:55: marcatori invariati; 1X2 Como-Cagliari 1.28/6.00/10.00
 #   (O/U 1.47/2.50), Juventus-Venezia 1.36/5.25/8.00, Sassuolo-Genoa 2.50 trasferta, Milan-Frosinone 5.50, Atalanta-Inter 5.00/4.50/1.55.
+# ===== GIORNATA 12 — passata locale 20/11/2026 14:35 =====
+# Gazzetta, fantacalcio.it, statistiche (gz/fc/statistiche.json rigenerati, git diff vuoto) e SosFanta invariati sui 25.
+# SKY non riletta: a pannello nascosto il widget formazioni non si carica (banner consenso); valori della lettura ~13:45.
+# bwin ~14:40 su tutte e 10: 1X2/O-U, marcatori e assist invariati; cartellino Ramos 5.00 (era 5.50).
+# Snai ~14:50: marcatori invariati; 1X2 Como-Cagliari 1.30/5.75/9.00 (O/U 1.50/2.40), Lazio-Lecce 8.00 trasferta,
+#   Atalanta-Inter 4.75/4.50/1.57.
 P = [
 ("Martinez Jo.","P","Inter","Atalanta-Inter",.80,.60,.90,.90,None,None,None,9.25,0,"⚠️ Titolare per Gazzetta (20/11 13:13), fantacalcio.it (80%) e Sky; SosFanta 60% (Provedel 40). Cartellino bwin 9.25."),
 ("Provedel","P","Inter","Atalanta-Inter",.05,.40,.12,.12,None,None,None,None,0,"🔴 Panchina per Gazzetta, fantacalcio.it (5%) e Sky; SosFanta 40% in ballottaggio con Martinez. Assente dai mercati bwin."),
@@ -273,7 +279,7 @@ P = [
 ("Bernardeschi","C","Bologna","Bologna-Udinese",.60,.51,.90,.90,3.2,3.0,4.2,4.75,0,"⚠️ Titolare per Gazzetta (20/11 13:02) e Sky; fantacalcio.it 60%, SosFanta 51%. Marcatore bwin 3.20 / Snai 3.00, assist bwin 4.20."),
 ("Pellegrino M.","A","Fiorentina","Monza-Fiorentina",.90,.95,.90,.90,2.55,2.5,6.0,4.8,0,"Titolare per tutte e quattro le fonti (Gazzetta 19/11 19:24). Marcatore bwin 2.55 / Snai 2.50."),
 ("Woltemade","A","Juventus","Juventus-Venezia",.90,.95,.90,.90,2.37,2.4,5.25,7.75,0,"Titolare per tutte e quattro le fonti. Marcatore bwin 2.37 / Snai 2.40."),
-("Ramos G.","A","Milan","Milan-Frosinone",.90,.95,.90,.90,2.15,1.8,5.75,5.5,0,"Titolare per tutte e quattro le fonti. Marcatore bwin 2.15 / Snai 1.80."),
+("Ramos G.","A","Milan","Milan-Frosinone",.90,.95,.90,.90,2.15,1.8,5.75,5.0,0,"Titolare per tutte e quattro le fonti. Marcatore bwin 2.15 / Snai 1.80."),
 ("Kolo Muani","A","Juventus","Juventus-Venezia",.90,.95,.90,.90,2.6,2.25,4.75,7.0,0,"Titolare per tutte e quattro le fonti. Marcatore bwin 2.60 / Snai 2.25."),
 ("Colombo","A","Genoa","Sassuolo-Genoa",.12,.05,.12,.12,2.85,3.0,6.75,5.25,0,"⚠️ CONFLITTO: panchina per tutte e quattro le fonti (Gazzetta 20/11 13:07, Sky: Osmajic punta), ma entrambi i book lo quotano da titolare: marcatore bwin 2.85 / Snai 3.00."),
 ("Thuram","A","Inter","Atalanta-Inter",.65,.60,.90,.90,1.93,2.0,4.75,5.75,0,"Titolare per Gazzetta (20/11 13:13) e Sky (con Esposito, Lautaro in panchina); ballottaggio con Lautaro per fantacalcio.it (65%) e SosFanta (60%). Marcatore bwin 1.93 / Snai 2.00."),
