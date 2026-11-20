@@ -1,14 +1,14 @@
 {
  "giornata": "12",
- "rilevate": "2026-11-19T20:27+01:00",
+ "rilevate": "2026-11-20T09:26+01:00",
  "fonte": "bwin + Snai (browser, passata locale)",
  "partite": {
   "Atalanta-Inter": "dom 22/11 20:45",
   "Milan-Frosinone": "dom 22/11 18:00",
   "Juventus-Venezia": "dom 22/11 12:30",
   "Parma-Roma": "sab 21/11 18:00",
-  "Napoli-Torino": "sab 21/11 20:45",
   "Bologna-Udinese": "dom 22/11 15:00",
+  "Napoli-Torino": "sab 21/11 20:45",
   "Monza-Fiorentina": "lun 23/11 20:45",
   "Lazio-Lecce": "sab 21/11 15:00",
   "Como-Cagliari": "sab 21/11 15:00",
@@ -16,27 +16,27 @@
  },
  "quote": {
   "Thuram": {
-   "qg": 1.95,
+   "qg": 1.93,
    "qgs": 2.0,
-   "qa": 4.8,
-   "qc": 5.5
+   "qa": 4.75,
+   "qc": 5.75
   },
   "Pulisic": {
    "qg": 2.5,
    "qgs": 2.0,
    "qa": 3.5,
-   "qc": 5.5
+   "qc": 6.0
   },
   "Ramos G.": {
    "qg": 2.15,
    "qgs": 1.8,
    "qa": 5.75,
-   "qc": 4.8
+   "qc": 5.5
   },
   "Alajbegovic": {
    "qg": 3.0,
    "qgs": 2.75,
-   "qa": 3.8,
+   "qa": 3.6,
    "qc": 6.5
   },
   "Woltemade": {
@@ -57,34 +57,34 @@
    "qa": 5.0,
    "qc": 6.25
   },
-  "Politano": {
-   "qg": 3.9,
-   "qgs": 3.0,
-   "qa": 3.4,
-   "qc": 6.75
-  },
   "Bernardeschi": {
    "qg": 3.2,
    "qgs": 3.0,
-   "qa": 4.4,
+   "qa": 4.2,
    "qc": 4.75
+  },
+  "Politano": {
+   "qg": 4.1,
+   "qgs": 3.0,
+   "qa": 3.4,
+   "qc": 6.75
   },
   "Pellegrino M.": {
    "qg": 2.55,
    "qgs": 2.5,
    "qa": 6.0,
-   "qc": 4.5
+   "qc": 4.8
   },
   "Doekhi": {
-   "qg": 8.0,
+   "qg": 7.5,
    "qgs": 7.5,
-   "qa": 12.0,
+   "qa": 13.0,
    "qc": 6.25
   },
   "Gonzalez N.": {
    "qg": 3.2,
    "qgs": 2.75,
-   "qa": 4.2,
+   "qa": 4.1,
    "qc": 4.0
   },
   "Chalobah": {
@@ -109,7 +109,7 @@
    "qg": 11.5,
    "qgs": 16.0,
    "qa": 12.0,
-   "qc": 4.33
+   "qc": 4.2
   },
   "Vojvoda": {
    "qg": 12.0,
@@ -121,13 +121,13 @@
    "qg": null,
    "qgs": null,
    "qa": null,
-   "qc": 11.0
+   "qc": 9.0
   },
   "Comuzzo": {
    "qg": 17.5,
    "qgs": 33.0,
    "qa": 18.0,
-   "qc": 4.75
+   "qc": 5.0
   },
   "Gallo": {
    "qg": 19.5,
@@ -139,7 +139,7 @@
    "qg": null,
    "qgs": null,
    "qa": null,
-   "qc": 13.0
+   "qc": 9.25
   }
  },
  "match": {
@@ -161,13 +161,13 @@
    },
    "snai": {
     "odds": [
-     1.28,
+     1.3,
      5.75,
-     10.0
+     9.0
     ],
     "ou": [
-     1.47,
-     2.5,
+     1.5,
+     2.4,
      2.5
     ]
    }
@@ -190,9 +190,9 @@
    },
    "snai": {
     "odds": [
-     1.33,
-     5.0,
-     9.0
+     1.38,
+     4.75,
+     8.5
     ],
     "ou": [
      1.5,
@@ -393,9 +393,9 @@
    },
    "snai": {
     "odds": [
+     4.75,
      4.5,
-     4.25,
-     1.6
+     1.57
     ],
     "ou": [
      1.36,
